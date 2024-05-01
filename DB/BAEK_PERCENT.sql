@@ -261,7 +261,8 @@ CREATE TABLE KhachHang (
     TenKH nvarchar(50) NOT NULL,
     NgaySinh date NOT NULL,
     GioiTinh bit NOT NULL,
-    DiaChi nvarchar(100) NOT NULL
+    DiaChi nvarchar(100) NOT NULL,
+	SDT varchar(11) NOT NULL
 );
 
 CREATE TRIGGER trg_KhachHang_Insert
@@ -276,8 +277,8 @@ BEGIN
     FROM KhachHang;
 
     -- Chèn dữ liệu vào bảng KhachHang với MaKH được tự động tạo
-    INSERT INTO KhachHang (MaKH, TenKH, NgaySinh, GioiTinh, DiaChi)
-    SELECT 'KH' + RIGHT('0000000' + CAST(@nextId + ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) - 1 AS varchar(7)), 7), TenKH, NgaySinh, GioiTinh, DiaChi
+    INSERT INTO KhachHang (MaKH, TenKH, NgaySinh, GioiTinh, DiaChi, SDT)
+    SELECT 'KH' + RIGHT('0000000' + CAST(@nextId + ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) - 1 AS varchar(7)), 7), TenKH, NgaySinh, GioiTinh, DiaChi, SDT
     FROM inserted;
 
     -- Hiển thị kết quả
@@ -285,12 +286,12 @@ BEGIN
     FROM KhachHang;
 END;
 
-INSERT INTO KhachHang (TenKH, NgaySinh, GioiTinh, DiaChi)
-VALUES (N'Khách hàng số 1', '1999-01-01', 1, N'Chùa Bộc'),
-       (N'Khách hàng số 2', '1998-02-02', 0, N'Tây Sơn'),
-       (N'Khách hàng số 3', '1997-03-03', 1, N'Thái Hà'),
-       (N'Khách hàng số 4', '1996-04-04', 0, N'Phạm Ngọc Thạch'),
-       (N'Khách hàng số 5', '1995-05-05', 1, N'Nguyễn Lương Bằng');
+INSERT INTO KhachHang (TenKH, NgaySinh, GioiTinh, DiaChi, SDT)
+VALUES (N'Khách hàng số 1', '1999-01-01', 1, N'Chùa Bộc', 0987654321),
+       (N'Khách hàng số 2', '1998-02-02', 0, N'Tây Sơn', 0987623451),
+       (N'Khách hàng số 3', '1997-03-03', 1, N'Thái Hà', 0987634521),
+       (N'Khách hàng số 4', '1996-04-04', 0, N'Phạm Ngọc Thạch', 0987651234),
+       (N'Khách hàng số 5', '1995-05-05', 1, N'Nguyễn Lương Bằng', 0987612345);
 
 -- INSERT INTO KhachHang (MaKH, TenKH, NgaySinh, GioiTinh, DiaChi)
 -- VALUES ('KH0000001', N'Khách hàng số 1', '1999-01-01', 1, N'Chùa Bộc'),
@@ -316,11 +317,11 @@ SELECT * FROM TaiKhoan;
 CREATE TABLE NhanVien (
     MaNV varchar(10) PRIMARY KEY NOT NULL,
     TenNV nvarchar(50) NOT NULL,
-	TenDangNhap varchar(30) NOT NULL,
+	TenDangNhap varchar(30),
     NgaySinh date NOT NULL,
     GioiTinh bit NOT NULL,
     DiaChi nvarchar(100) NOT NULL,
-    SDT nvarchar(11) NOT NULL,
+    SDT varchar(11) NOT NULL,
     Luong int NOT NULL,
 	FOREIGN KEY (TenDangNhap) REFERENCES TaiKhoan(TenDangNhap)
 );
