@@ -31,3 +31,33 @@
 
 ### 🚀 Tiện ích sử dụng
 
+- MaterialSkin2: Giao diện Material Design của Google cho .NET WinForm
+
+## Tạo file kết nối với database
+
+### 1. Tạo file cấu hình App.config
+
+Click chuột phải vào tên ứng dụng trong Visual Studio (không phải Solution) -> Add -> New Item -> Application Configuration File
+
+```
+└📁 BAEK-PERCENT
+  └📁 BAEK-PERCENT
+    └📁 Class
+    └📁 Forms
+    └📁 Resources
+    └📄 App.config
+    ...
+```
+
+### 2. Sửa đổi file App.config
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <connectionStrings>
+    <add name="BAEKconnection" connectionString="" />
+  </connectionStrings>
+</configuration>
+```
+
+Với connectionString lấy từ Connection String kết nối vào database của bạn trong SQL Server.
