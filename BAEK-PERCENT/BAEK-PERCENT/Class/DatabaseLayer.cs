@@ -271,34 +271,15 @@ namespace BAEK_PERCENT.Database
             return result;
         }
 
-
         public static string CreateKey(string tiento)
         {
-            string key = tiento;
-            string[] partsDay;
+            DateTime now = DateTime.Now;
 
-            partsDay = DateTime.Now.ToShortDateString().Split('/');
+            string datePart = now.ToString("yyMMdd");
 
-            // Ví dụ 07/08/2009
-            string d = String.Format("{0}{1}{2}", partsDay[0], partsDay[1], partsDay[2]);
-            key = key + d;
+            string timePart = now.ToString("HHmmss");
 
-            string[] partsTime;
-            partsTime = DateTime.Now.ToLongTimeString().Split(':');
-
-            // Ví dụ 7:08:03 PM hoặc 7:08:03 AM
-            if (partsTime[2].Substring(3, 2) == "PM")
-                partsTime[0] = Functions.ConvertTimeTo24(partsTime[0]);
-            if (partsTime[2].Substring(3, 2) == "AM")
-                if (partsTime[0].Length == 1)
-                    partsTime[0] = "0" + partsTime[0];
-
-            // Xóa ký tự trắng và PM hoặc AM
-            partsTime[2] = partsTime[2].Remove(2, 3);
-
-            string t;
-            t = String.Format("{0}{1}{2}", partsTime[0], partsTime[1], partsTime[2]);
-            key += t;
+            string key = tiento + datePart + timePart;
 
             return key;
         }

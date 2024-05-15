@@ -367,10 +367,10 @@ VALUES (N'Nhân viên số 1', 'admin', '1999-01-01', 1, N'Chùa Bộc', '098765
 CREATE TABLE Sach (
     MaSach varchar(10) PRIMARY KEY NOT NULL,
     TenSach nvarchar(100) NOT NULL,
-    MaLoai varchar(10) NOT NULL,
-    MaLV varchar(10) NOT NULL,
-    MaTG varchar(10) NOT NULL,
-    MaNN varchar(10) NOT NULL,
+    MaLoai varchar(10),
+    MaLV varchar(10),
+    MaTG varchar(10),
+    MaNN varchar(10),
     SoTrang int NOT NULL,
     GiaSach int NOT NULL,
     DonGiaThue int NOT NULL,
@@ -406,11 +406,11 @@ BEGIN
 END;
 
 INSERT INTO Sach (TenSach, MaLoai, MaLV, MaTG, MaNN, SoTrang, GiaSach, DonGiaThue, SoLuong, GhiChu)
-VALUES (N'Ngôi thứ nhất số ít', 'LS001', 'LV001', 'TG001', 'NN003', 203, 108000, 10000, 5, N'Ghi chú 1'),
-       (N'Thị kiến (The Shining)', 'LS002', 'LV001', 'TG002', 'NN002', 592, 269000, 20000, 5, N'Ghi chú 2'),
-       (N'Số đỏ', 'LS002', 'LV001', 'TG003', 'NN001', 624, 86000, 10000, 5, N'Ghi chú 3'),
-       (N'Một hoạ sĩ chết rồi thành danh trở lại', 'LS002', 'LV002', 'TG004', 'NN005', 388, 165000, 15000, 3, N'Ghi chú 4'),
-       (N'Hạnh nhân', 'LS004', 'LV001', 'TG005', 'NN004', 243, 95000, 20000, 1, N'Ghi chú 5');
+VALUES (N'Ngôi thứ nhất số ít', 'LS001', 'LV001', 'TG001', 'NN003', 203, 108000, 5000, 5, N'Ghi chú 1'),
+       (N'Thị kiến (The Shining)', 'LS002', 'LV001', 'TG002', 'NN002', 592, 269000, 10000, 5, N'Ghi chú 2'),
+       (N'Số đỏ', 'LS002', 'LV001', 'TG003', 'NN001', 624, 86000, 5000, 5, N'Ghi chú 3'),
+       (N'Một hoạ sĩ chết rồi thành danh trở lại', 'LS002', 'LV002', 'TG004', 'NN005', 388, 165000, 8000, 3, N'Ghi chú 4'),
+       (N'Hạnh nhân', 'LS004', 'LV001', 'TG005', 'NN004', 243, 95000, 10000, 1, N'Ghi chú 5');
 
 -- INSERT INTO Sach (MaSach, TenSach, MaLoai, MaLV, MaTG, MaNN, SoTrang, GiaSach, DonGiaThue, SoLuong, GhiChu)
 -- VALUES ('ST0000001', N'Ngôi thứ nhất số ít', 'LS001', 'LV001', 'TG001', 'NN003', 203, 108000, 10000, 5, N'Ghi chú 1'),
@@ -423,9 +423,10 @@ VALUES (N'Ngôi thứ nhất số ít', 'LS001', 'LV001', 'TG001', 'NN003', 203,
 
 CREATE TABLE ThueSach (
     MaThue varchar(50) PRIMARY KEY NOT NULL,
-    MaKH varchar(10) NOT NULL,
-    MaNV varchar(10) NOT NULL,
+    MaKH varchar(10),
+    MaNV varchar(10),
     NgayThue date NOT NULL,
+	NgayTra date NOT NULL,
     TienDatCoc int NOT NULL,
     FOREIGN KEY (MaKH) REFERENCES KhachHang(MaKH),
     FOREIGN KEY (MaNV) REFERENCES NhanVien(MaNV)
@@ -434,6 +435,7 @@ CREATE TABLE ThueSach (
 CREATE TABLE CTThueSach (
     MaThue varchar(50) NOT NULL,
     MaSach varchar(10) NOT NULL,
+	GiaThue int NOT NULL,
     DaTra bit NOT NULL,
     FOREIGN KEY (MaThue) REFERENCES ThueSach(MaThue),
     FOREIGN KEY (MaSach) REFERENCES Sach(MaSach),
@@ -442,10 +444,10 @@ CREATE TABLE CTThueSach (
 
 CREATE TABLE TraSach (
     MaTra varchar(50) PRIMARY KEY NOT NULL,
-    MaThue varchar(50) NOT NULL,
-    MaNV varchar(10) NOT NULL,
+    MaThue varchar(50),
+    MaNV varchar(10),
     NgayTra date NOT NULL,
-    TongTien int NOT NULL,
+    TongTien float NOT NULL,
     FOREIGN KEY (MaThue) REFERENCES ThueSach(MaThue),
     FOREIGN KEY (MaNV) REFERENCES NhanVien(MaNV)
 );
@@ -461,36 +463,32 @@ CREATE TABLE CTTraSach (
     PRIMARY KEY (MaTra, MaSach)
 );
 
--- INSERT INTO ThueSach (MaThue, MaKH, MaNV, NgayThue, TienDatCoc)
--- VALUES ('TS0000001', 'KH0000001', 'NV0000001', '2024-04-01', 20000),
---        ('TS0000002', 'KH0000002', 'NV0000002', '2024-04-02', 20000),
---        ('TS0000003', 'KH0000003', 'NV0000003', '2024-04-03', 20000),
---        ('TS0000004', 'KH0000004', 'NV0000004', '2024-04-04', 20000),
---        ('TS0000005', 'KH0000005', 'NV0000005', '2024-04-05', 20000);
+INSERT INTO ThueSach (MaThue, MaKH, MaNV, NgayThue, NgayTra, TienDatCoc)
+VALUES ('TH240515154556', 'KH0000001', 'NV0000001', '2024-04-01', '2024-04-08', 20000),
+       ('TH240515160212', 'KH0000002', 'NV0000002', '2024-04-02', '2024-04-09', 20000),
+       ('TH240515172332', 'KH0000003', 'NV0000001', '2024-04-03', '2024-04-10', 20000),
+       ('TH240515185132', 'KH0000004', 'NV0000002', '2024-04-04', '2024-04-11', 20000);
 
--- SELECT * FROM ThueSach;
+SELECT * FROM ThueSach;
 
--- INSERT INTO CTThueSach (MaThue, MaSach, DaTra)
--- VALUES ('TS0000001', 'ST0000001', 1),
---        ('TS0000002', 'ST0000002', 1),
---        ('TS0000003', 'ST0000001', 1),
---        ('TS0000004', 'ST0000002', 1),
---        ('TS0000005', 'ST0000005', 1);
+INSERT INTO CTThueSach (MaThue, MaSach, GiaThue, DaTra)
+VALUES ('TH240515154556', 'ST0000001', 35000, 1),
+       ('TH240515160212', 'ST0000002', 70000, 1),
+       ('TH240515160212', 'ST0000003', 56000, 1),
+       ('TH240515172332', 'ST0000002', 70000, 1),
+       ('TH240515185132', 'ST0000001', 35000, 0);
 
--- SELECT * FROM CTThueSach;
+SELECT * FROM CTThueSach;
 
--- INSERT INTO TraSach (MaTra, MaThue, MaNV, NgayTra, TongTien)
--- VALUES ('TR0000001', 'TS0000001', 'NV0000001', '2024-04-08', 10000),
---        ('TR0000002', 'TS0000002', 'NV0000002', '2024-04-09', 20000),
---        ('TR0000003', 'TS0000003', 'NV0000003', '2024-04-10', 40000),
---        ('TR0000004', 'TS0000004', 'NV0000004', '2024-04-11', 20000);
+INSERT INTO TraSach (MaTra, MaThue, MaNV, NgayTra, TongTien)
+VALUES ('TR240515194556', 'TH240515154556', 'NV0000001', '2024-04-08', 35000),
+       ('TR240515195631', 'TH240515160212', 'NV0000002', '2024-04-09', 126000),
+       ('TR240515200433', 'TH240515172332', 'NV0000001', '2024-04-10', 70000),
+       ('TR240515200708', 'TH240515185132', 'NV0000002', '2024-04-14', 65000);
 
--- SELECT * FROM TraSach;
+SELECT * FROM TraSach;
 
--- INSERT INTO CTTraSach (MaTra, MaSach, MaVP, ThanhTien)
--- VALUES ('TR0000001', 'ST0000001', 'VP000', 10000),
---        ('TR0000002', 'ST0000002', 'VP000', 20000),
---        ('TR0000003', 'ST0000001', 'VP003', 40000),
---        ('TR0000004', 'ST0000002', 'VP000', 20000);
+INSERT INTO CTTraSach (MaTra, MaSach, MaVP, ThanhTien)
+VALUES ('TR240515200708', 'ST0000001', 'VP001', 30000);
 
--- SELECT * FROM CTTraSach;
+SELECT * FROM CTTraSach;

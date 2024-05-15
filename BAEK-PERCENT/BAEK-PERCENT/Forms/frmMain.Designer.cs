@@ -35,13 +35,16 @@
             this.materialCard3 = new MaterialSkin.Controls.MaterialCard();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.materialFloatingActionButton3 = new MaterialSkin.Controls.MaterialFloatingActionButton();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.materialCard2 = new MaterialSkin.Controls.MaterialCard();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.materialFloatingActionButton2 = new MaterialSkin.Controls.MaterialFloatingActionButton();
             this.materialCard1 = new MaterialSkin.Controls.MaterialCard();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.materialFloatingActionButton1 = new MaterialSkin.Controls.MaterialFloatingActionButton();
             this.tabPageSach = new System.Windows.Forms.TabPage();
             this.tabPageThue = new System.Windows.Forms.TabPage();
             this.tabPageTra = new System.Windows.Forms.TabPage();
@@ -54,9 +57,6 @@
             this.tabPageVP = new System.Windows.Forms.TabPage();
             this.tabPageTK = new System.Windows.Forms.TabPage();
             this.tabPageTT = new System.Windows.Forms.TabPage();
-            this.materialFloatingActionButton3 = new MaterialSkin.Controls.MaterialFloatingActionButton();
-            this.materialFloatingActionButton2 = new MaterialSkin.Controls.MaterialFloatingActionButton();
-            this.materialFloatingActionButton1 = new MaterialSkin.Controls.MaterialFloatingActionButton();
             this.materialTabControl.SuspendLayout();
             this.tabPageHome.SuspendLayout();
             this.materialCard3.SuspendLayout();
@@ -88,7 +88,7 @@
             this.materialTabControl.Multiline = true;
             this.materialTabControl.Name = "materialTabControl";
             this.materialTabControl.SelectedIndex = 0;
-            this.materialTabControl.Size = new System.Drawing.Size(1260, 877);
+            this.materialTabControl.Size = new System.Drawing.Size(1276, 916);
             this.materialTabControl.TabIndex = 0;
             this.materialTabControl.SelectedIndexChanged += new System.EventHandler(this.mainTabControl_SelectedIndexChanged);
             // 
@@ -103,7 +103,7 @@
             this.tabPageHome.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageHome.Name = "tabPageHome";
             this.tabPageHome.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPageHome.Size = new System.Drawing.Size(1236, 899);
+            this.tabPageHome.Size = new System.Drawing.Size(1268, 881);
             this.tabPageHome.TabIndex = 0;
             this.tabPageHome.Text = "Trang chủ";
             this.tabPageHome.UseVisualStyleBackColor = true;
@@ -143,6 +143,20 @@
             this.label6.Size = new System.Drawing.Size(196, 23);
             this.label6.TabIndex = 2;
             this.label6.Text = "Số đơn thuê tháng này";
+            // 
+            // materialFloatingActionButton3
+            // 
+            this.materialFloatingActionButton3.Depth = 0;
+            this.materialFloatingActionButton3.Icon = ((System.Drawing.Image)(resources.GetObject("materialFloatingActionButton3.Icon")));
+            this.materialFloatingActionButton3.ImageIndex = 12;
+            this.materialFloatingActionButton3.ImageList = this.imageList1;
+            this.materialFloatingActionButton3.Location = new System.Drawing.Point(187, 98);
+            this.materialFloatingActionButton3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialFloatingActionButton3.Name = "materialFloatingActionButton3";
+            this.materialFloatingActionButton3.Size = new System.Drawing.Size(56, 56);
+            this.materialFloatingActionButton3.TabIndex = 1;
+            this.materialFloatingActionButton3.Text = "materialFloatingActionButton3";
+            this.materialFloatingActionButton3.UseVisualStyleBackColor = true;
             // 
             // imageList1
             // 
@@ -199,6 +213,20 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "Số đơn thuê tháng này";
             // 
+            // materialFloatingActionButton2
+            // 
+            this.materialFloatingActionButton2.Depth = 0;
+            this.materialFloatingActionButton2.Icon = ((System.Drawing.Image)(resources.GetObject("materialFloatingActionButton2.Icon")));
+            this.materialFloatingActionButton2.ImageIndex = 12;
+            this.materialFloatingActionButton2.ImageList = this.imageList1;
+            this.materialFloatingActionButton2.Location = new System.Drawing.Point(187, 98);
+            this.materialFloatingActionButton2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialFloatingActionButton2.Name = "materialFloatingActionButton2";
+            this.materialFloatingActionButton2.Size = new System.Drawing.Size(56, 56);
+            this.materialFloatingActionButton2.TabIndex = 1;
+            this.materialFloatingActionButton2.Text = "materialFloatingActionButton2";
+            this.materialFloatingActionButton2.UseVisualStyleBackColor = true;
+            // 
             // materialCard1
             // 
             this.materialCard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -235,6 +263,20 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Số đơn thuê tháng này";
             // 
+            // materialFloatingActionButton1
+            // 
+            this.materialFloatingActionButton1.Depth = 0;
+            this.materialFloatingActionButton1.Icon = ((System.Drawing.Image)(resources.GetObject("materialFloatingActionButton1.Icon")));
+            this.materialFloatingActionButton1.ImageIndex = 12;
+            this.materialFloatingActionButton1.ImageList = this.imageList1;
+            this.materialFloatingActionButton1.Location = new System.Drawing.Point(187, 98);
+            this.materialFloatingActionButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialFloatingActionButton1.Name = "materialFloatingActionButton1";
+            this.materialFloatingActionButton1.Size = new System.Drawing.Size(56, 56);
+            this.materialFloatingActionButton1.TabIndex = 1;
+            this.materialFloatingActionButton1.Text = "materialFloatingActionButton1";
+            this.materialFloatingActionButton1.UseVisualStyleBackColor = true;
+            // 
             // tabPageSach
             // 
             this.tabPageSach.BackColor = System.Drawing.Color.Transparent;
@@ -242,7 +284,7 @@
             this.tabPageSach.Location = new System.Drawing.Point(4, 31);
             this.tabPageSach.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageSach.Name = "tabPageSach";
-            this.tabPageSach.Size = new System.Drawing.Size(1236, 899);
+            this.tabPageSach.Size = new System.Drawing.Size(1252, 842);
             this.tabPageSach.TabIndex = 1;
             this.tabPageSach.Text = "Sách truyện";
             // 
@@ -252,7 +294,7 @@
             this.tabPageThue.Location = new System.Drawing.Point(4, 31);
             this.tabPageThue.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageThue.Name = "tabPageThue";
-            this.tabPageThue.Size = new System.Drawing.Size(1236, 899);
+            this.tabPageThue.Size = new System.Drawing.Size(1252, 842);
             this.tabPageThue.TabIndex = 2;
             this.tabPageThue.Text = "Thuê sách";
             this.tabPageThue.UseVisualStyleBackColor = true;
@@ -275,7 +317,7 @@
             this.tabPageKhach.Location = new System.Drawing.Point(4, 31);
             this.tabPageKhach.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageKhach.Name = "tabPageKhach";
-            this.tabPageKhach.Size = new System.Drawing.Size(1236, 899);
+            this.tabPageKhach.Size = new System.Drawing.Size(1252, 842);
             this.tabPageKhach.TabIndex = 4;
             this.tabPageKhach.Text = "Khách hàng";
             this.tabPageKhach.UseVisualStyleBackColor = true;
@@ -286,7 +328,7 @@
             this.tabPageNV.Location = new System.Drawing.Point(4, 31);
             this.tabPageNV.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageNV.Name = "tabPageNV";
-            this.tabPageNV.Size = new System.Drawing.Size(1236, 899);
+            this.tabPageNV.Size = new System.Drawing.Size(1252, 842);
             this.tabPageNV.TabIndex = 5;
             this.tabPageNV.Text = "Nhân viên";
             this.tabPageNV.UseVisualStyleBackColor = true;
@@ -297,7 +339,7 @@
             this.tabPageTG.Location = new System.Drawing.Point(4, 31);
             this.tabPageTG.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageTG.Name = "tabPageTG";
-            this.tabPageTG.Size = new System.Drawing.Size(1236, 899);
+            this.tabPageTG.Size = new System.Drawing.Size(1252, 842);
             this.tabPageTG.TabIndex = 6;
             this.tabPageTG.Text = "Tác giả";
             this.tabPageTG.UseVisualStyleBackColor = true;
@@ -310,7 +352,7 @@
             this.tabPageLV.Location = new System.Drawing.Point(4, 31);
             this.tabPageLV.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageLV.Name = "tabPageLV";
-            this.tabPageLV.Size = new System.Drawing.Size(1236, 899);
+            this.tabPageLV.Size = new System.Drawing.Size(1252, 842);
             this.tabPageLV.TabIndex = 7;
             this.tabPageLV.Text = "Lĩnh vực";
             // 
@@ -320,7 +362,7 @@
             this.tabPageLoai.Location = new System.Drawing.Point(4, 31);
             this.tabPageLoai.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageLoai.Name = "tabPageLoai";
-            this.tabPageLoai.Size = new System.Drawing.Size(1236, 899);
+            this.tabPageLoai.Size = new System.Drawing.Size(1252, 842);
             this.tabPageLoai.TabIndex = 8;
             this.tabPageLoai.Text = "Loại sách";
             this.tabPageLoai.UseVisualStyleBackColor = true;
@@ -331,7 +373,7 @@
             this.tabPageNN.Location = new System.Drawing.Point(4, 31);
             this.tabPageNN.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageNN.Name = "tabPageNN";
-            this.tabPageNN.Size = new System.Drawing.Size(1236, 899);
+            this.tabPageNN.Size = new System.Drawing.Size(1252, 842);
             this.tabPageNN.TabIndex = 9;
             this.tabPageNN.Text = "Ngôn ngữ";
             this.tabPageNN.UseVisualStyleBackColor = true;
@@ -342,7 +384,7 @@
             this.tabPageVP.Location = new System.Drawing.Point(4, 31);
             this.tabPageVP.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageVP.Name = "tabPageVP";
-            this.tabPageVP.Size = new System.Drawing.Size(1236, 899);
+            this.tabPageVP.Size = new System.Drawing.Size(1252, 842);
             this.tabPageVP.TabIndex = 10;
             this.tabPageVP.Text = "Vi phạm";
             this.tabPageVP.UseVisualStyleBackColor = true;
@@ -353,7 +395,7 @@
             this.tabPageTK.Location = new System.Drawing.Point(4, 31);
             this.tabPageTK.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageTK.Name = "tabPageTK";
-            this.tabPageTK.Size = new System.Drawing.Size(1236, 899);
+            this.tabPageTK.Size = new System.Drawing.Size(1252, 842);
             this.tabPageTK.TabIndex = 11;
             this.tabPageTK.Text = "Tài khoản";
             this.tabPageTK.UseVisualStyleBackColor = true;
@@ -364,58 +406,16 @@
             this.tabPageTT.Location = new System.Drawing.Point(4, 31);
             this.tabPageTT.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageTT.Name = "tabPageTT";
-            this.tabPageTT.Size = new System.Drawing.Size(1236, 899);
+            this.tabPageTT.Size = new System.Drawing.Size(1252, 842);
             this.tabPageTT.TabIndex = 12;
             this.tabPageTT.Text = "Thông tin";
             this.tabPageTT.UseVisualStyleBackColor = true;
-            // 
-            // materialFloatingActionButton3
-            // 
-            this.materialFloatingActionButton3.Depth = 0;
-            this.materialFloatingActionButton3.Icon = ((System.Drawing.Image)(resources.GetObject("materialFloatingActionButton3.Icon")));
-            this.materialFloatingActionButton3.ImageIndex = 12;
-            this.materialFloatingActionButton3.ImageList = this.imageList1;
-            this.materialFloatingActionButton3.Location = new System.Drawing.Point(187, 98);
-            this.materialFloatingActionButton3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialFloatingActionButton3.Name = "materialFloatingActionButton3";
-            this.materialFloatingActionButton3.Size = new System.Drawing.Size(56, 56);
-            this.materialFloatingActionButton3.TabIndex = 1;
-            this.materialFloatingActionButton3.Text = "materialFloatingActionButton3";
-            this.materialFloatingActionButton3.UseVisualStyleBackColor = true;
-            // 
-            // materialFloatingActionButton2
-            // 
-            this.materialFloatingActionButton2.Depth = 0;
-            this.materialFloatingActionButton2.Icon = ((System.Drawing.Image)(resources.GetObject("materialFloatingActionButton2.Icon")));
-            this.materialFloatingActionButton2.ImageIndex = 12;
-            this.materialFloatingActionButton2.ImageList = this.imageList1;
-            this.materialFloatingActionButton2.Location = new System.Drawing.Point(187, 98);
-            this.materialFloatingActionButton2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialFloatingActionButton2.Name = "materialFloatingActionButton2";
-            this.materialFloatingActionButton2.Size = new System.Drawing.Size(56, 56);
-            this.materialFloatingActionButton2.TabIndex = 1;
-            this.materialFloatingActionButton2.Text = "materialFloatingActionButton2";
-            this.materialFloatingActionButton2.UseVisualStyleBackColor = true;
-            // 
-            // materialFloatingActionButton1
-            // 
-            this.materialFloatingActionButton1.Depth = 0;
-            this.materialFloatingActionButton1.Icon = ((System.Drawing.Image)(resources.GetObject("materialFloatingActionButton1.Icon")));
-            this.materialFloatingActionButton1.ImageIndex = 12;
-            this.materialFloatingActionButton1.ImageList = this.imageList1;
-            this.materialFloatingActionButton1.Location = new System.Drawing.Point(187, 98);
-            this.materialFloatingActionButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialFloatingActionButton1.Name = "materialFloatingActionButton1";
-            this.materialFloatingActionButton1.Size = new System.Drawing.Size(56, 56);
-            this.materialFloatingActionButton1.TabIndex = 1;
-            this.materialFloatingActionButton1.Text = "materialFloatingActionButton1";
-            this.materialFloatingActionButton1.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 960);
+            this.ClientSize = new System.Drawing.Size(1280, 999);
             this.Controls.Add(this.materialTabControl);
             this.DrawerShowIconsWhenHidden = true;
             this.DrawerTabControl = this.materialTabControl;

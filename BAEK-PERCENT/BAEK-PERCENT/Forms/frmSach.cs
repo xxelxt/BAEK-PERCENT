@@ -401,6 +401,10 @@ namespace BAEK_PERCENT.Forms
                         Functions.HandleInfo("Xóa sách thành công");
                         LoadData();
                         ResetValues();
+
+                        btnSua.Enabled = false;
+                        btnXoa.Enabled = false;
+                        btnHuy.Enabled = false;
                     }
                     catch (Exception ex)
                     {

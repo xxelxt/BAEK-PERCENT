@@ -115,5 +115,23 @@ namespace BAEK_PERCENT.DAL
 
             DatabaseLayer.RunSqlDel(sqlDelete, deleteParams);
         }
+
+        public static string GetTenKhachHangByMa(string maKH)
+        {
+            string query = "SELECT TenKH FROM KhachHang WHERE MaKH = @MaKH";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@MaKH", maKH)
+            };
+
+            DataTable dt = DatabaseLayer.GetDataToTable(query, parameters);
+            
+            if (dt.Rows.Count > 0)
+            {
+                return dt.Rows[0]["TenKH"].ToString();
+            }
+
+            return string.Empty;
+        }
     }
 }

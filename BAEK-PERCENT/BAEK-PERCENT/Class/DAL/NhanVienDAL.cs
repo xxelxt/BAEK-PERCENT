@@ -119,5 +119,23 @@ namespace BAEK_PERCENT.DAL
 
             DatabaseLayer.RunSqlDel(sqlDelete, deleteParams);
         }
+
+        public static string GetTenNhanVienByMa(string maNV)
+        {
+            string query = "SELECT TenNV FROM NhanVien WHERE MaNV = @MaNV";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+            new SqlParameter("@MaNV", maNV)
+            };
+
+            DataTable dt = DatabaseLayer.GetDataToTable(query, parameters);
+            
+            if (dt.Rows.Count > 0)
+            {
+                return dt.Rows[0]["TenNV"].ToString();
+            }
+
+            return string.Empty;
+        }
     }
 }

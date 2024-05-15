@@ -123,5 +123,55 @@ namespace BAEK_PERCENT.DAL
 
             DatabaseLayer.RunSqlDel(sqlDelete, deleteParams);
         }
+
+        public static Tuple<string, string> GetTenGiaSachByMa(string maSach)
+        {
+            string query = "SELECT TenSach, DonGiaThue FROM Sach WHERE MaSach = @MaSach";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@MaSach", maSach)
+            };
+
+            DataTable dt = DatabaseLayer.GetDataToTable(query, parameters);
+
+            if (dt.Rows.Count > 0)
+            {
+                string tenSach = dt.Rows[0]["TenSach"].ToString();
+                string donGiaThue = dt.Rows[0]["DonGiaThue"].ToString();
+                return Tuple.Create(tenSach, donGiaThue);
+            }
+
+            return null;
+        }
+
+        public static int GetSoLuong(string maSach)
+        {
+            string sql = "SELECT SoLuong FROM Sach WHERE MaSach = @MaSach";
+            SqlParameter[] param = { new SqlParameter("@MaSach", maSach) };
+
+            DataTable dt = DatabaseLayer.GetDataToTable(sql, param);
+
+            if (dt.Rows.Count > 0)
+            {
+                return Convert.ToInt32(dt.Rows[0]["SoLuong"].ToString());
+            }
+            return 0;
+        }
+
+        public static void GiamSoLuong(string maSach)
+        {
+            string sql = "UPDATE Sach SET SoLuong = SoLuong - 1 WHERE MaSach = @MaSach";
+            SqlParameter[] param = { new SqlParameter("@MaSach", maSach) };
+
+            DatabaseLayer.RunSql(sql, param);
+        }
+
+        public static void TangSoLuong(string maSach)
+        {
+            string sql = "UPDATE Sach SET SoLuong = SoLuong + 1 WHERE MaSach = @MaSach";
+            SqlParameter[] param = { new SqlParameter("@MaSach", maSach) };
+
+            DatabaseLayer.RunSql(sql, param);
+        }
     }
 }

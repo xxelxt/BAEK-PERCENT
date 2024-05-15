@@ -12,17 +12,187 @@ namespace BAEK_PERCENT.DAL
 
         public static DataTable GetAllThue()
         {
-            string sql = $"SELECT T.MaThue, T.MaKH, KH.TenKH, T.MaNV, NV.TenNV, T.NgayThue, T.TienDatCoc FROM {TableName} T INNER JOIN KhachHang KH ON T.MaKH = KH.MaKH INNER JOIN NhanVien NV ON T.MaNV = NV.MaNV";
+            string sql = $"SELECT T.MaThue, T.MaKH, KH.TenKH, T.MaNV, NV.TenNV, T.NgayThue, T.NgayTra, T.TienDatCoc FROM {TableName} T INNER JOIN KhachHang KH ON T.MaKH = KH.MaKH INNER JOIN NhanVien NV ON T.MaNV = NV.MaNV";
 
             return DatabaseLayer.GetDataToTable(sql);
         }
 
         public static DataTable GetCTThue(string maThue)
         {
-            string sql = $"SELECT CT.MaSach, S.TenSach, S.DonGiaThue, CT.DaTra FROM {TableCTName} CT INNER JOIN Sach S ON CT.MaSach = S.MaSach WHERE CT.MaThue = @MaThue";
+            string sql = $"SELECT CT.MaSach, S.TenSach, CT.GiaThue, CT.DaTra FROM {TableCTName} CT INNER JOIN Sach S ON CT.MaSach = S.MaSach WHERE CT.MaThue = @MaThue";
             SqlParameter[] param = { new SqlParameter("@MaThue", maThue) };
 
             return DatabaseLayer.GetDataToTable(sql, param);
+        }
+
+        public static void DeleteThue(string maThue)
+        {
+            string sqlDelete = "DELETE FROM " + TableName + " WHERE MaThue = @MaThue";
+            SqlParameter[] deleteParams = { new SqlParameter("@MaThue", maThue) };
+
+            DatabaseLayer.RunSqlDel(sqlDelete, deleteParams);
+        }
+
+        public static void DeleteCTThue(string maThue)
+        {
+            string sqlDelete = "DELETE FROM " + TableCTName + " WHERE MaThue = @MaThue";
+            SqlParameter[] deleteParams = { new SqlParameter("@MaThue", maThue) };
+
+            DatabaseLayer.RunSqlDel(sqlDelete, deleteParams);
+        }
+
+        public static bool CheckMaThueExists(string maThue)
+        {
+            string sql = "SELECT MaThue FROM " + TableName + " + WHERE MaThue = @MaThue";
+
+            SqlParameter[] sqlParams = {
+                new SqlParameter("@MaThue", maThue)
+            };
+
+            return DatabaseLayer.CheckKey(sql, sqlParams);
+        }
+
+        /*
+        public static void InsertThue(string maThue, string maKH, string maNV, DateTime ngayThue, DateTime ngayTra, int tienDatCoc)
+        {
+            string sql = "INSERT INTO ThueSach (MaThue, MaKH, MaNV, NgayThue, NgayTra, TienDatCoc) VALUES (@MaThue, @MaKH, @MaNV, @NgayThue, @NgayTra, @TienDatCoc)";
+
+            SqlParameter[] sqlParams = {
+                new SqlParameter("@MaThue", maThue),
+                new SqlParameter("@MaKH", maKH),
+                new SqlParameter("@MaNV", maNV),
+                new SqlParameter("@NgayThue", ngayThue),
+                new SqlParameter("@NgayTra", ngayTra),
+                new SqlParameter("@TienDatCoc", tienDatCoc)
+            };
+
+            DatabaseLayer.RunSql(sql, sqlParams);
+        }
+        */
+
+        public static string InsertEmptyThue(string maThue)
+        {
+            string sqlInsert = "INSERT INTO " + TableName + " (MaThue, NgayThue, NgayTra, TienDatCoc) VALUES (@MaThue, '01/01/2000', '01/02/2000', -1)";
+            SqlParameter[] insertParams = { new SqlParameter("@MaThue", maThue) };
+
+            DatabaseLayer.RunSql(sqlInsert, insertParams);
+
+            return GetLastMaThue();
+        }
+
+        public static string GetLastMaThue()
+        {
+            string sql = "SELECT TOP 1 MaThue FROM " + TableName + " ORDER BY MaThue DESC";
+
+            DataTable dt = DatabaseLayer.GetDataToTable(sql);
+
+            if (dt.Rows.Count == 0)
+            {
+                return "";
+            }
+
+            return dt.Rows[0]["MaThue"].ToString();
+        }
+
+        public static void DeleteEmptyThue(string maThue)
+        {
+            string sqlCheck = "SELECT TienDatCoc FROM " + TableName + " WHERE MaThue = @MaThue AND TienDatCoc = -1";
+
+            SqlParameter[] sqlParams = { new SqlParameter("@MaThue", maThue) };
+
+            DataTable dt = DatabaseLayer.GetDataToTable(sqlCheck, sqlParams);
+
+            if (dt.Rows.Count > 0)
+            {
+                int tienDatCoc = Convert.ToInt32(dt.Rows[0]["TienDatCoc"].ToString());
+
+                if (tienDatCoc != -1)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                return;
+            }
+
+            string sqlDelete = "DELETE FROM " + TableName + " WHERE MaThue = @MaThue";
+            string sqlDeleteCT = "DELETE FROM " + TableCTName + " WHERE MaThue = @MaThue";
+
+            SqlParameter[] deleteParams = { new SqlParameter("@MaThue", maThue) };
+
+            DatabaseLayer.RunSqlDel(sqlDelete, deleteParams);
+            DatabaseLayer.RunSqlDel(sqlDeleteCT, deleteParams);
+        }
+
+        public static void UpdateThue(string maThue, string maKH, string maNV, DateTime ngayThue, DateTime ngayTra, int tienDatCoc)
+        {
+            string sqlUpdate = "UPDATE " + TableName + " SET MaKH = @MaKH, MaNV = @MaNV, NgayThue = @NgayThue, NgayTra = @NgayTra, TienDatCoc = @TienDatCoc WHERE MaThue = @MaThue";
+            SqlParameter[] updateParams =
+            {
+                new SqlParameter("@MaKH", maKH),
+                new SqlParameter("@MaNV", maNV),
+                new SqlParameter("@NgayThue", ngayThue),
+                new SqlParameter("@NgayTra", ngayTra),
+                new SqlParameter("@TienDatCoc", tienDatCoc),
+                new SqlParameter("@MaThue", maThue)
+            };
+
+            DatabaseLayer.RunSql(sqlUpdate, updateParams);
+        }
+
+        public static void InsertSachCTThue(string maThue, string maSach, int giaThue, bool trangThai)
+        {
+            string sql = "INSERT INTO " + TableCTName + " (MaThue, MaSach, GiaThue, DaTra) VALUES (@MaThue, @MaSach, @GiaThue, @DaTra)";
+
+            SqlParameter[] sqlParams = {
+                new SqlParameter("@MaThue", maThue),
+                new SqlParameter("@MaSach", maSach),
+                new SqlParameter("@GiaThue", giaThue),
+                new SqlParameter("@DaTra", trangThai)
+            };
+
+            DatabaseLayer.RunSql(sql, sqlParams);
+        }
+
+        public static bool CheckMaSach(string maThue, string maSach)
+        {
+            string sql = "SELECT MaSach FROM " + TableCTName + " WHERE MaThue = @MaThue AND MaSach = @MaSach";
+            SqlParameter[] sqlParams =
+            {
+                new SqlParameter("@MaThue", maThue),
+                new SqlParameter("@MaSach", maSach)
+            };
+
+            return DatabaseLayer.CheckKey(sql, sqlParams);
+        }
+
+        public static void UpdateSachCTThue(string maThue, string maSach, int giaThue, bool trangThai)
+        {
+            string sql = "UPDATE " + TableCTName + " SET GiaThue = @GiaThue, DaTra = @DaTra WHERE MaThue = @MaThue AND MaSach = @MaSach";
+
+            SqlParameter[] sqlParams =
+            {
+                new SqlParameter("@GiaThue", giaThue),
+                new SqlParameter("@DaTra", trangThai),
+                new SqlParameter("@MaThue", maThue),
+                new SqlParameter("@MaSach", maSach)
+            };
+
+            DatabaseLayer.RunSql(sql, sqlParams);
+        }
+
+        public static void DeleteSachCTThue(string maThue, string maSach)
+        {
+            string sql = "DELETE FROM " + TableCTName + " WHERE MaThue = @MaThue AND MaSach = @MaSach";
+
+            SqlParameter[] sqlParams =
+            {
+                new SqlParameter("@MaThue", maThue),
+                new SqlParameter("@MaSach", maSach)
+            };
+
+            DatabaseLayer.RunSqlDel(sql, sqlParams);
         }
     }
 }
