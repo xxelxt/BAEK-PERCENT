@@ -188,7 +188,7 @@ namespace BAEK_PERCENT.Forms
 
         private void listViewThue_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (btnThem.Enabled == false)
+            if (btnThemSach.Enabled == false)
             {
                 Functions.HandleInfo("Đang ở chế độ thêm mới");
                 txtMaSach.Focus();
@@ -246,7 +246,7 @@ namespace BAEK_PERCENT.Forms
 
         private void listViewCTThue_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (btnThem.Enabled == false)
+            if (btnThemSach.Enabled == false)
             {
                 Functions.HandleInfo("Đang ở chế độ thêm mới");
                 txtMaSach.Focus();
