@@ -58,12 +58,12 @@
             this.btnTimKiem.Location = new System.Drawing.Point(904, 27);
             this.btnTimKiem.Margin = new System.Windows.Forms.Padding(4, 12, 4, 6);
             this.btnTimKiem.MaximumSize = new System.Drawing.Size(96, 40);
-            this.btnTimKiem.MinimumSize = new System.Drawing.Size(96, 40);
+            this.btnTimKiem.MinimumSize = new System.Drawing.Size(0, 48);
             this.btnTimKiem.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.NoAccentTextColor = System.Drawing.Color.Empty;
             this.btnTimKiem.Padding = new System.Windows.Forms.Padding(3);
-            this.btnTimKiem.Size = new System.Drawing.Size(96, 40);
+            this.btnTimKiem.Size = new System.Drawing.Size(96, 48);
             this.btnTimKiem.TabIndex = 47;
             this.btnTimKiem.Text = "Tìm kiếm";
             this.btnTimKiem.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -85,7 +85,7 @@
             this.txtTimKiem.Location = new System.Drawing.Point(27, 27);
             this.txtTimKiem.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtTimKiem.MaxLength = 32767;
-            this.txtTimKiem.MinimumSize = new System.Drawing.Size(600, 40);
+            this.txtTimKiem.MinimumSize = new System.Drawing.Size(0, 48);
             this.txtTimKiem.MouseState = MaterialSkin.MouseState.OUT;
             this.txtTimKiem.Name = "txtTimKiem";
             this.txtTimKiem.PasswordChar = '\0';
@@ -96,7 +96,7 @@
             this.txtTimKiem.SelectionLength = 0;
             this.txtTimKiem.SelectionStart = 0;
             this.txtTimKiem.ShortcutsEnabled = true;
-            this.txtTimKiem.Size = new System.Drawing.Size(860, 40);
+            this.txtTimKiem.Size = new System.Drawing.Size(860, 48);
             this.txtTimKiem.TabIndex = 46;
             this.txtTimKiem.TabStop = false;
             this.txtTimKiem.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -231,7 +231,9 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPassword.AnimateReadOnly = false;
             this.txtPassword.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.txtPassword.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
@@ -239,10 +241,10 @@
             this.txtPassword.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.HideSelection = true;
             this.txtPassword.LeadingIcon = null;
-            this.txtPassword.Location = new System.Drawing.Point(464, 96);
+            this.txtPassword.Location = new System.Drawing.Point(470, 92);
             this.txtPassword.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtPassword.MaxLength = 32767;
-            this.txtPassword.MinimumSize = new System.Drawing.Size(200, 40);
+            this.txtPassword.MinimumSize = new System.Drawing.Size(0, 48);
             this.txtPassword.MouseState = MaterialSkin.MouseState.OUT;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '\0';
@@ -253,7 +255,7 @@
             this.txtPassword.SelectionLength = 0;
             this.txtPassword.SelectionStart = 0;
             this.txtPassword.ShortcutsEnabled = true;
-            this.txtPassword.Size = new System.Drawing.Size(200, 40);
+            this.txtPassword.Size = new System.Drawing.Size(200, 48);
             this.txtPassword.TabIndex = 40;
             this.txtPassword.TabStop = false;
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -262,11 +264,12 @@
             // 
             // materialLabel2
             // 
-            this.materialLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.materialLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.materialLabel2.AutoSize = true;
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel2.Location = new System.Drawing.Point(381, 107);
+            this.materialLabel2.Location = new System.Drawing.Point(392, 106);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(72, 19);
@@ -284,10 +287,10 @@
             this.txtUsername.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsername.HideSelection = true;
             this.txtUsername.LeadingIcon = null;
-            this.txtUsername.Location = new System.Drawing.Point(148, 96);
+            this.txtUsername.Location = new System.Drawing.Point(148, 92);
             this.txtUsername.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtUsername.MaxLength = 32767;
-            this.txtUsername.MinimumSize = new System.Drawing.Size(200, 40);
+            this.txtUsername.MinimumSize = new System.Drawing.Size(0, 48);
             this.txtUsername.MouseState = MaterialSkin.MouseState.OUT;
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.PasswordChar = '\0';
@@ -298,7 +301,7 @@
             this.txtUsername.SelectionLength = 0;
             this.txtUsername.SelectionStart = 0;
             this.txtUsername.ShortcutsEnabled = true;
-            this.txtUsername.Size = new System.Drawing.Size(200, 40);
+            this.txtUsername.Size = new System.Drawing.Size(200, 48);
             this.txtUsername.TabIndex = 38;
             this.txtUsername.TabStop = false;
             this.txtUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -310,7 +313,7 @@
             this.materialLabel1.AutoSize = true;
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(29, 107);
+            this.materialLabel1.Location = new System.Drawing.Point(29, 106);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(113, 19);
@@ -349,7 +352,7 @@
             this.materialLabel3.AutoSize = true;
             this.materialLabel3.Depth = 0;
             this.materialLabel3.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel3.Location = new System.Drawing.Point(727, 107);
+            this.materialLabel3.Location = new System.Drawing.Point(727, 106);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
             this.materialLabel3.Size = new System.Drawing.Size(50, 19);
@@ -367,12 +370,12 @@
             this.cboPriv.DropDownHeight = 174;
             this.cboPriv.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPriv.DropDownWidth = 121;
-            this.cboPriv.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cboPriv.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.cboPriv.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.cboPriv.FormattingEnabled = true;
             this.cboPriv.IntegralHeight = false;
             this.cboPriv.ItemHeight = 43;
-            this.cboPriv.Location = new System.Drawing.Point(783, 90);
+            this.cboPriv.Location = new System.Drawing.Point(783, 91);
             this.cboPriv.MaxDropDownItems = 4;
             this.cboPriv.MaximumSize = new System.Drawing.Size(217, 0);
             this.cboPriv.MinimumSize = new System.Drawing.Size(217, 0);

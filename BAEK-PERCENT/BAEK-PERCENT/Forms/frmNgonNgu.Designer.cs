@@ -56,12 +56,12 @@
             this.btnTimKiem.Location = new System.Drawing.Point(904, 27);
             this.btnTimKiem.Margin = new System.Windows.Forms.Padding(4, 12, 4, 6);
             this.btnTimKiem.MaximumSize = new System.Drawing.Size(96, 40);
-            this.btnTimKiem.MinimumSize = new System.Drawing.Size(96, 40);
+            this.btnTimKiem.MinimumSize = new System.Drawing.Size(0, 48);
             this.btnTimKiem.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.NoAccentTextColor = System.Drawing.Color.Empty;
             this.btnTimKiem.Padding = new System.Windows.Forms.Padding(3);
-            this.btnTimKiem.Size = new System.Drawing.Size(96, 40);
+            this.btnTimKiem.Size = new System.Drawing.Size(96, 48);
             this.btnTimKiem.TabIndex = 35;
             this.btnTimKiem.Text = "Tìm kiếm";
             this.btnTimKiem.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -83,7 +83,7 @@
             this.txtTimKiem.Location = new System.Drawing.Point(27, 27);
             this.txtTimKiem.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtTimKiem.MaxLength = 32767;
-            this.txtTimKiem.MinimumSize = new System.Drawing.Size(600, 40);
+            this.txtTimKiem.MinimumSize = new System.Drawing.Size(0, 48);
             this.txtTimKiem.MouseState = MaterialSkin.MouseState.OUT;
             this.txtTimKiem.Name = "txtTimKiem";
             this.txtTimKiem.PasswordChar = '\0';
@@ -94,7 +94,7 @@
             this.txtTimKiem.SelectionLength = 0;
             this.txtTimKiem.SelectionStart = 0;
             this.txtTimKiem.ShortcutsEnabled = true;
-            this.txtTimKiem.Size = new System.Drawing.Size(860, 40);
+            this.txtTimKiem.Size = new System.Drawing.Size(860, 48);
             this.txtTimKiem.TabIndex = 34;
             this.txtTimKiem.TabStop = false;
             this.txtTimKiem.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -239,10 +239,10 @@
             this.txtTenNN.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenNN.HideSelection = true;
             this.txtTenNN.LeadingIcon = null;
-            this.txtTenNN.Location = new System.Drawing.Point(417, 96);
+            this.txtTenNN.Location = new System.Drawing.Point(417, 92);
             this.txtTenNN.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtTenNN.MaxLength = 32767;
-            this.txtTenNN.MinimumSize = new System.Drawing.Size(333, 40);
+            this.txtTenNN.MinimumSize = new System.Drawing.Size(0, 48);
             this.txtTenNN.MouseState = MaterialSkin.MouseState.OUT;
             this.txtTenNN.Name = "txtTenNN";
             this.txtTenNN.PasswordChar = '\0';
@@ -253,7 +253,7 @@
             this.txtTenNN.SelectionLength = 0;
             this.txtTenNN.SelectionStart = 0;
             this.txtTenNN.ShortcutsEnabled = true;
-            this.txtTenNN.Size = new System.Drawing.Size(583, 40);
+            this.txtTenNN.Size = new System.Drawing.Size(583, 48);
             this.txtTenNN.TabIndex = 28;
             this.txtTenNN.TabStop = false;
             this.txtTenNN.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -265,7 +265,7 @@
             this.materialLabel2.AutoSize = true;
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel2.Location = new System.Drawing.Point(311, 107);
+            this.materialLabel2.Location = new System.Drawing.Point(311, 106);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(104, 19);
@@ -283,10 +283,10 @@
             this.txtMaNN.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaNN.HideSelection = true;
             this.txtMaNN.LeadingIcon = null;
-            this.txtMaNN.Location = new System.Drawing.Point(134, 96);
+            this.txtMaNN.Location = new System.Drawing.Point(134, 92);
             this.txtMaNN.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtMaNN.MaxLength = 32767;
-            this.txtMaNN.MinimumSize = new System.Drawing.Size(145, 40);
+            this.txtMaNN.MinimumSize = new System.Drawing.Size(0, 48);
             this.txtMaNN.MouseState = MaterialSkin.MouseState.OUT;
             this.txtMaNN.Name = "txtMaNN";
             this.txtMaNN.PasswordChar = '\0';
@@ -297,7 +297,7 @@
             this.txtMaNN.SelectionLength = 0;
             this.txtMaNN.SelectionStart = 0;
             this.txtMaNN.ShortcutsEnabled = true;
-            this.txtMaNN.Size = new System.Drawing.Size(145, 40);
+            this.txtMaNN.Size = new System.Drawing.Size(145, 48);
             this.txtMaNN.TabIndex = 26;
             this.txtMaNN.TabStop = false;
             this.txtMaNN.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -309,7 +309,7 @@
             this.materialLabel1.AutoSize = true;
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(29, 107);
+            this.materialLabel1.Location = new System.Drawing.Point(29, 106);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(100, 19);

@@ -171,6 +171,12 @@
     <Compile Include="Forms\frmThongTin.Designer.cs">
       <DependentUpon>frmThongTin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmThue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmThue.Designer.cs">
+      <DependentUpon>frmThue.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\newfrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,12 +253,6 @@
     <Compile Include="Forms\frmTaiKhoan.Designer.cs">
       <DependentUpon>frmTaiKhoan.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmThue.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmThue.Designer.cs">
-      <DependentUpon>frmThue.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\frmTra.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -269,6 +269,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\frmThongTin.resx">
       <DependentUpon>frmThongTin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmThue.resx">
+      <DependentUpon>frmThue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\newfrmLogin.resx">
       <DependentUpon>newfrmLogin.cs</DependentUpon>
@@ -299,9 +302,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmTaiKhoan.resx">
       <DependentUpon>frmTaiKhoan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmThue.resx">
-      <DependentUpon>frmThue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmTra.resx">
       <DependentUpon>frmTra.cs</DependentUpon>
