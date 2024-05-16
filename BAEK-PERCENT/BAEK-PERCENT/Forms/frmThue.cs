@@ -22,6 +22,7 @@ namespace BAEK_PERCENT.Forms
         private DataTable tblCTThueSach;
 
         private bool isSearching = false;
+        private string currentSearchOption = "";
         private string currentSearchKeyword = "";
 
         public frmThue()
@@ -32,6 +33,11 @@ namespace BAEK_PERCENT.Forms
             InitializeListViewCT();
 
             LoadData();
+
+            cboTimKiem.Items.Add("Mã thuê");
+            cboTimKiem.Items.Add("Tên khách hàng");
+            cboTimKiem.Items.Add("Ngày thuê");
+            cboTimKiem.Items.Add("Ngày trả");
         }
 
         private void InitializeListView()
@@ -138,8 +144,7 @@ namespace BAEK_PERCENT.Forms
             try
             {
                 if (isSearching)
-                    tblThueSach = ThueDAL.GetAllThue();
-                //tblThueSach = ThueDAL.GetThueBySearch(currentSearchOption, currentSearchKeyword);
+                    tblThueSach = ThueDAL.GetThueBySearch(currentSearchOption, currentSearchKeyword);
                 else
                     tblThueSach = ThueDAL.GetAllThue();
 
@@ -676,7 +681,6 @@ namespace BAEK_PERCENT.Forms
             }
         }
 
-
         private void btnLuu_Click(object sender, EventArgs e)
         {
             string maThue = txtMaThue.Text.Trim();
@@ -739,7 +743,21 @@ namespace BAEK_PERCENT.Forms
 
         private void btnIn_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string maThue = txtMaThue.Text;
+                DataTable tblThongTinThue, tblThongTinCTThue;
 
+                tblThongTinThue = ThueDAL.GetThongTinThue(maThue);
+                tblThongTinCTThue = ThueDAL.GetThongTinCTThue(maThue);
+
+                // Tạo và hiển thị hóa đơn trong Excel
+                ExcelHelper.CreateBillThue(maThue, tblThongTinThue, tblThongTinCTThue);
+            }
+            catch (Exception ex)
+            {
+                Functions.HandleError("Lỗi: " + ex.Message);
+            }
         }
 
         private void btnThemSach_Click(object sender, EventArgs e)
@@ -878,6 +896,40 @@ namespace BAEK_PERCENT.Forms
                         Functions.HandleError("Lỗi khi xóa sách: " + ex.Message);
                     }
                 }
+            }
+        }
+
+        private void PerformSearch()
+        {
+            currentSearchOption = cboTimKiem.Text;
+            currentSearchKeyword = txtTimKiem.Text.Trim();
+            isSearching = true;
+
+            LoadData();
+            LoadDataCT("");
+
+            btnHuy.Enabled = true;
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            PerformSearch();
+        }
+
+        private void txtTimKiem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                PerformSearch();
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void txtTienDatCoc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

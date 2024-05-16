@@ -2,6 +2,8 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
+using System.Reflection;
 
 namespace BAEK_PERCENT.DAL
 {
@@ -23,6 +25,79 @@ namespace BAEK_PERCENT.DAL
             SqlParameter[] param = { new SqlParameter("@MaThue", maThue) };
 
             return DatabaseLayer.GetDataToTable(sql, param);
+        }
+
+        public static DataTable GetThongTinThue(string maThue)
+        {
+            string sql = @"SELECT T.MaThue, T.NgayThue, T.NgayTra, SUM(CT.GiaThue) as TongTien, T.TienDatCoc, KH.TenKH, KH.SDT, KH.DiaChi, NV.TenNV 
+                   FROM ThueSach T 
+                   INNER JOIN KhachHang KH ON T.MaKH = KH.MaKH 
+                   INNER JOIN NhanVien NV ON T.MaNV = NV.MaNV 
+                   INNER JOIN CTThueSach CT ON T.MaThue = CT.MaThue 
+                   WHERE T.MaThue = @MaThue  
+                   GROUP BY T.MaThue, T.NgayThue, T.NgayTra, T.TienDatCoc, KH.TenKH, KH.SDT, KH.DiaChi, NV.TenNV";
+
+            SqlParameter[] sqlParams = {
+                new SqlParameter("@MaThue", maThue)
+            };
+
+            return DatabaseLayer.GetDataToTable(sql, sqlParams);
+        }
+
+        public static DataTable GetThongTinCTThue(string maThue)
+        {
+            string sql = @"SELECT CT.MaSach, S.TenSach, CT.GiaThue 
+                   FROM CTThueSach CT 
+                   INNER JOIN Sach S ON CT.MaSach = S.MaSach 
+                   WHERE CT.MaThue = @MaThue";
+
+            SqlParameter[] sqlParams = {
+                new SqlParameter("@MaThue", maThue)
+            };
+
+            return DatabaseLayer.GetDataToTable(sql, sqlParams);
+        }
+
+        public static DataTable GetThueBySearch(string searchOption, string searchKeyword)
+        {
+            string sql = "SELECT T.MaThue, T.MaKH, KH.TenKH, T.MaNV, NV.TenNV, T.NgayThue, T.NgayTra, T.TienDatCoc FROM " + TableName + " T INNER JOIN KhachHang KH ON T.MaKH = KH.MaKH INNER JOIN NhanVien NV ON T.MaNV = NV.MaNV ";
+
+            DateTime parsedDate;
+            bool isDate = DateTime.TryParseExact(searchKeyword, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out parsedDate);
+
+            switch (searchOption)
+            {
+                case "Mã thuê":
+                    sql += $"WHERE T.MaThue LIKE '%{searchKeyword}%'";
+                    break;
+                case "Tên khách hàng":
+                    sql += $"WHERE KH.TenKH LIKE N'%{searchKeyword}%'";
+                    break;
+                case "Ngày thuê":
+                    if (isDate)
+                    {
+                        sql += $"WHERE CONVERT(date, T.NgayThue, 103) = CONVERT(date, '{parsedDate:dd/MM/yyyy}', 103)";
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Ngày thuê không hợp lệ");
+                    }
+                    break;
+                case "Ngày trả":
+                    if (isDate)
+                    {
+                        sql += $"WHERE CONVERT(date, T.NgayTra, 103) = CONVERT(date, '{parsedDate:dd/MM/yyyy}', 103)";
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Ngày trả không hợp lệ");
+                    }
+                    break;
+                default:
+                    throw new ArgumentException("Không có tuỳ chọn tìm kiếm");
+            }
+
+            return DatabaseLayer.GetDataToTable(sql);
         }
 
         public static void DeleteThue(string maThue)

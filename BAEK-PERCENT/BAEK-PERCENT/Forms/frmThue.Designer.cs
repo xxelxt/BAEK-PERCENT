@@ -51,6 +51,8 @@
             this.listViewCTThue = new MaterialSkin.Controls.MaterialListView();
             this.btnThemSach = new MaterialSkin.Controls.MaterialButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtGiaThue = new MaterialSkin.Controls.MaterialTextBox2();
+            this.materialLabel12 = new MaterialSkin.Controls.MaterialLabel();
             this.btnSuaSach = new MaterialSkin.Controls.MaterialButton();
             this.rdoChuaTra = new MaterialSkin.Controls.MaterialRadioButton();
             this.rdoDaTra = new MaterialSkin.Controls.MaterialRadioButton();
@@ -66,8 +68,6 @@
             this.btnLuu = new MaterialSkin.Controls.MaterialButton();
             this.btnXoa = new MaterialSkin.Controls.MaterialButton();
             this.btnThem = new MaterialSkin.Controls.MaterialButton();
-            this.txtGiaThue = new MaterialSkin.Controls.MaterialTextBox2();
-            this.materialLabel12 = new MaterialSkin.Controls.MaterialLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -97,6 +97,7 @@
             this.btnTimKiem.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnTimKiem.UseAccentColor = false;
             this.btnTimKiem.UseVisualStyleBackColor = true;
+            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
             // cboTimKiem
             // 
@@ -309,6 +310,7 @@
             this.txtTienDatCoc.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtTienDatCoc.TrailingIcon = null;
             this.txtTienDatCoc.UseSystemPasswordChar = false;
+            this.txtTienDatCoc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTienDatCoc_KeyPress);
             // 
             // txtMaKH
             // 
@@ -583,6 +585,7 @@
             this.txtTimKiem.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtTimKiem.TrailingIcon = null;
             this.txtTimKiem.UseSystemPasswordChar = false;
+            this.txtTimKiem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTimKiem_KeyDown);
             // 
             // listViewCTThue
             // 
@@ -611,7 +614,7 @@
             // 
             // btnThemSach
             // 
-            this.btnThemSach.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnThemSach.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnThemSach.AutoSize = false;
             this.btnThemSach.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnThemSach.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
@@ -620,7 +623,7 @@
             this.btnThemSach.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThemSach.HighEmphasis = true;
             this.btnThemSach.Icon = null;
-            this.btnThemSach.Location = new System.Drawing.Point(61, 409);
+            this.btnThemSach.Location = new System.Drawing.Point(48, 409);
             this.btnThemSach.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnThemSach.MaximumSize = new System.Drawing.Size(0, 36);
             this.btnThemSach.MinimumSize = new System.Drawing.Size(80, 36);
@@ -659,9 +662,55 @@
             this.groupBox2.TabIndex = 162;
             this.groupBox2.TabStop = false;
             // 
+            // txtGiaThue
+            // 
+            this.txtGiaThue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtGiaThue.AnimateReadOnly = false;
+            this.txtGiaThue.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtGiaThue.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.txtGiaThue.Depth = 0;
+            this.txtGiaThue.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGiaThue.HideSelection = true;
+            this.txtGiaThue.LeadingIcon = null;
+            this.txtGiaThue.Location = new System.Drawing.Point(24, 152);
+            this.txtGiaThue.MaximumSize = new System.Drawing.Size(0, 40);
+            this.txtGiaThue.MaxLength = 32767;
+            this.txtGiaThue.MinimumSize = new System.Drawing.Size(0, 48);
+            this.txtGiaThue.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtGiaThue.Name = "txtGiaThue";
+            this.txtGiaThue.PasswordChar = '\0';
+            this.txtGiaThue.PrefixSuffixText = null;
+            this.txtGiaThue.ReadOnly = false;
+            this.txtGiaThue.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtGiaThue.SelectedText = "";
+            this.txtGiaThue.SelectionLength = 0;
+            this.txtGiaThue.SelectionStart = 0;
+            this.txtGiaThue.ShortcutsEnabled = true;
+            this.txtGiaThue.Size = new System.Drawing.Size(133, 48);
+            this.txtGiaThue.TabIndex = 162;
+            this.txtGiaThue.TabStop = false;
+            this.txtGiaThue.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtGiaThue.TrailingIcon = null;
+            this.txtGiaThue.UseSystemPasswordChar = false;
+            // 
+            // materialLabel12
+            // 
+            this.materialLabel12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.materialLabel12.AutoSize = true;
+            this.materialLabel12.Depth = 0;
+            this.materialLabel12.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel12.Location = new System.Drawing.Point(23, 124);
+            this.materialLabel12.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel12.Name = "materialLabel12";
+            this.materialLabel12.Size = new System.Drawing.Size(64, 19);
+            this.materialLabel12.TabIndex = 163;
+            this.materialLabel12.Text = "Giá thuê:";
+            // 
             // btnSuaSach
             // 
-            this.btnSuaSach.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSuaSach.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnSuaSach.AutoSize = false;
             this.btnSuaSach.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnSuaSach.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
@@ -670,7 +719,7 @@
             this.btnSuaSach.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSuaSach.HighEmphasis = true;
             this.btnSuaSach.Icon = null;
-            this.btnSuaSach.Location = new System.Drawing.Point(180, 409);
+            this.btnSuaSach.Location = new System.Drawing.Point(167, 409);
             this.btnSuaSach.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnSuaSach.MaximumSize = new System.Drawing.Size(0, 36);
             this.btnSuaSach.MinimumSize = new System.Drawing.Size(80, 36);
@@ -784,7 +833,7 @@
             // 
             // btnXoaSach
             // 
-            this.btnXoaSach.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnXoaSach.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnXoaSach.AutoSize = false;
             this.btnXoaSach.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnXoaSach.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
@@ -793,7 +842,7 @@
             this.btnXoaSach.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXoaSach.HighEmphasis = true;
             this.btnXoaSach.Icon = null;
-            this.btnXoaSach.Location = new System.Drawing.Point(297, 409);
+            this.btnXoaSach.Location = new System.Drawing.Point(284, 409);
             this.btnXoaSach.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnXoaSach.MaximumSize = new System.Drawing.Size(0, 36);
             this.btnXoaSach.MinimumSize = new System.Drawing.Size(80, 36);
@@ -1008,52 +1057,6 @@
             this.btnThem.UseAccentColor = false;
             this.btnThem.UseVisualStyleBackColor = true;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
-            // 
-            // txtGiaThue
-            // 
-            this.txtGiaThue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtGiaThue.AnimateReadOnly = false;
-            this.txtGiaThue.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.txtGiaThue.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.txtGiaThue.Depth = 0;
-            this.txtGiaThue.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGiaThue.HideSelection = true;
-            this.txtGiaThue.LeadingIcon = null;
-            this.txtGiaThue.Location = new System.Drawing.Point(24, 152);
-            this.txtGiaThue.MaximumSize = new System.Drawing.Size(0, 40);
-            this.txtGiaThue.MaxLength = 32767;
-            this.txtGiaThue.MinimumSize = new System.Drawing.Size(0, 48);
-            this.txtGiaThue.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtGiaThue.Name = "txtGiaThue";
-            this.txtGiaThue.PasswordChar = '\0';
-            this.txtGiaThue.PrefixSuffixText = null;
-            this.txtGiaThue.ReadOnly = false;
-            this.txtGiaThue.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtGiaThue.SelectedText = "";
-            this.txtGiaThue.SelectionLength = 0;
-            this.txtGiaThue.SelectionStart = 0;
-            this.txtGiaThue.ShortcutsEnabled = true;
-            this.txtGiaThue.Size = new System.Drawing.Size(133, 48);
-            this.txtGiaThue.TabIndex = 162;
-            this.txtGiaThue.TabStop = false;
-            this.txtGiaThue.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtGiaThue.TrailingIcon = null;
-            this.txtGiaThue.UseSystemPasswordChar = false;
-            // 
-            // materialLabel12
-            // 
-            this.materialLabel12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.materialLabel12.AutoSize = true;
-            this.materialLabel12.Depth = 0;
-            this.materialLabel12.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel12.Location = new System.Drawing.Point(23, 124);
-            this.materialLabel12.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel12.Name = "materialLabel12";
-            this.materialLabel12.Size = new System.Drawing.Size(64, 19);
-            this.materialLabel12.TabIndex = 163;
-            this.materialLabel12.Text = "Giá thuê:";
             // 
             // frmThue
             // 
