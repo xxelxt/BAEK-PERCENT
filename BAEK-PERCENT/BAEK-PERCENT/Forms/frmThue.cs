@@ -81,7 +81,6 @@ namespace BAEK_PERCENT.Forms
 
             txtTenKH.Enabled = false;
             txtTenNV.Enabled = false;
-            txtTenSach.Enabled = false;
 
             txtMaSach.Enabled = false;
             txtTenSach.Enabled = false;
@@ -92,21 +91,6 @@ namespace BAEK_PERCENT.Forms
 
         private void AdjustColumnWidth()
         {
-            /*
-            int totalWidth = listViewThue.ClientSize.Width;
-            double col1Percentage = 0.15;
-            double col2Percentage = 0.3;
-            double col3Percentage = 0.2;
-            double col4Percentage = 0.2;
-            double col5Percentage = 0.15;
-
-            int col1Width = (int)(totalWidth * col1Percentage);
-            int col2Width = (int)(totalWidth * col2Percentage);
-            int col3Width = (int)(totalWidth * col3Percentage);
-            int col4Width = (int)(totalWidth * col4Percentage);
-            int col5Width = (int)(totalWidth * col5Percentage);
-            */
-
             int col1Width = 150;
             int col2Width = 250;
             int col3Width = 150;
@@ -247,7 +231,7 @@ namespace BAEK_PERCENT.Forms
             AdjustColumnWidthCT();
         }
 
-        private void ClearListView(MaterialSkin.Controls.MaterialListView listView)
+        private void ClearListView(MaterialListView listView)
         {
             listView.Items.Clear();
         }
@@ -516,6 +500,8 @@ namespace BAEK_PERCENT.Forms
             ResetValues();
             ResetValuesCT();
 
+            LoadDataCT("");
+
             string maThue = DatabaseLayer.CreateKey("TH");
             txtMaThue.Text = maThue;
             txtNgayThue.Text = DateTime.Now.ToString("dd/MM/yyyy");
@@ -697,7 +683,7 @@ namespace BAEK_PERCENT.Forms
                     DateTime ngayThue;
                     if (!DateTime.TryParse(txtNgayThue.Text.Trim(), out ngayThue))
                     {
-                        MessageBox.Show("Ngày thuê không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        Functions.HandleWarning("Ngày thuê không hợp lệ");
                         txtNgayThue.Focus();
                         return;
                     }
@@ -705,7 +691,7 @@ namespace BAEK_PERCENT.Forms
                     DateTime ngayTra;
                     if (!DateTime.TryParse(txtNgayTra.Text.Trim(), out ngayTra))
                     {
-                        MessageBox.Show("Ngày trả không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        Functions.HandleWarning("Ngày trả không hợp lệ");
                         txtNgayThue.Focus();
                         return;
                     }
@@ -718,7 +704,10 @@ namespace BAEK_PERCENT.Forms
 
                         Functions.HandleInfo("Thêm thuê sách thành công");
                         LoadData();
+                        LoadDataCT("");
+
                         ResetValues();
+                        ResetValuesCT();
 
                         btnThem.Enabled = true;
                         btnXoa.Enabled = false;

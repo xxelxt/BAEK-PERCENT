@@ -129,7 +129,7 @@ namespace BAEK_PERCENT.DAL
             string query = "SELECT TenSach, DonGiaThue FROM Sach WHERE MaSach = @MaSach";
             SqlParameter[] parameters = new SqlParameter[]
             {
-        new SqlParameter("@MaSach", maSach)
+                new SqlParameter("@MaSach", maSach)
             };
 
             DataTable dt = DatabaseLayer.GetDataToTable(query, parameters);
@@ -142,6 +142,24 @@ namespace BAEK_PERCENT.DAL
             }
 
             return null;
+        }
+
+        public static string GetTenSachByMa(string maSach)
+        {
+            string query = "SELECT TenSach FROM Sach WHERE MaSach = @MaSach";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@MaSach", maSach)
+            };
+
+            DataTable dt = DatabaseLayer.GetDataToTable(query, parameters);
+
+            if (dt.Rows.Count > 0)
+            {
+                return dt.Rows[0]["TenSach"].ToString();
+            }
+
+            return string.Empty;
         }
 
         public static int GetSoLuong(string maSach)
@@ -172,6 +190,20 @@ namespace BAEK_PERCENT.DAL
             SqlParameter[] param = { new SqlParameter("@MaSach", maSach) };
 
             DatabaseLayer.RunSql(sql, param);
+        }
+
+        public static int GetGiaSach(string maSach)
+        {
+            string sql = "SELECT GiaSach FROM Sach WHERE MaSach = @MaSach";
+            SqlParameter[] param = { new SqlParameter("@MaSach", maSach) };
+
+            DataTable dt = DatabaseLayer.GetDataToTable(sql, param);
+
+            if (dt.Rows.Count > 0)
+            {
+                return Convert.ToInt32(dt.Rows[0]["GiaSach"].ToString());
+            }
+            return 0;
         }
     }
 }

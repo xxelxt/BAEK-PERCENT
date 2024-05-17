@@ -19,7 +19,7 @@ namespace BAEK_PERCENT.Class
             exSheet.Columns["B"].ColumnWidth = 13;
 
             // Định dạng tiêu đề và thông tin chung của hóa đơn
-            exRange = exSheet.Range["A1:F1"];
+            exRange = exSheet.Range["A2:F2"];
             exRange.Merge();
             exRange.Font.Size = 12;
             exRange.Font.Bold = true;
@@ -27,7 +27,7 @@ namespace BAEK_PERCENT.Class
             exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
             exRange.Value = "BAEK PERCENT";
 
-            exRange = exSheet.Range["A2:F2"];
+            exRange = exSheet.Range["A3:F3"];
             exRange.Merge();
             exRange.Font.Size = 11;
             exRange.Font.Italic = true;
@@ -35,7 +35,7 @@ namespace BAEK_PERCENT.Class
             exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
             exRange.Value = "Số 12 Chùa Bộc, Đống Đa, Hà Nội";
 
-            exRange = exSheet.Range["A3:F3"];
+            exRange = exSheet.Range["A4:F4"];
             exRange.Merge();
             exRange.Font.Size = 11;
             exRange.Font.Italic = true;
@@ -43,7 +43,7 @@ namespace BAEK_PERCENT.Class
             exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
             exRange.Value = "Điện thoại: 024 3852 1305";
 
-            exRange = exSheet.Range["A5:F7"];
+            exRange = exSheet.Range["A6:F7"];
             exRange.Merge();
             exRange.Font.Size = 16;
             exRange.Font.Bold = true;

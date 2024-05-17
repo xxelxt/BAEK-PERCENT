@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace BAEK_PERCENT.Class
@@ -84,124 +85,103 @@ namespace BAEK_PERCENT.Class
 
         public static string ChuyenSoSangChu(string sNumber)
         {
-            int mLen, mDigit;
-            string mTemp = "";
-            string[] mNumText;
-            //Xóa các dấu "," nếu có
+            // Xóa các dấu "," nếu có
             sNumber = sNumber.Replace(",", "");
-            mNumText = "không;một;hai;ba;bốn;năm;sáu;bảy;tám;chín".Split(';');
-            mLen = sNumber.Length - 1; // trừ 1 vì thứ tự đi từ 0
+            string[] mNumText = "không;một;hai;ba;bốn;năm;sáu;bảy;tám;chín".Split(';');
+            int mLen = sNumber.Length - 1;
+            string mTemp = "";
+
             for (int i = 0; i <= mLen; i++)
             {
-                mDigit = Convert.ToInt32(sNumber.Substring(i, 1));
-                mTemp = mTemp + " " + mNumText[mDigit];
+                int mDigit = Convert.ToInt32(sNumber.Substring(i, 1));
+                mTemp += " " + mNumText[mDigit];
+
                 if (mLen == i) // Chữ số cuối cùng không cần xét tiếp
                     break;
+
                 switch ((mLen - i) % 9)
                 {
                     case 0:
-                        mTemp = mTemp + " tỷ";
-                        if (sNumber.Substring(i + 1, 3) == "000")
-                            i = i + 3;
-                        if (sNumber.Substring(i + 1, 3) == "000")
-                            i = i + 3;
-                        if (sNumber.Substring(i + 1, 3) == "000")
-                            i = i + 3;
+                        mTemp += " tỷ";
+                        i = SkipZeros(sNumber, i);
                         break;
                     case 6:
-                        mTemp = mTemp + " triệu";
-                        if (sNumber.Substring(i + 1, 3) == "000")
-                            i = i + 3;
-                        if (sNumber.Substring(i + 1, 3) == "000")
-                            i = i + 3;
+                        mTemp += " triệu";
+                        i = SkipZeros(sNumber, i);
                         break;
                     case 3:
-                        mTemp = mTemp + " nghìn";
-                        if (sNumber.Substring(i + 1, 3) == "000")
-                            i = i + 3;
+                        mTemp += " nghìn";
+                        i = SkipZeros(sNumber, i);
                         break;
                     default:
                         switch ((mLen - i) % 3)
                         {
                             case 2:
-                                mTemp = mTemp + " trăm";
+                                mTemp += " trăm";
                                 break;
                             case 1:
-                                mTemp = mTemp + " mươi";
+                                mTemp += " mươi";
                                 break;
                         }
                         break;
                 }
             }
-            //Loại bỏ trường hợp x00
-            mTemp = mTemp.Replace("không mươi không ", "");
-            mTemp = mTemp.Replace("không mươi không", "");
-            //Loại bỏ trường hợp 00x
-            mTemp = mTemp.Replace("không mươi ", "linh ");
-            //Loại bỏ trường hợp x0, x>=2
-            mTemp = mTemp.Replace("mươi không", "mươi");
-            //Fix trường hợp 10
-            mTemp = mTemp.Replace("một mươi", "mười");
-            //Fix trường hợp x4, x>=2
-            mTemp = mTemp.Replace("mươi bốn", "mươi tư");
-            //Fix trường hợp x04
-            mTemp = mTemp.Replace("linh bốn", "linh tư");
-            //Fix trường hợp x5, x>=2
-            mTemp = mTemp.Replace("mươi năm", "mươi lăm");
-            //Fix trường hợp x1, x>=2
-            mTemp = mTemp.Replace("mươi một", "mươi mốt");
-            //Fix trường hợp x15
-            mTemp = mTemp.Replace("mười năm", "mười lăm");
-            //Bỏ ký tự space
+
+            // Tạo từ điển cho các trường hợp cần thay thế
+            Dictionary<string, string> replaceDict = new Dictionary<string, string>
+            {
+                { "không mươi không", "" },
+                { "không mươi ", "linh " },
+                { "mươi không", "mươi" },
+                { "một mươi", "mười" },
+                { "mươi bốn", "mươi tư" },
+                { "linh bốn", "linh tư" },
+                { "mươi năm", "mươi lăm" },
+                { "mươi một", "mươi mốt" },
+                { "mười năm", "mười lăm" }
+            };
+
+            // Thay thế các chuỗi theo từ điển
+            foreach (var item in replaceDict)
+            {
+                mTemp = mTemp.Replace(item.Key, item.Value);
+            }
+
+            // Bỏ ký tự space thừa
             mTemp = mTemp.Trim();
-            //Viết hoa ký tự đầu tiên
-            mTemp = mTemp.Substring(0, 1).ToUpper() + mTemp.Substring(1) + " đồng";
+
+            // Viết hoa ký tự đầu tiên
+            if (mTemp.Length > 0)
+            {
+                mTemp = char.ToUpper(mTemp[0]) + mTemp.Substring(1) + " đồng";
+            }
+
             return mTemp;
+        }
+
+        private static int SkipZeros(string sNumber, int currentIndex)
+        {
+            int i = currentIndex;
+            while (i + 3 < sNumber.Length && sNumber.Substring(i + 1, 3) == "000")
+            {
+                i += 3;
+            }
+            return i;
         }
 
         public static string ConvertTimeTo24(string hour)
         {
-            string h = "";
-            switch (hour)
+            if (int.TryParse(hour, out int h))
             {
-                case "1":
-                    h = "13";
-                    break;
-                case "2":
-                    h = "14";
-                    break;
-                case "3":
-                    h = "15";
-                    break;
-                case "4":
-                    h = "16";
-                    break;
-                case "5":
-                    h = "17";
-                    break;
-                case "6":
-                    h = "18";
-                    break;
-                case "7":
-                    h = "19";
-                    break;
-                case "8":
-                    h = "20";
-                    break;
-                case "9":
-                    h = "21";
-                    break;
-                case "10":
-                    h = "22";
-                    break;
-                case "11":
-                    h = "23";
-                    break;
-                case "12":
-                    h = "0";
-                    break;
+                // Điều chỉnh giờ PM (giờ 13-23) và giờ 12 AM (giờ 0)
+                h = (h % 12) + 12;
+                return h == 24 ? "00" : h.ToString();
             }
-            return h;
+            else
+            {
+                throw new ArgumentException("Invalid hour format");
+            }
         }
+
     }
 }

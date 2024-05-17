@@ -224,7 +224,7 @@
             this.txtTenKH.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenKH.HideSelection = true;
             this.txtTenKH.LeadingIcon = null;
-            this.txtTenKH.Location = new System.Drawing.Point(409, 91);
+            this.txtTenKH.Location = new System.Drawing.Point(406, 91);
             this.txtTenKH.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtTenKH.MaxLength = 32767;
             this.txtTenKH.MinimumSize = new System.Drawing.Size(0, 48);
@@ -238,7 +238,7 @@
             this.txtTenKH.SelectionLength = 0;
             this.txtTenKH.SelectionStart = 0;
             this.txtTenKH.ShortcutsEnabled = true;
-            this.txtTenKH.Size = new System.Drawing.Size(540, 48);
+            this.txtTenKH.Size = new System.Drawing.Size(543, 48);
             this.txtTenKH.TabIndex = 138;
             this.txtTenKH.TabStop = false;
             this.txtTenKH.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -257,7 +257,7 @@
             this.txtTenNV.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenNV.HideSelection = true;
             this.txtTenNV.LeadingIcon = null;
-            this.txtTenNV.Location = new System.Drawing.Point(409, 155);
+            this.txtTenNV.Location = new System.Drawing.Point(406, 155);
             this.txtTenNV.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtTenNV.MaxLength = 32767;
             this.txtTenNV.MinimumSize = new System.Drawing.Size(0, 48);
@@ -271,7 +271,7 @@
             this.txtTenNV.SelectionLength = 0;
             this.txtTenNV.SelectionStart = 0;
             this.txtTenNV.ShortcutsEnabled = true;
-            this.txtTenNV.Size = new System.Drawing.Size(540, 48);
+            this.txtTenNV.Size = new System.Drawing.Size(543, 48);
             this.txtTenNV.TabIndex = 142;
             this.txtTenNV.TabStop = false;
             this.txtTenNV.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -364,7 +364,7 @@
             this.materialLabel4.AutoSize = true;
             this.materialLabel4.Depth = 0;
             this.materialLabel4.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel4.Location = new System.Drawing.Point(302, 170);
+            this.materialLabel4.Location = new System.Drawing.Point(299, 170);
             this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel4.Name = "materialLabel4";
             this.materialLabel4.Size = new System.Drawing.Size(105, 19);
@@ -438,7 +438,7 @@
             this.materialLabel6.AutoSize = true;
             this.materialLabel6.Depth = 0;
             this.materialLabel6.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel6.Location = new System.Drawing.Point(328, 105);
+            this.materialLabel6.Location = new System.Drawing.Point(325, 105);
             this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel6.Name = "materialLabel6";
             this.materialLabel6.Size = new System.Drawing.Size(79, 19);
@@ -466,7 +466,7 @@
             this.materialLabel5.AutoSize = true;
             this.materialLabel5.Depth = 0;
             this.materialLabel5.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel5.Location = new System.Drawing.Point(330, 43);
+            this.materialLabel5.Location = new System.Drawing.Point(327, 43);
             this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel5.Name = "materialLabel5";
             this.materialLabel5.Size = new System.Drawing.Size(77, 19);
@@ -489,7 +489,7 @@
             this.txtNgayThue.HideSelection = true;
             this.txtNgayThue.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
             this.txtNgayThue.LeadingIcon = null;
-            this.txtNgayThue.Location = new System.Drawing.Point(409, 28);
+            this.txtNgayThue.Location = new System.Drawing.Point(406, 28);
             this.txtNgayThue.Mask = "00/00/0000";
             this.txtNgayThue.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtNgayThue.MaxLength = 32767;
@@ -922,7 +922,7 @@
             this.listViewThue.MouseState = MaterialSkin.MouseState.OUT;
             this.listViewThue.Name = "listViewThue";
             this.listViewThue.OwnerDraw = true;
-            this.listViewThue.Size = new System.Drawing.Size(545, 381);
+            this.listViewThue.Size = new System.Drawing.Size(545, 397);
             this.listViewThue.TabIndex = 161;
             this.listViewThue.UseCompatibleStateImageBehavior = false;
             this.listViewThue.View = System.Windows.Forms.View.Details;

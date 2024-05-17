@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace BAEK_PERCENT.DAL
 {
@@ -22,6 +23,14 @@ namespace BAEK_PERCENT.DAL
         public static DataTable GetCTThue(string maThue)
         {
             string sql = $"SELECT CT.MaSach, S.TenSach, CT.GiaThue, CT.DaTra FROM {TableCTName} CT INNER JOIN Sach S ON CT.MaSach = S.MaSach WHERE CT.MaThue = @MaThue";
+            SqlParameter[] param = { new SqlParameter("@MaThue", maThue) };
+
+            return DatabaseLayer.GetDataToTable(sql, param);
+        }
+
+        public static DataTable GetCTThueChuaTra(string maThue)
+        {
+            string sql = $"SELECT CT.MaSach, S.TenSach, CT.GiaThue, CT.DaTra FROM {TableCTName} CT INNER JOIN Sach S ON CT.MaSach = S.MaSach WHERE CT.MaThue = @MaThue AND CT.DaTra = 0";
             SqlParameter[] param = { new SqlParameter("@MaThue", maThue) };
 
             return DatabaseLayer.GetDataToTable(sql, param);
@@ -194,10 +203,8 @@ namespace BAEK_PERCENT.DAL
             string sqlDelete = "DELETE FROM " + TableName + " WHERE MaThue = @MaThue";
             string sqlDeleteCT = "DELETE FROM " + TableCTName + " WHERE MaThue = @MaThue";
 
-            SqlParameter[] deleteParams = { new SqlParameter("@MaThue", maThue) };
-
-            DatabaseLayer.RunSqlDel(sqlDelete, deleteParams);
-            DatabaseLayer.RunSqlDel(sqlDeleteCT, deleteParams);
+            DatabaseLayer.RunSqlDel(sqlDelete, sqlParams);
+            DatabaseLayer.RunSqlDel(sqlDeleteCT, sqlParams);
         }
 
         public static void UpdateThue(string maThue, string maKH, string maNV, DateTime ngayThue, DateTime ngayTra, int tienDatCoc)
@@ -268,6 +275,25 @@ namespace BAEK_PERCENT.DAL
             };
 
             DatabaseLayer.RunSqlDel(sql, sqlParams);
+        }
+
+        public static int GetTongTienByMa(string maThue)
+        {
+            string sql = "SELECT SUM(GiaThue) as TongTien FROM " + TableCTName + " WHERE MaThue = @MaThue";
+
+            SqlParameter[] sqlParams =
+            {
+                new SqlParameter("@MaThue", maThue)
+            };
+
+            DataTable dt = DatabaseLayer.GetDataToTable(sql, sqlParams);
+
+            if (dt.Rows.Count > 0)
+            {
+                return Convert.ToInt32(dt.Rows[0]["TongTien"].ToString());
+            }
+
+            return 0;
         }
     }
 }
