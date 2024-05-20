@@ -99,7 +99,6 @@ namespace BAEK_PERCENT.Forms
             btnIn.Enabled = false;
 
             btnThemSach.Enabled = false;
-            btnSuaSach.Enabled = false;
             btnXoaSach.Enabled = false;
 
             txtTenKH.Enabled = false;
@@ -293,7 +292,7 @@ namespace BAEK_PERCENT.Forms
 
             if (listViewTra.SelectedItems.Count > 0)
             {
-                txtMaSach.Enabled = true;
+                // txtMaSach.Enabled = true;
                 cboViPham.Enabled = true;
 
                 btnThemSach.Enabled = true;
@@ -332,11 +331,16 @@ namespace BAEK_PERCENT.Forms
                 btnXoa.Enabled = true;
                 btnHuy.Enabled = true;
                 btnIn.Enabled = true;
+
+                btnLuu.Enabled = true;
             }
             else
             {
                 ResetValues();
                 ResetValuesCT();
+
+                LoadDataCT("");
+                LoadDataCTThue("");
 
                 btnXoa.Enabled = false;
                 btnHuy.Enabled = false;
@@ -348,8 +352,9 @@ namespace BAEK_PERCENT.Forms
                 cboViPham.Enabled = false;
 
                 btnThemSach.Enabled = false;
-                btnSuaSach.Enabled = false;
                 btnXoaSach.Enabled = false;
+
+                btnLuu.Enabled = false;
             }
         }
 
@@ -398,14 +403,11 @@ namespace BAEK_PERCENT.Forms
 
                 txtThanhTien.Text = selectedItem.SubItems[3].Text;
 
-                btnSuaSach.Enabled = true;
                 btnXoaSach.Enabled = true;
             }
             else
             {
                 ResetValuesCT();
-
-                btnSuaSach.Enabled = false;
                 btnXoaSach.Enabled = false;
             }
         }
@@ -551,7 +553,7 @@ namespace BAEK_PERCENT.Forms
             btnHuy.Enabled = true;
             btnLuu.Enabled = true;
 
-            txtMaSach.Enabled = true;
+            // txtMaSach.Enabled = true;
             btnThemSach.Enabled = true;
 
             cboViPham.Enabled = true;
@@ -683,7 +685,8 @@ namespace BAEK_PERCENT.Forms
                     txtNgayTra.Text = row["NgayTra"].ToString();
                     txtTienDatCoc.Text = row["TienDatCoc"].ToString();
 
-                    tongTien = (int)TraDAL.CalcTongTien(maThue);
+                    tongTien = -1;
+                    tongTien = TraDAL.CalcTongTien(maThue);
                     txtTongTien.Text = tongTien.ToString();
 
                     LoadDataCTThue(maThue);
@@ -725,8 +728,6 @@ namespace BAEK_PERCENT.Forms
                 DateTime.TryParse(txtNgayTra.Text, out DateTime ngayTra) &&
                 DateTime.TryParse(txtNgayThucTe.Text, out DateTime ngayThucTe))
             {
-                int thanhTienCu = string.IsNullOrEmpty(txtThanhTien.Text) ? 0 : Convert.ToInt32(txtThanhTien.Text);
-                
                 string viPham = cboViPham.Text.ToString();
                 int tienPhat = 0;
 
@@ -754,15 +755,7 @@ namespace BAEK_PERCENT.Forms
                     }
                 }
 
-                // Hiển thị tiền phạt
                 txtThanhTien.Text = tienPhat.ToString();
-
-                // Cập nhật tổng tiền
-                if (tongTien != -1)
-                {
-                    int tongTienMoi = tongTien + tienPhat - thanhTienCu;
-                    txtTongTien.Text = tongTienMoi.ToString();
-                }
             }
             else
             {
@@ -794,10 +787,9 @@ namespace BAEK_PERCENT.Forms
                         return;
                     }
 
-                    int tongTien = Convert.ToInt32(txtTongTien.Text.Trim());
-
                     try
                     {
+                        tongTien = Convert.ToInt32(txtTongTien.Text.Trim());
                         TraDAL.UpdateTra(maTra, maThue, maNV, ngayThucTe, tongTien);
 
                         Functions.HandleInfo("Thêm trả sách thành công");
@@ -816,7 +808,6 @@ namespace BAEK_PERCENT.Forms
 
                         txtMaSach.Enabled = false;
                         btnThemSach.Enabled = false;
-                        btnSuaSach.Enabled = false;
                         btnXoaSach.Enabled = false;
                         cboViPham.Enabled = false;
                     }
@@ -830,12 +821,28 @@ namespace BAEK_PERCENT.Forms
 
         private void btnIn_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string maTra = txtMaTra.Text;
+                string maThue = txtMaThue.Text;
+                DataTable tblThongTinTra, tblThongTinCTTra;
 
+                tblThongTinTra = TraDAL.GetThongTinTra(maThue);
+                tblThongTinCTTra = TraDAL.GetThongTinCTTra(maTra);
+
+                // Tạo và hiển thị hóa đơn trong Excel
+                ExcelHelper.CreateBillTra(tblThongTinTra, tblThongTinCTTra);
+            }
+            catch (Exception ex)
+            {
+                Functions.HandleError("Lỗi: " + ex.Message);
+            }
         }
 
         private void btnThemSach_Click(object sender, EventArgs e)
         {
             string maTra = txtMaTra.Text.Trim();
+            string maThue = txtMaThue.Text.Trim();
 
             if (ValidateInputCT())
             {
@@ -857,6 +864,11 @@ namespace BAEK_PERCENT.Forms
                     TraDAL.InsertSachCTTra(maTra, maSach, viPham, thanhTien);
                     Functions.HandleInfo("Thêm chi tiết trả sách thành công");
 
+                    DataTable tblTra = ThueDAL.GetCTThue(maThue);
+                    DataTable tblCTTra = TraDAL.GetThongTinCTTra(maTra);
+                    tongTien = tblTra.AsEnumerable().Sum(row => row.Field<int>("GiaThue")) + tblCTTra.AsEnumerable().Sum(row => row.Field<int>("ThanhTien"));
+                    txtTongTien.Text = tongTien.ToString();
+
                     LoadDataCT(maTra);
                     ResetValuesCT();
                 }
@@ -867,45 +879,12 @@ namespace BAEK_PERCENT.Forms
             }
         }
 
-        private void btnSuaSach_Click(object sender, EventArgs e)
-        {
-            string maTra = txtMaThue.Text.Trim();
-
-            if (ValidateInputCT())
-            {
-                string maSach = txtMaSach.Text.Trim();
-                string viPham = cboViPham.SelectedValue.ToString();
-                int thanhTien = Convert.ToInt32(txtThanhTien.Text.Trim());
-
-                // Kiểm tra xem mã sách đã có trong chi tiết thuê chưa
-                if (TraDAL.CheckMaSach(maSach, maTra))
-                {
-                    Functions.HandleWarning("Sách này đã có trong hóa đơn, vui lòng chọn sách khác hoặc xoá");
-                    ResetValuesCT();
-                    txtMaSach.Focus();
-                    return;
-                }
-
-                try
-                {
-                    TraDAL.UpdateSachCTTra(maTra, maSach, viPham, thanhTien);
-                    Functions.HandleInfo("Sửa chi tiết trả sách thành công");
-
-                    LoadDataCT(maTra);
-                    ResetValuesCT();
-                }
-                catch (Exception ex)
-                {
-                    Functions.HandleError("Lỗi khi sửa chi tiết trả sách: " + ex.Message);
-                }
-            }
-        }
-
         private void btnXoaSach_Click(object sender, EventArgs e)
         {
             string maTra = txtMaTra.Text.Trim();
             string maThue = txtMaThue.Text.Trim();
             string maSach = txtMaSach.Text.Trim();
+            int thanhTien = Convert.ToInt32(txtThanhTien.Text.Trim());
 
             if (!string.IsNullOrEmpty(maTra) && !string.IsNullOrEmpty(maSach))
             {
@@ -914,7 +893,63 @@ namespace BAEK_PERCENT.Forms
                     try
                     {
                         TraDAL.DeleteSachCTTra(maTra, maSach);
-                        Functions.HandleInfo("Xóa sách thành công");
+                        Functions.HandleInfo("Xóa sách thành công"); 
+                        
+                        DataTable tblTra = ThueDAL.GetCTThue(maThue);
+                        DataTable tblCTTra = TraDAL.GetThongTinCTTra(maTra);
+
+                        // Sum up the rental price and individual book prices
+                        int totalGiaThue = tblTra.AsEnumerable().Sum(row => row.Field<int>("GiaThue"));
+                        int totalThanhTien = tblCTTra.AsEnumerable().Sum(row => row.Field<int>("ThanhTien"));
+                        
+                        tongTien = totalGiaThue + totalThanhTien;
+                        txtTongTien.Text = tongTien.ToString();
+
+                        //if (TraDAL.CheckMaThueInsertedInMaTra(maTra, maThue))
+                        //{
+                        //    if (ValidateInput())
+                        //    {
+                        //        string maNV = txtMaNV.Text.Trim();
+
+                        //        DateTime ngayThucTe;
+                        //        if (!DateTime.TryParse(txtNgayThucTe.Text.Trim(), out ngayThucTe))
+                        //        {
+                        //            Functions.HandleWarning("Ngày thực tế không hợp lệ");
+                        //            txtNgayThucTe.Focus();
+                        //            return;
+                        //        }
+
+                        //        try
+                        //        {
+                        //            TraDAL.UpdateTra(maTra, maThue, maNV, ngayThucTe, tongTien);
+
+                        //            Functions.HandleInfo("Cập nhật trả sách thành công");
+
+                        //            // Reload the main data and reset the form
+                        //            LoadData();
+                        //            LoadDataCT("");
+                        //            LoadDataCTThue("");
+
+                        //            ResetValues();
+                        //            ResetValuesCT();
+
+                        //            btnThem.Enabled = true;
+                        //            btnXoa.Enabled = false;
+                        //            btnHuy.Enabled = false;
+                        //            btnLuu.Enabled = false;
+                        //            btnIn.Enabled = false;
+
+                        //            txtMaSach.Enabled = false;
+                        //            btnThemSach.Enabled = false;
+                        //            btnXoaSach.Enabled = false;
+                        //            cboViPham.Enabled = false;
+                        //        }
+                        //        catch (Exception ex)
+                        //        {
+                        //            Functions.HandleError("Lỗi khi cập nhật trả sách: " + ex.Message);
+                        //        }
+                        //    }
+                        //}    
 
                         LoadDataCT(maTra);
                         ResetValuesCT();

@@ -40,6 +40,8 @@
             this.txtMaLV = new MaterialSkin.Controls.MaterialTextBox2();
             this.txtTenLV = new MaterialSkin.Controls.MaterialTextBox2();
             this.txtTimKiem = new MaterialSkin.Controls.MaterialTextBox2();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnTimKiem
@@ -199,7 +201,7 @@
             this.materialLabel2.AutoSize = true;
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel2.Location = new System.Drawing.Point(311, 106);
+            this.materialLabel2.Location = new System.Drawing.Point(304, 40);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(92, 19);
@@ -211,7 +213,7 @@
             this.materialLabel1.AutoSize = true;
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(29, 106);
+            this.materialLabel1.Location = new System.Drawing.Point(22, 40);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(88, 19);
@@ -231,13 +233,13 @@
             this.listViewLV.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewLV.FullRowSelect = true;
             this.listViewLV.HideSelection = false;
-            this.listViewLV.Location = new System.Drawing.Point(27, 159);
+            this.listViewLV.Location = new System.Drawing.Point(27, 211);
             this.listViewLV.MinimumSize = new System.Drawing.Size(820, 378);
             this.listViewLV.MouseLocation = new System.Drawing.Point(-1, -1);
             this.listViewLV.MouseState = MaterialSkin.MouseState.OUT;
             this.listViewLV.Name = "listViewLV";
             this.listViewLV.OwnerDraw = true;
-            this.listViewLV.Size = new System.Drawing.Size(973, 572);
+            this.listViewLV.Size = new System.Drawing.Size(973, 520);
             this.listViewLV.TabIndex = 12;
             this.listViewLV.UseCompatibleStateImageBehavior = false;
             this.listViewLV.View = System.Windows.Forms.View.Details;
@@ -254,7 +256,7 @@
             this.txtMaLV.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaLV.HideSelection = true;
             this.txtMaLV.LeadingIcon = null;
-            this.txtMaLV.Location = new System.Drawing.Point(129, 92);
+            this.txtMaLV.Location = new System.Drawing.Point(122, 26);
             this.txtMaLV.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtMaLV.MaxLength = 32767;
             this.txtMaLV.MinimumSize = new System.Drawing.Size(0, 48);
@@ -287,7 +289,7 @@
             this.txtTenLV.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenLV.HideSelection = true;
             this.txtTenLV.LeadingIcon = null;
-            this.txtTenLV.Location = new System.Drawing.Point(412, 92);
+            this.txtTenLV.Location = new System.Drawing.Point(405, 26);
             this.txtTenLV.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtTenLV.MaxLength = 32767;
             this.txtTenLV.MinimumSize = new System.Drawing.Size(0, 48);
@@ -301,7 +303,7 @@
             this.txtTenLV.SelectionLength = 0;
             this.txtTenLV.SelectionStart = 0;
             this.txtTenLV.ShortcutsEnabled = true;
-            this.txtTenLV.Size = new System.Drawing.Size(588, 48);
+            this.txtTenLV.Size = new System.Drawing.Size(540, 48);
             this.txtTenLV.TabIndex = 16;
             this.txtTenLV.TabStop = false;
             this.txtTenLV.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -341,12 +343,27 @@
             this.txtTimKiem.UseSystemPasswordChar = false;
             this.txtTimKiem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTimKiem_KeyDown);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.txtTenLV);
+            this.groupBox1.Controls.Add(this.materialLabel1);
+            this.groupBox1.Controls.Add(this.txtMaLV);
+            this.groupBox1.Controls.Add(this.materialLabel2);
+            this.groupBox1.Location = new System.Drawing.Point(27, 90);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(973, 97);
+            this.groupBox1.TabIndex = 24;
+            this.groupBox1.TabStop = false;
+            // 
             // frmLinhVuc
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoScroll = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1024, 819);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnTimKiem);
             this.Controls.Add(this.txtTimKiem);
             this.Controls.Add(this.btnHuy);
@@ -354,18 +371,15 @@
             this.Controls.Add(this.btnXoa);
             this.Controls.Add(this.btnSua);
             this.Controls.Add(this.btnThem);
-            this.Controls.Add(this.txtTenLV);
-            this.Controls.Add(this.materialLabel2);
-            this.Controls.Add(this.txtMaLV);
-            this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.listViewLV);
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.StatusAndActionBar_None;
             this.Name = "frmLinhVuc";
             this.Padding = new System.Windows.Forms.Padding(6);
             this.Text = "frmLinhVuc";
             this.Load += new System.EventHandler(this.frmLinhVuc_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -383,5 +397,6 @@
         private MaterialSkin.Controls.MaterialTextBox2 txtMaLV;
         private MaterialSkin.Controls.MaterialTextBox2 txtTenLV;
         private MaterialSkin.Controls.MaterialTextBox2 txtTimKiem;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

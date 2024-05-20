@@ -53,6 +53,8 @@
             this.cboTaiKhoan = new MaterialSkin.Controls.MaterialComboBox();
             this.materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
             this.txtSDT = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtNgaySinh
@@ -71,7 +73,7 @@
             this.txtNgaySinh.HideSelection = true;
             this.txtNgaySinh.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
             this.txtNgaySinh.LeadingIcon = null;
-            this.txtNgaySinh.Location = new System.Drawing.Point(152, 155);
+            this.txtNgaySinh.Location = new System.Drawing.Point(135, 91);
             this.txtNgaySinh.Mask = "00/00/0000";
             this.txtNgaySinh.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtNgaySinh.MaxLength = 32767;
@@ -113,7 +115,7 @@
             this.txtDiaChi.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDiaChi.HideSelection = true;
             this.txtDiaChi.LeadingIcon = null;
-            this.txtDiaChi.Location = new System.Drawing.Point(434, 155);
+            this.txtDiaChi.Location = new System.Drawing.Point(398, 91);
             this.txtDiaChi.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtDiaChi.MaxLength = 32767;
             this.txtDiaChi.MinimumSize = new System.Drawing.Size(0, 48);
@@ -127,7 +129,7 @@
             this.txtDiaChi.SelectionLength = 0;
             this.txtDiaChi.SelectionStart = 0;
             this.txtDiaChi.ShortcutsEnabled = true;
-            this.txtDiaChi.Size = new System.Drawing.Size(566, 48);
+            this.txtDiaChi.Size = new System.Drawing.Size(550, 48);
             this.txtDiaChi.TabIndex = 73;
             this.txtDiaChi.TabStop = false;
             this.txtDiaChi.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -139,7 +141,7 @@
             this.materialLabel4.AutoSize = true;
             this.materialLabel4.Depth = 0;
             this.materialLabel4.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel4.Location = new System.Drawing.Point(374, 169);
+            this.materialLabel4.Location = new System.Drawing.Point(338, 105);
             this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel4.Name = "materialLabel4";
             this.materialLabel4.Size = new System.Drawing.Size(54, 19);
@@ -151,7 +153,7 @@
             this.materialLabel5.AutoSize = true;
             this.materialLabel5.Depth = 0;
             this.materialLabel5.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel5.Location = new System.Drawing.Point(68, 169);
+            this.materialLabel5.Location = new System.Drawing.Point(51, 105);
             this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel5.Name = "materialLabel5";
             this.materialLabel5.Size = new System.Drawing.Size(76, 19);
@@ -164,7 +166,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rdoNu.AutoSize = true;
             this.rdoNu.Depth = 0;
-            this.rdoNu.Location = new System.Drawing.Point(934, 97);
+            this.rdoNu.Location = new System.Drawing.Point(889, 33);
             this.rdoNu.Margin = new System.Windows.Forms.Padding(0);
             this.rdoNu.MouseLocation = new System.Drawing.Point(-1, -1);
             this.rdoNu.MouseState = MaterialSkin.MouseState.HOVER;
@@ -182,7 +184,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rdoNam.AutoSize = true;
             this.rdoNam.Depth = 0;
-            this.rdoNam.Location = new System.Drawing.Point(852, 97);
+            this.rdoNam.Location = new System.Drawing.Point(807, 33);
             this.rdoNam.Margin = new System.Windows.Forms.Padding(0);
             this.rdoNam.MouseLocation = new System.Drawing.Point(-1, -1);
             this.rdoNam.MouseState = MaterialSkin.MouseState.HOVER;
@@ -201,7 +203,7 @@
             this.materialLabel3.AutoSize = true;
             this.materialLabel3.Depth = 0;
             this.materialLabel3.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel3.Location = new System.Drawing.Point(785, 107);
+            this.materialLabel3.Location = new System.Drawing.Point(740, 43);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
             this.materialLabel3.Size = new System.Drawing.Size(64, 19);
@@ -405,7 +407,7 @@
             this.txtTenNV.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenNV.HideSelection = true;
             this.txtTenNV.LeadingIcon = null;
-            this.txtTenNV.Location = new System.Drawing.Point(434, 92);
+            this.txtTenNV.Location = new System.Drawing.Point(398, 28);
             this.txtTenNV.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtTenNV.MaxLength = 32767;
             this.txtTenNV.MinimumSize = new System.Drawing.Size(0, 48);
@@ -431,7 +433,7 @@
             this.materialLabel2.AutoSize = true;
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel2.Location = new System.Drawing.Point(323, 107);
+            this.materialLabel2.Location = new System.Drawing.Point(287, 43);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(105, 19);
@@ -449,7 +451,7 @@
             this.txtMaNV.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaNV.HideSelection = true;
             this.txtMaNV.LeadingIcon = null;
-            this.txtMaNV.Location = new System.Drawing.Point(152, 92);
+            this.txtMaNV.Location = new System.Drawing.Point(135, 28);
             this.txtMaNV.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtMaNV.MaxLength = 32767;
             this.txtMaNV.MinimumSize = new System.Drawing.Size(0, 48);
@@ -463,7 +465,7 @@
             this.txtMaNV.SelectionLength = 0;
             this.txtMaNV.SelectionStart = 0;
             this.txtMaNV.ShortcutsEnabled = true;
-            this.txtMaNV.Size = new System.Drawing.Size(138, 48);
+            this.txtMaNV.Size = new System.Drawing.Size(140, 48);
             this.txtMaNV.TabIndex = 58;
             this.txtMaNV.TabStop = false;
             this.txtMaNV.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -475,7 +477,7 @@
             this.materialLabel1.AutoSize = true;
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(43, 107);
+            this.materialLabel1.Location = new System.Drawing.Point(26, 43);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(101, 19);
@@ -495,13 +497,13 @@
             this.listViewNV.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewNV.FullRowSelect = true;
             this.listViewNV.HideSelection = false;
-            this.listViewNV.Location = new System.Drawing.Point(27, 290);
+            this.listViewNV.Location = new System.Drawing.Point(27, 338);
             this.listViewNV.MinimumSize = new System.Drawing.Size(820, 378);
             this.listViewNV.MouseLocation = new System.Drawing.Point(-1, -1);
             this.listViewNV.MouseState = MaterialSkin.MouseState.OUT;
             this.listViewNV.Name = "listViewNV";
             this.listViewNV.OwnerDraw = true;
-            this.listViewNV.Size = new System.Drawing.Size(973, 441);
+            this.listViewNV.Size = new System.Drawing.Size(973, 393);
             this.listViewNV.TabIndex = 56;
             this.listViewNV.UseCompatibleStateImageBehavior = false;
             this.listViewNV.View = System.Windows.Forms.View.Details;
@@ -519,7 +521,7 @@
             this.txtLuong.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLuong.HideSelection = true;
             this.txtLuong.LeadingIcon = null;
-            this.txtLuong.Location = new System.Drawing.Point(434, 219);
+            this.txtLuong.Location = new System.Drawing.Point(398, 155);
             this.txtLuong.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtLuong.MaxLength = 32767;
             this.txtLuong.MinimumSize = new System.Drawing.Size(0, 48);
@@ -546,7 +548,7 @@
             this.materialLabel6.AutoSize = true;
             this.materialLabel6.Depth = 0;
             this.materialLabel6.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel6.Location = new System.Drawing.Point(377, 234);
+            this.materialLabel6.Location = new System.Drawing.Point(341, 170);
             this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel6.Name = "materialLabel6";
             this.materialLabel6.Size = new System.Drawing.Size(51, 19);
@@ -558,7 +560,7 @@
             this.materialLabel7.AutoSize = true;
             this.materialLabel7.Depth = 0;
             this.materialLabel7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel7.Location = new System.Drawing.Point(45, 234);
+            this.materialLabel7.Location = new System.Drawing.Point(28, 170);
             this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel7.Name = "materialLabel7";
             this.materialLabel7.Size = new System.Drawing.Size(99, 19);
@@ -581,12 +583,12 @@
             this.cboTaiKhoan.FormattingEnabled = true;
             this.cboTaiKhoan.IntegralHeight = false;
             this.cboTaiKhoan.ItemHeight = 43;
-            this.cboTaiKhoan.Location = new System.Drawing.Point(739, 219);
+            this.cboTaiKhoan.Location = new System.Drawing.Point(695, 155);
             this.cboTaiKhoan.MaxDropDownItems = 4;
             this.cboTaiKhoan.MinimumSize = new System.Drawing.Size(150, 0);
             this.cboTaiKhoan.MouseState = MaterialSkin.MouseState.OUT;
             this.cboTaiKhoan.Name = "cboTaiKhoan";
-            this.cboTaiKhoan.Size = new System.Drawing.Size(261, 49);
+            this.cboTaiKhoan.Size = new System.Drawing.Size(253, 49);
             this.cboTaiKhoan.StartIndex = 0;
             this.cboTaiKhoan.TabIndex = 80;
             // 
@@ -597,7 +599,7 @@
             this.materialLabel8.AutoSize = true;
             this.materialLabel8.Depth = 0;
             this.materialLabel8.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel8.Location = new System.Drawing.Point(657, 234);
+            this.materialLabel8.Location = new System.Drawing.Point(613, 170);
             this.materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel8.Name = "materialLabel8";
             this.materialLabel8.Size = new System.Drawing.Size(76, 19);
@@ -620,7 +622,7 @@
             this.txtSDT.HideSelection = true;
             this.txtSDT.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
             this.txtSDT.LeadingIcon = null;
-            this.txtSDT.Location = new System.Drawing.Point(152, 219);
+            this.txtSDT.Location = new System.Drawing.Point(135, 155);
             this.txtSDT.Mask = "000 000 0000";
             this.txtSDT.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtSDT.MaxLength = 32767;
@@ -651,25 +653,40 @@
             this.txtSDT.ValidatingType = null;
             this.txtSDT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSDT_KeyPress);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.rdoNam);
+            this.groupBox1.Controls.Add(this.txtSDT);
+            this.groupBox1.Controls.Add(this.materialLabel1);
+            this.groupBox1.Controls.Add(this.cboTaiKhoan);
+            this.groupBox1.Controls.Add(this.txtMaNV);
+            this.groupBox1.Controls.Add(this.materialLabel8);
+            this.groupBox1.Controls.Add(this.materialLabel2);
+            this.groupBox1.Controls.Add(this.txtLuong);
+            this.groupBox1.Controls.Add(this.txtTenNV);
+            this.groupBox1.Controls.Add(this.materialLabel6);
+            this.groupBox1.Controls.Add(this.materialLabel3);
+            this.groupBox1.Controls.Add(this.materialLabel7);
+            this.groupBox1.Controls.Add(this.rdoNu);
+            this.groupBox1.Controls.Add(this.txtNgaySinh);
+            this.groupBox1.Controls.Add(this.materialLabel5);
+            this.groupBox1.Controls.Add(this.txtDiaChi);
+            this.groupBox1.Controls.Add(this.materialLabel4);
+            this.groupBox1.Location = new System.Drawing.Point(27, 90);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(973, 229);
+            this.groupBox1.TabIndex = 82;
+            this.groupBox1.TabStop = false;
+            // 
             // frmNhanVien
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoScroll = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1024, 819);
-            this.Controls.Add(this.txtSDT);
-            this.Controls.Add(this.cboTaiKhoan);
-            this.Controls.Add(this.materialLabel8);
-            this.Controls.Add(this.txtLuong);
-            this.Controls.Add(this.materialLabel6);
-            this.Controls.Add(this.materialLabel7);
-            this.Controls.Add(this.txtNgaySinh);
-            this.Controls.Add(this.txtDiaChi);
-            this.Controls.Add(this.materialLabel4);
-            this.Controls.Add(this.materialLabel5);
-            this.Controls.Add(this.rdoNu);
-            this.Controls.Add(this.rdoNam);
-            this.Controls.Add(this.materialLabel3);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnTimKiem);
             this.Controls.Add(this.txtTimKiem);
             this.Controls.Add(this.btnHuy);
@@ -677,18 +694,15 @@
             this.Controls.Add(this.btnXoa);
             this.Controls.Add(this.btnSua);
             this.Controls.Add(this.btnThem);
-            this.Controls.Add(this.txtTenNV);
-            this.Controls.Add(this.materialLabel2);
-            this.Controls.Add(this.txtMaNV);
-            this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.listViewNV);
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.StatusAndActionBar_None;
             this.Name = "frmNhanVien";
             this.Padding = new System.Windows.Forms.Padding(6);
             this.Text = "frmNhanVien";
             this.Load += new System.EventHandler(this.frmNhanVien_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -719,5 +733,6 @@
         private MaterialSkin.Controls.MaterialComboBox cboTaiKhoan;
         private MaterialSkin.Controls.MaterialLabel materialLabel8;
         private MaterialSkin.Controls.MaterialMaskedTextBox txtSDT;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

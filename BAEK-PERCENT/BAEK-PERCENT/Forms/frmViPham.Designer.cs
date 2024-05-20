@@ -35,11 +35,13 @@
             this.btnXoa = new MaterialSkin.Controls.MaterialButton();
             this.btnSua = new MaterialSkin.Controls.MaterialButton();
             this.btnThem = new MaterialSkin.Controls.MaterialButton();
-            this.txtTenVP = new MaterialSkin.Controls.MaterialTextBox2();
-            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
-            this.txtMaVP = new MaterialSkin.Controls.MaterialTextBox2();
-            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.listViewVP = new MaterialSkin.Controls.MaterialListView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtTenVP = new MaterialSkin.Controls.MaterialTextBox2();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.txtMaVP = new MaterialSkin.Controls.MaterialTextBox2();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnTimKiem
@@ -227,6 +229,45 @@
             this.btnThem.UseVisualStyleBackColor = true;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
+            // listViewVP
+            // 
+            this.listViewVP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewVP.AutoSizeTable = false;
+            this.listViewVP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.listViewVP.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listViewVP.CheckBoxes = true;
+            this.listViewVP.Depth = 0;
+            this.listViewVP.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewVP.FullRowSelect = true;
+            this.listViewVP.HideSelection = false;
+            this.listViewVP.Location = new System.Drawing.Point(27, 211);
+            this.listViewVP.MinimumSize = new System.Drawing.Size(820, 378);
+            this.listViewVP.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.listViewVP.MouseState = MaterialSkin.MouseState.OUT;
+            this.listViewVP.Name = "listViewVP";
+            this.listViewVP.OwnerDraw = true;
+            this.listViewVP.Size = new System.Drawing.Size(973, 520);
+            this.listViewVP.TabIndex = 48;
+            this.listViewVP.UseCompatibleStateImageBehavior = false;
+            this.listViewVP.View = System.Windows.Forms.View.Details;
+            this.listViewVP.SelectedIndexChanged += new System.EventHandler(this.listViewVP_SelectedIndexChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.txtTenVP);
+            this.groupBox1.Controls.Add(this.materialLabel1);
+            this.groupBox1.Controls.Add(this.txtMaVP);
+            this.groupBox1.Controls.Add(this.materialLabel2);
+            this.groupBox1.Location = new System.Drawing.Point(27, 90);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(973, 97);
+            this.groupBox1.TabIndex = 60;
+            this.groupBox1.TabStop = false;
+            // 
             // txtTenVP
             // 
             this.txtTenVP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -239,7 +280,7 @@
             this.txtTenVP.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenVP.HideSelection = true;
             this.txtTenVP.LeadingIcon = null;
-            this.txtTenVP.Location = new System.Drawing.Point(412, 92);
+            this.txtTenVP.Location = new System.Drawing.Point(405, 26);
             this.txtTenVP.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtTenVP.MaxLength = 32767;
             this.txtTenVP.MinimumSize = new System.Drawing.Size(0, 48);
@@ -253,24 +294,24 @@
             this.txtTenVP.SelectionLength = 0;
             this.txtTenVP.SelectionStart = 0;
             this.txtTenVP.ShortcutsEnabled = true;
-            this.txtTenVP.Size = new System.Drawing.Size(588, 48);
-            this.txtTenVP.TabIndex = 52;
+            this.txtTenVP.Size = new System.Drawing.Size(540, 48);
+            this.txtTenVP.TabIndex = 16;
             this.txtTenVP.TabStop = false;
             this.txtTenVP.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtTenVP.TrailingIcon = null;
             this.txtTenVP.UseSystemPasswordChar = false;
             // 
-            // materialLabel2
+            // materialLabel1
             // 
-            this.materialLabel2.AutoSize = true;
-            this.materialLabel2.Depth = 0;
-            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel2.Location = new System.Drawing.Point(311, 105);
-            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(93, 19);
-            this.materialLabel2.TabIndex = 51;
-            this.materialLabel2.Text = "Tên vi phạm:";
+            this.materialLabel1.AutoSize = true;
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel1.Location = new System.Drawing.Point(22, 40);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(89, 19);
+            this.materialLabel1.TabIndex = 13;
+            this.materialLabel1.Text = "Mã vi phạm:";
             // 
             // txtMaVP
             // 
@@ -283,7 +324,7 @@
             this.txtMaVP.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaVP.HideSelection = true;
             this.txtMaVP.LeadingIcon = null;
-            this.txtMaVP.Location = new System.Drawing.Point(129, 92);
+            this.txtMaVP.Location = new System.Drawing.Point(122, 26);
             this.txtMaVP.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtMaVP.MaxLength = 32767;
             this.txtMaVP.MinimumSize = new System.Drawing.Size(0, 48);
@@ -298,48 +339,23 @@
             this.txtMaVP.SelectionStart = 0;
             this.txtMaVP.ShortcutsEnabled = true;
             this.txtMaVP.Size = new System.Drawing.Size(150, 48);
-            this.txtMaVP.TabIndex = 50;
+            this.txtMaVP.TabIndex = 14;
             this.txtMaVP.TabStop = false;
             this.txtMaVP.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtMaVP.TrailingIcon = null;
             this.txtMaVP.UseSystemPasswordChar = false;
             // 
-            // materialLabel1
+            // materialLabel2
             // 
-            this.materialLabel1.AutoSize = true;
-            this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(29, 105);
-            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(89, 19);
-            this.materialLabel1.TabIndex = 49;
-            this.materialLabel1.Text = "Mã vi phạm:";
-            // 
-            // listViewVP
-            // 
-            this.listViewVP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listViewVP.AutoSizeTable = false;
-            this.listViewVP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.listViewVP.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listViewVP.CheckBoxes = true;
-            this.listViewVP.Depth = 0;
-            this.listViewVP.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listViewVP.FullRowSelect = true;
-            this.listViewVP.HideSelection = false;
-            this.listViewVP.Location = new System.Drawing.Point(27, 159);
-            this.listViewVP.MinimumSize = new System.Drawing.Size(820, 378);
-            this.listViewVP.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.listViewVP.MouseState = MaterialSkin.MouseState.OUT;
-            this.listViewVP.Name = "listViewVP";
-            this.listViewVP.OwnerDraw = true;
-            this.listViewVP.Size = new System.Drawing.Size(973, 572);
-            this.listViewVP.TabIndex = 48;
-            this.listViewVP.UseCompatibleStateImageBehavior = false;
-            this.listViewVP.View = System.Windows.Forms.View.Details;
-            this.listViewVP.SelectedIndexChanged += new System.EventHandler(this.listViewVP_SelectedIndexChanged);
+            this.materialLabel2.AutoSize = true;
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel2.Location = new System.Drawing.Point(304, 40);
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            this.materialLabel2.Size = new System.Drawing.Size(93, 19);
+            this.materialLabel2.TabIndex = 15;
+            this.materialLabel2.Text = "Tên vi phạm:";
             // 
             // frmViPham
             // 
@@ -347,6 +363,7 @@
             this.AutoScroll = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1024, 819);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnTimKiem);
             this.Controls.Add(this.txtTimKiem);
             this.Controls.Add(this.btnHuy);
@@ -354,18 +371,15 @@
             this.Controls.Add(this.btnXoa);
             this.Controls.Add(this.btnSua);
             this.Controls.Add(this.btnThem);
-            this.Controls.Add(this.txtTenVP);
-            this.Controls.Add(this.materialLabel2);
-            this.Controls.Add(this.txtMaVP);
-            this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.listViewVP);
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.StatusAndActionBar_None;
             this.Name = "frmViPham";
             this.Padding = new System.Windows.Forms.Padding(6);
             this.Text = "frmViPham";
             this.Load += new System.EventHandler(this.frmViPham_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -378,10 +392,11 @@
         private MaterialSkin.Controls.MaterialButton btnXoa;
         private MaterialSkin.Controls.MaterialButton btnSua;
         private MaterialSkin.Controls.MaterialButton btnThem;
-        private MaterialSkin.Controls.MaterialTextBox2 txtTenVP;
-        private MaterialSkin.Controls.MaterialLabel materialLabel2;
-        private MaterialSkin.Controls.MaterialTextBox2 txtMaVP;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private MaterialSkin.Controls.MaterialListView listViewVP;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private MaterialSkin.Controls.MaterialTextBox2 txtTenVP;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialTextBox2 txtMaVP;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
     }
 }

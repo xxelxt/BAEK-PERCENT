@@ -741,7 +741,7 @@ namespace BAEK_PERCENT.Forms
                 tblThongTinCTThue = ThueDAL.GetThongTinCTThue(maThue);
 
                 // Tạo và hiển thị hóa đơn trong Excel
-                ExcelHelper.CreateBillThue(maThue, tblThongTinThue, tblThongTinCTThue);
+                ExcelHelper.CreateBillThue(tblThongTinThue, tblThongTinCTThue);
             }
             catch (Exception ex)
             {

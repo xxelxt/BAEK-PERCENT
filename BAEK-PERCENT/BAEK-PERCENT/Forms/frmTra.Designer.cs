@@ -56,7 +56,6 @@
             this.cboViPham = new MaterialSkin.Controls.MaterialComboBox();
             this.txtThanhTien = new MaterialSkin.Controls.MaterialTextBox2();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
-            this.btnSuaSach = new MaterialSkin.Controls.MaterialButton();
             this.btnXoaSach = new MaterialSkin.Controls.MaterialButton();
             this.btnThemSach = new MaterialSkin.Controls.MaterialButton();
             this.listViewCTTra = new MaterialSkin.Controls.MaterialListView();
@@ -640,7 +639,6 @@
             this.groupBox2.Controls.Add(this.txtThanhTien);
             this.groupBox2.Controls.Add(this.materialLabel2);
             this.groupBox2.Controls.Add(this.materialLabel12);
-            this.groupBox2.Controls.Add(this.btnSuaSach);
             this.groupBox2.Controls.Add(this.txtTenSach);
             this.groupBox2.Controls.Add(this.materialLabel10);
             this.groupBox2.Controls.Add(this.btnXoaSach);
@@ -724,32 +722,6 @@
             this.materialLabel2.TabIndex = 180;
             this.materialLabel2.Text = "Thành tiền:";
             // 
-            // btnSuaSach
-            // 
-            this.btnSuaSach.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnSuaSach.AutoSize = false;
-            this.btnSuaSach.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnSuaSach.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnSuaSach.Depth = 0;
-            this.btnSuaSach.DrawShadows = false;
-            this.btnSuaSach.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSuaSach.HighEmphasis = true;
-            this.btnSuaSach.Icon = null;
-            this.btnSuaSach.Location = new System.Drawing.Point(167, 409);
-            this.btnSuaSach.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnSuaSach.MaximumSize = new System.Drawing.Size(0, 36);
-            this.btnSuaSach.MinimumSize = new System.Drawing.Size(80, 36);
-            this.btnSuaSach.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnSuaSach.Name = "btnSuaSach";
-            this.btnSuaSach.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnSuaSach.Size = new System.Drawing.Size(108, 36);
-            this.btnSuaSach.TabIndex = 161;
-            this.btnSuaSach.Text = "Sửa sách";
-            this.btnSuaSach.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnSuaSach.UseAccentColor = false;
-            this.btnSuaSach.UseVisualStyleBackColor = true;
-            this.btnSuaSach.Click += new System.EventHandler(this.btnSuaSach_Click);
-            // 
             // btnXoaSach
             // 
             this.btnXoaSach.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -761,7 +733,7 @@
             this.btnXoaSach.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXoaSach.HighEmphasis = true;
             this.btnXoaSach.Icon = null;
-            this.btnXoaSach.Location = new System.Drawing.Point(284, 409);
+            this.btnXoaSach.Location = new System.Drawing.Point(224, 409);
             this.btnXoaSach.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnXoaSach.MaximumSize = new System.Drawing.Size(0, 36);
             this.btnXoaSach.MinimumSize = new System.Drawing.Size(80, 36);
@@ -787,7 +759,7 @@
             this.btnThemSach.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThemSach.HighEmphasis = true;
             this.btnThemSach.Icon = null;
-            this.btnThemSach.Location = new System.Drawing.Point(48, 409);
+            this.btnThemSach.Location = new System.Drawing.Point(103, 409);
             this.btnThemSach.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnThemSach.MaximumSize = new System.Drawing.Size(0, 36);
             this.btnThemSach.MinimumSize = new System.Drawing.Size(80, 36);
@@ -1236,7 +1208,6 @@
         private MaterialSkin.Controls.MaterialButton btnThem;
         private MaterialSkin.Controls.MaterialLabel materialLabel5;
         private System.Windows.Forms.GroupBox groupBox2;
-        private MaterialSkin.Controls.MaterialButton btnSuaSach;
         private MaterialSkin.Controls.MaterialButton btnXoaSach;
         private MaterialSkin.Controls.MaterialButton btnThemSach;
         private MaterialSkin.Controls.MaterialListView listViewCTTra;

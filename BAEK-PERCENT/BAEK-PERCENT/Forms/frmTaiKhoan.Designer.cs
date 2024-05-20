@@ -42,6 +42,8 @@
             this.listViewTK = new MaterialSkin.Controls.MaterialListView();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.cboPriv = new MaterialSkin.Controls.MaterialComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnTimKiem
@@ -241,7 +243,7 @@
             this.txtPassword.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.HideSelection = true;
             this.txtPassword.LeadingIcon = null;
-            this.txtPassword.Location = new System.Drawing.Point(470, 92);
+            this.txtPassword.Location = new System.Drawing.Point(448, 26);
             this.txtPassword.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtPassword.MaxLength = 32767;
             this.txtPassword.MinimumSize = new System.Drawing.Size(0, 48);
@@ -269,7 +271,7 @@
             this.materialLabel2.AutoSize = true;
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel2.Location = new System.Drawing.Point(392, 106);
+            this.materialLabel2.Location = new System.Drawing.Point(370, 40);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(72, 19);
@@ -287,7 +289,7 @@
             this.txtUsername.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsername.HideSelection = true;
             this.txtUsername.LeadingIcon = null;
-            this.txtUsername.Location = new System.Drawing.Point(148, 92);
+            this.txtUsername.Location = new System.Drawing.Point(139, 27);
             this.txtUsername.MaximumSize = new System.Drawing.Size(0, 40);
             this.txtUsername.MaxLength = 32767;
             this.txtUsername.MinimumSize = new System.Drawing.Size(0, 48);
@@ -313,7 +315,7 @@
             this.materialLabel1.AutoSize = true;
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(29, 106);
+            this.materialLabel1.Location = new System.Drawing.Point(20, 41);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(113, 19);
@@ -333,13 +335,13 @@
             this.listViewTK.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewTK.FullRowSelect = true;
             this.listViewTK.HideSelection = false;
-            this.listViewTK.Location = new System.Drawing.Point(27, 159);
+            this.listViewTK.Location = new System.Drawing.Point(27, 212);
             this.listViewTK.MinimumSize = new System.Drawing.Size(820, 378);
             this.listViewTK.MouseLocation = new System.Drawing.Point(-1, -1);
             this.listViewTK.MouseState = MaterialSkin.MouseState.OUT;
             this.listViewTK.Name = "listViewTK";
             this.listViewTK.OwnerDraw = true;
-            this.listViewTK.Size = new System.Drawing.Size(973, 572);
+            this.listViewTK.Size = new System.Drawing.Size(973, 519);
             this.listViewTK.TabIndex = 36;
             this.listViewTK.UseCompatibleStateImageBehavior = false;
             this.listViewTK.View = System.Windows.Forms.View.Details;
@@ -352,7 +354,7 @@
             this.materialLabel3.AutoSize = true;
             this.materialLabel3.Depth = 0;
             this.materialLabel3.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel3.Location = new System.Drawing.Point(727, 106);
+            this.materialLabel3.Location = new System.Drawing.Point(672, 41);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
             this.materialLabel3.Size = new System.Drawing.Size(50, 19);
@@ -375,7 +377,7 @@
             this.cboPriv.FormattingEnabled = true;
             this.cboPriv.IntegralHeight = false;
             this.cboPriv.ItemHeight = 43;
-            this.cboPriv.Location = new System.Drawing.Point(783, 91);
+            this.cboPriv.Location = new System.Drawing.Point(728, 26);
             this.cboPriv.MaxDropDownItems = 4;
             this.cboPriv.MaximumSize = new System.Drawing.Size(217, 0);
             this.cboPriv.MinimumSize = new System.Drawing.Size(217, 0);
@@ -385,14 +387,29 @@
             this.cboPriv.StartIndex = 0;
             this.cboPriv.TabIndex = 49;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.cboPriv);
+            this.groupBox1.Controls.Add(this.materialLabel1);
+            this.groupBox1.Controls.Add(this.materialLabel3);
+            this.groupBox1.Controls.Add(this.txtUsername);
+            this.groupBox1.Controls.Add(this.materialLabel2);
+            this.groupBox1.Controls.Add(this.txtPassword);
+            this.groupBox1.Location = new System.Drawing.Point(27, 90);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(973, 96);
+            this.groupBox1.TabIndex = 50;
+            this.groupBox1.TabStop = false;
+            // 
             // frmTaiKhoan
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoScroll = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1024, 819);
-            this.Controls.Add(this.cboPriv);
-            this.Controls.Add(this.materialLabel3);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnTimKiem);
             this.Controls.Add(this.txtTimKiem);
             this.Controls.Add(this.btnHuy);
@@ -400,18 +417,15 @@
             this.Controls.Add(this.btnXoa);
             this.Controls.Add(this.btnSua);
             this.Controls.Add(this.btnThem);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.materialLabel2);
-            this.Controls.Add(this.txtUsername);
-            this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.listViewTK);
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.StatusAndActionBar_None;
             this.Name = "frmTaiKhoan";
             this.Padding = new System.Windows.Forms.Padding(6);
             this.Text = "frmTaiKhoan";
             this.Load += new System.EventHandler(this.frmTaiKhoan_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -431,5 +445,6 @@
         private MaterialSkin.Controls.MaterialListView listViewTK;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private MaterialSkin.Controls.MaterialComboBox cboPriv;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

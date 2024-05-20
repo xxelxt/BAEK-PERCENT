@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
 using System.Reflection;
 using System.IO;
+using BAEK_PERCENT.Class;
 
 namespace BAEK_PERCENT.DAL
 {
@@ -23,6 +24,98 @@ namespace BAEK_PERCENT.DAL
                 "INNER JOIN NhanVien NV ON T.MaNV = NV.MaNV";
 
             return DatabaseLayer.GetDataToTable(sql);
+        }
+
+        public static DataTable GetThongTinTra(string maThue)
+        {
+            string sqlWithoutFine = @"SELECT 
+                Tr.MaTra, T.MaThue, T.NgayThue, T.NgayTra, Tr.NgayTra as NgayThucTe, 
+                0 as TienPhat, SUM(CTT.GiaThue) as TienThue, SUM(CTT.GiaThue) as TongTien, 
+                KH.TenKH, KH.SDT, KH.DiaChi, NV.TenNV 
+            FROM 
+                TraSach Tr 
+                INNER JOIN ThueSach T ON Tr.MaThue = T.MaThue 
+                INNER JOIN KhachHang KH ON T.MaKH = KH.MaKH 
+                INNER JOIN NhanVien NV ON T.MaNV = NV.MaNV 
+                INNER JOIN CTThueSach CTT ON T.MaThue = CTT.MaThue 
+            WHERE 
+                Tr.MaTra = @MaTra 
+            GROUP BY 
+                Tr.MaTra, 
+                T.MaThue, 
+                T.NgayThue, 
+                T.NgayTra, 
+                Tr.NgayTra, 
+                KH.TenKH, 
+                KH.SDT, 
+                KH.DiaChi, 
+                NV.TenNV;";
+
+            string sqlWithFine = @"SELECT 
+                Tr.MaTra, T.MaThue, T.NgayThue, T.NgayTra, Tr.NgayTra as NgayThucTe, 
+                COALESCE(SUM(CTTr.ThanhTien), 0) as TienPhat, 
+
+                COALESCE((
+                    SELECT SUM(CTT1.GiaThue) 
+                    FROM CTThueSach CTT1 
+                    WHERE CTT1.MaThue = T.MaThue 
+                ), 0) as TienThue, 
+
+                COALESCE(SUM(CTTr.ThanhTien), 0) + COALESCE(( 
+                    SELECT SUM(CTT1.GiaThue) 
+                    FROM CTThueSach CTT1 
+                    WHERE CTT1.MaThue = T.MaThue 
+                ), 0) as TongTien, 
+                KH.TenKH, KH.SDT, KH.DiaChi, NV.TenNV 
+            FROM 
+                TraSach Tr 
+                INNER JOIN ThueSach T ON Tr.MaThue = T.MaThue 
+                LEFT JOIN CTTraSach CTTr ON CTTr.MaTra = Tr.MaTra 
+                LEFT JOIN KhachHang KH ON T.MaKH = KH.MaKH 
+                LEFT JOIN NhanVien NV ON T.MaNV = NV.MaNV 
+            WHERE 
+                Tr.MaTra = @MaTra 
+            GROUP BY 
+                Tr.MaTra, 
+                T.MaThue, 
+                T.NgayThue, 
+                T.NgayTra, 
+                Tr.NgayTra, 
+                KH.TenKH, 
+                KH.SDT, 
+                KH.DiaChi, 
+                NV.TenNV;";
+
+            string maTra = GetMaTraFromMaThue(maThue);
+
+            if (!string.IsNullOrEmpty(maTra))
+            {
+                bool hasFine = CheckIfReturnFineExists(maTra);
+                string sql = hasFine ? sqlWithFine : sqlWithoutFine;
+
+                SqlParameter[] sqlParams = {
+                    new SqlParameter("@MaTra", maTra)
+                };
+
+                return DatabaseLayer.GetDataToTable(sql, sqlParams);
+            }
+
+            return new DataTable();
+        }
+
+        public static DataTable GetThongTinCTTra(string maTra)
+        {
+            string sql = @"SELECT CTTr.MaSach, S.TenSach, VP.TenVP, CTTr.ThanhTien 
+                   FROM CTTraSach CTTr 
+                   INNER JOIN Sach S ON CTTr.MaSach = S.MaSach 
+                   INNER JOIN ViPham VP ON CTTr.MaVP = VP.MaVP 
+                   WHERE CTTr.MaTra = @MaTra";
+
+            SqlParameter[] sqlParams = {
+                new SqlParameter("@MaTra", maTra)
+            };
+
+            return DatabaseLayer.GetDataToTable(sql, sqlParams);
         }
 
         public static DataTable GetTraBySearch(string searchOption, string searchKeyword)
@@ -240,6 +333,18 @@ namespace BAEK_PERCENT.DAL
             DatabaseLayer.RunSqlDel(sql, sqlParams);
         }
 
+        public static bool ExistsSachCTTra(string maTra, string maSach)
+        {
+            string sql = "SELECT COUNT(*) FROM " + TableCTName + " WHERE MaTra = @MaTra AND MaSach = @MaSach";
+            SqlParameter[] sqlParams =
+            {
+                new SqlParameter("@MaTra", maTra),
+                new SqlParameter("@MaSach", maSach)
+            };
+
+            return DatabaseLayer.CheckKey(sql, sqlParams);
+        }
+
         private static bool CheckIfReturnExists(string maThue)
         {
             string sql = "SELECT COUNT(*) FROM TraSach WHERE MaThue = @MaThue";
@@ -282,19 +387,19 @@ namespace BAEK_PERCENT.DAL
         {
             // Trường hợp mã thuê đã tồn tại mã trả nhưng không có vi phạm
             string sqlWithReturnNoFine = @"
-                SELECT SUM(CTT.GiaThue) AS TongTien 
+                SELECT COALESCE(SUM(CTT.GiaThue), 0) AS TongTien 
                 FROM CTThueSach CTT 
-                INNER JOIN TraSach Tr ON Tr.MaThue = CTT.MaThue 
+                INNER JOIN " + TableName + @" Tr ON Tr.MaThue = CTT.MaThue 
                 WHERE CTT.MaThue = @MaThue";
 
             // Trường hợp mã thuê đã tồn tại mã trả và có vi phạm
             string sqlWithReturn = @"
-                SELECT SUM(CTT.GiaThue) + SUM(CTTr.ThanhTien) AS TongTien 
+                SELECT COALESCE(SUM(CTT.GiaThue), 0) + COALESCE(SUM(CTTr.ThanhTien), 0) AS TongTien 
                 FROM CTThueSach CTT 
-                INNER JOIN TraSach Tr ON Tr.MaThue = CTT.MaThue 
+                INNER JOIN " + TableName + @" Tr ON Tr.MaThue = CTT.MaThue 
                 INNER JOIN " + TableCTName + @" CTTr ON Tr.MaTra = CTTr.MaTra 
-                WHERE CTT.MaThue = @MaThue";
-
+                WHERE CTT.MaThue = @MaThue;";
+    
             // Trường hợp mã thuê chưa tồn tại mã trả
             string sqlWithoutReturn = "SELECT SUM(GiaThue) AS TongTien FROM CTThueSach WHERE MaThue = @MaThue";
 
@@ -324,17 +429,26 @@ namespace BAEK_PERCENT.DAL
                 }
                 else
                 {
-                    // Handle the case where conversion fails
-                    // Log error or throw an exception
-                    throw new FormatException("TongTien value is not in a correct format.");
+                    throw new FormatException("Không có tổng tiền.");
                 }
             }
             else
             {
-                // Handle the case where no rows are returned or TongTien is null
                 return 0;
             }
         }
 
+        public static bool CheckMaThueInsertedInMaTra(string maTra, string maThue)
+        {
+            string sql = "SELECT MaThue FROM " + TableName + " WHERE MaTra = @MaTra AND MaThue = @MaThue";
+
+            SqlParameter[] sqlParams =
+            {
+                new SqlParameter("@MaTra", maTra),
+                new SqlParameter("@MaThue", maThue)
+            };
+
+            return DatabaseLayer.CheckKey(sql, sqlParams);
+        }
     }
 }
