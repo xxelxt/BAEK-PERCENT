@@ -143,6 +143,16 @@ namespace BAEK_PERCENT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ReportIcon {
+            get {
+                object obj = ResourceManager.GetObject("ReportIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap SachTruyenIcon {
             get {
                 object obj = ResourceManager.GetObject("SachTruyenIcon", resourceCulture);

@@ -29,12 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.materialTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPageHome = new System.Windows.Forms.TabPage();
+            this.Loc = new System.Windows.Forms.ComboBox();
+            this.end = new System.Windows.Forms.DateTimePicker();
+            this.start = new System.Windows.Forms.DateTimePicker();
             this.bangdonthue = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.materialCard3 = new MaterialSkin.Controls.MaterialCard();
             this.label5 = new System.Windows.Forms.Label();
@@ -52,6 +55,7 @@
             this.tabPageSach = new System.Windows.Forms.TabPage();
             this.tabPageThue = new System.Windows.Forms.TabPage();
             this.tabPageTra = new System.Windows.Forms.TabPage();
+            this.tabPageBC = new System.Windows.Forms.TabPage();
             this.tabPageKhach = new System.Windows.Forms.TabPage();
             this.tabPageNV = new System.Windows.Forms.TabPage();
             this.tabPageTG = new System.Windows.Forms.TabPage();
@@ -61,10 +65,6 @@
             this.tabPageVP = new System.Windows.Forms.TabPage();
             this.tabPageTK = new System.Windows.Forms.TabPage();
             this.tabPageTT = new System.Windows.Forms.TabPage();
-            this.start = new System.Windows.Forms.DateTimePicker();
-            this.end = new System.Windows.Forms.DateTimePicker();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.Loc = new System.Windows.Forms.ComboBox();
             this.materialTabControl.SuspendLayout();
             this.tabPageHome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bangdonthue)).BeginInit();
@@ -79,6 +79,7 @@
             this.materialTabControl.Controls.Add(this.tabPageSach);
             this.materialTabControl.Controls.Add(this.tabPageThue);
             this.materialTabControl.Controls.Add(this.tabPageTra);
+            this.materialTabControl.Controls.Add(this.tabPageBC);
             this.materialTabControl.Controls.Add(this.tabPageKhach);
             this.materialTabControl.Controls.Add(this.tabPageNV);
             this.materialTabControl.Controls.Add(this.tabPageTG);
@@ -97,16 +98,13 @@
             this.materialTabControl.Multiline = true;
             this.materialTabControl.Name = "materialTabControl";
             this.materialTabControl.SelectedIndex = 0;
-            this.materialTabControl.Size = new System.Drawing.Size(1276, 917);
-
-            this.materialTabControl.Size = new System.Drawing.Size(1340, 1017);
+            this.materialTabControl.Size = new System.Drawing.Size(1356, 877);
             this.materialTabControl.TabIndex = 0;
             this.materialTabControl.SelectedIndexChanged += new System.EventHandler(this.mainTabControl_SelectedIndexChanged);
             // 
             // tabPageHome
             // 
             this.tabPageHome.Controls.Add(this.Loc);
-            this.tabPageHome.Controls.Add(this.textBox1);
             this.tabPageHome.Controls.Add(this.end);
             this.tabPageHome.Controls.Add(this.start);
             this.tabPageHome.Controls.Add(this.bangdonthue);
@@ -119,29 +117,50 @@
             this.tabPageHome.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageHome.Name = "tabPageHome";
             this.tabPageHome.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-
-            this.tabPageHome.Size = new System.Drawing.Size(1268, 882);
-
-            this.tabPageHome.Size = new System.Drawing.Size(1332, 982);
-
+            this.tabPageHome.Size = new System.Drawing.Size(1380, 982);
             this.tabPageHome.TabIndex = 0;
             this.tabPageHome.Text = "Trang chủ";
             this.tabPageHome.UseVisualStyleBackColor = true;
-            this.tabPageHome.Click += new System.EventHandler(this.tabPageHome_Click);
+            // 
+            // Loc
+            // 
+            this.Loc.FormattingEnabled = true;
+            this.Loc.Items.AddRange(new object[] {
+            "Ngày",
+            "Tháng",
+            "Năm"});
+            this.Loc.Location = new System.Drawing.Point(1097, 32);
+            this.Loc.Name = "Loc";
+            this.Loc.Size = new System.Drawing.Size(121, 23);
+            this.Loc.TabIndex = 10;
+            // 
+            // end
+            // 
+            this.end.Location = new System.Drawing.Point(796, 34);
+            this.end.Name = "end";
+            this.end.Size = new System.Drawing.Size(200, 21);
+            this.end.TabIndex = 8;
+            // 
+            // start
+            // 
+            this.start.Location = new System.Drawing.Point(435, 34);
+            this.start.Name = "start";
+            this.start.Size = new System.Drawing.Size(200, 21);
+            this.start.TabIndex = 7;
             // 
             // bangdonthue
             // 
-            chartArea2.Name = "ChartArea1";
-            this.bangdonthue.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.bangdonthue.Legends.Add(legend2);
+            chartArea5.Name = "ChartArea1";
+            this.bangdonthue.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.bangdonthue.Legends.Add(legend5);
             this.bangdonthue.Location = new System.Drawing.Point(357, 75);
             this.bangdonthue.Name = "bangdonthue";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.bangdonthue.Series.Add(series2);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.bangdonthue.Series.Add(series5);
             this.bangdonthue.Size = new System.Drawing.Size(861, 642);
             this.bangdonthue.TabIndex = 6;
             this.bangdonthue.Text = "chart1";
@@ -214,6 +233,7 @@
             this.imageList1.Images.SetKeyName(11, "ViPhamIcon.png");
             this.imageList1.Images.SetKeyName(12, "LogoutIcon.png");
             this.imageList1.Images.SetKeyName(13, "ThongTinIcon.png");
+            this.imageList1.Images.SetKeyName(14, "ReportIcon.png");
             // 
             // materialCard2
             // 
@@ -304,7 +324,7 @@
             // donthue
             // 
             this.donthue.Depth = 0;
-            this.donthue.Icon = ((System.Drawing.Image)(resources.GetObject("donthue.Icon")));
+            this.donthue.Icon = null;
             this.donthue.ImageIndex = 12;
             this.donthue.ImageList = this.imageList1;
             this.donthue.Location = new System.Drawing.Point(187, 98);
@@ -323,11 +343,7 @@
             this.tabPageSach.Location = new System.Drawing.Point(4, 31);
             this.tabPageSach.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageSach.Name = "tabPageSach";
-
-            this.tabPageSach.Size = new System.Drawing.Size(1300, 920);
-
-            this.tabPageSach.Size = new System.Drawing.Size(1316, 959);
-
+            this.tabPageSach.Size = new System.Drawing.Size(1380, 982);
             this.tabPageSach.TabIndex = 1;
             this.tabPageSach.Text = "Sách truyện";
             // 
@@ -337,11 +353,7 @@
             this.tabPageThue.Location = new System.Drawing.Point(4, 31);
             this.tabPageThue.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageThue.Name = "tabPageThue";
-
-            this.tabPageThue.Size = new System.Drawing.Size(1300, 920);
-
-            this.tabPageThue.Size = new System.Drawing.Size(1316, 959);
-
+            this.tabPageThue.Size = new System.Drawing.Size(1380, 982);
             this.tabPageThue.TabIndex = 2;
             this.tabPageThue.Text = "Thuê sách";
             this.tabPageThue.UseVisualStyleBackColor = true;
@@ -352,14 +364,20 @@
             this.tabPageTra.Location = new System.Drawing.Point(4, 31);
             this.tabPageTra.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageTra.Name = "tabPageTra";
-
-            this.tabPageTra.Size = new System.Drawing.Size(1300, 920);
-
-            this.tabPageTra.Size = new System.Drawing.Size(1316, 959);
-
+            this.tabPageTra.Size = new System.Drawing.Size(1380, 982);
             this.tabPageTra.TabIndex = 3;
             this.tabPageTra.Text = "Trả sách";
             this.tabPageTra.UseVisualStyleBackColor = true;
+            // 
+            // tabPageBC
+            // 
+            this.tabPageBC.ImageKey = "ReportIcon.png";
+            this.tabPageBC.Location = new System.Drawing.Point(4, 31);
+            this.tabPageBC.Name = "tabPageBC";
+            this.tabPageBC.Size = new System.Drawing.Size(1348, 842);
+            this.tabPageBC.TabIndex = 13;
+            this.tabPageBC.Text = "Báo cáo";
+            this.tabPageBC.UseVisualStyleBackColor = true;
             // 
             // tabPageKhach
             // 
@@ -368,11 +386,7 @@
             this.tabPageKhach.Location = new System.Drawing.Point(4, 31);
             this.tabPageKhach.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageKhach.Name = "tabPageKhach";
-
-            this.tabPageKhach.Size = new System.Drawing.Size(1300, 920);
-
-            this.tabPageKhach.Size = new System.Drawing.Size(1316, 959);
-
+            this.tabPageKhach.Size = new System.Drawing.Size(1380, 982);
             this.tabPageKhach.TabIndex = 4;
             this.tabPageKhach.Text = "Khách hàng";
             this.tabPageKhach.UseVisualStyleBackColor = true;
@@ -383,11 +397,7 @@
             this.tabPageNV.Location = new System.Drawing.Point(4, 31);
             this.tabPageNV.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageNV.Name = "tabPageNV";
-
-            this.tabPageNV.Size = new System.Drawing.Size(1300, 920);
-
-            this.tabPageNV.Size = new System.Drawing.Size(1316, 959);
-
+            this.tabPageNV.Size = new System.Drawing.Size(1380, 982);
             this.tabPageNV.TabIndex = 5;
             this.tabPageNV.Text = "Nhân viên";
             this.tabPageNV.UseVisualStyleBackColor = true;
@@ -398,11 +408,7 @@
             this.tabPageTG.Location = new System.Drawing.Point(4, 31);
             this.tabPageTG.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageTG.Name = "tabPageTG";
-
-            this.tabPageTG.Size = new System.Drawing.Size(1300, 920);
-
-            this.tabPageTG.Size = new System.Drawing.Size(1316, 959);
-
+            this.tabPageTG.Size = new System.Drawing.Size(1380, 982);
             this.tabPageTG.TabIndex = 6;
             this.tabPageTG.Text = "Tác giả";
             this.tabPageTG.UseVisualStyleBackColor = true;
@@ -415,11 +421,7 @@
             this.tabPageLV.Location = new System.Drawing.Point(4, 31);
             this.tabPageLV.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageLV.Name = "tabPageLV";
-
-            this.tabPageLV.Size = new System.Drawing.Size(1300, 920);
-
-            this.tabPageLV.Size = new System.Drawing.Size(1316, 959);
-
+            this.tabPageLV.Size = new System.Drawing.Size(1380, 982);
             this.tabPageLV.TabIndex = 7;
             this.tabPageLV.Text = "Lĩnh vực";
             // 
@@ -429,11 +431,7 @@
             this.tabPageLoai.Location = new System.Drawing.Point(4, 31);
             this.tabPageLoai.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageLoai.Name = "tabPageLoai";
-
-            this.tabPageLoai.Size = new System.Drawing.Size(1300, 920);
-
-            this.tabPageLoai.Size = new System.Drawing.Size(1316, 959);
-
+            this.tabPageLoai.Size = new System.Drawing.Size(1380, 982);
             this.tabPageLoai.TabIndex = 8;
             this.tabPageLoai.Text = "Loại sách";
             this.tabPageLoai.UseVisualStyleBackColor = true;
@@ -444,11 +442,7 @@
             this.tabPageNN.Location = new System.Drawing.Point(4, 31);
             this.tabPageNN.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageNN.Name = "tabPageNN";
-
-            this.tabPageNN.Size = new System.Drawing.Size(1300, 920);
-
-            this.tabPageNN.Size = new System.Drawing.Size(1316, 959);
-
+            this.tabPageNN.Size = new System.Drawing.Size(1380, 982);
             this.tabPageNN.TabIndex = 9;
             this.tabPageNN.Text = "Ngôn ngữ";
             this.tabPageNN.UseVisualStyleBackColor = true;
@@ -459,11 +453,7 @@
             this.tabPageVP.Location = new System.Drawing.Point(4, 31);
             this.tabPageVP.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageVP.Name = "tabPageVP";
-
-            this.tabPageVP.Size = new System.Drawing.Size(1300, 920);
-
-            this.tabPageVP.Size = new System.Drawing.Size(1316, 959);
-
+            this.tabPageVP.Size = new System.Drawing.Size(1380, 982);
             this.tabPageVP.TabIndex = 10;
             this.tabPageVP.Text = "Vi phạm";
             this.tabPageVP.UseVisualStyleBackColor = true;
@@ -474,11 +464,7 @@
             this.tabPageTK.Location = new System.Drawing.Point(4, 31);
             this.tabPageTK.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageTK.Name = "tabPageTK";
-
-            this.tabPageTK.Size = new System.Drawing.Size(1300, 920);
-
-            this.tabPageTK.Size = new System.Drawing.Size(1316, 959);
-
+            this.tabPageTK.Size = new System.Drawing.Size(1380, 982);
             this.tabPageTK.TabIndex = 11;
             this.tabPageTK.Text = "Tài khoản";
             this.tabPageTK.UseVisualStyleBackColor = true;
@@ -489,57 +475,16 @@
             this.tabPageTT.Location = new System.Drawing.Point(4, 31);
             this.tabPageTT.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPageTT.Name = "tabPageTT";
-
-            this.tabPageTT.Size = new System.Drawing.Size(1300, 920);
-
-            this.tabPageTT.Size = new System.Drawing.Size(1316, 959);
-
+            this.tabPageTT.Size = new System.Drawing.Size(1380, 982);
             this.tabPageTT.TabIndex = 12;
             this.tabPageTT.Text = "Thông tin";
             this.tabPageTT.UseVisualStyleBackColor = true;
-            // 
-            // start
-            // 
-            this.start.Location = new System.Drawing.Point(435, 34);
-            this.start.Name = "start";
-            this.start.Size = new System.Drawing.Size(200, 21);
-            this.start.TabIndex = 7;
-            // 
-            // end
-            // 
-            this.end.Location = new System.Drawing.Point(796, 34);
-            this.end.Name = "end";
-            this.end.Size = new System.Drawing.Size(200, 21);
-            this.end.TabIndex = 8;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(93, 15);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 21);
-            this.textBox1.TabIndex = 9;
-            // 
-            // Loc
-            // 
-            this.Loc.FormattingEnabled = true;
-            this.Loc.Items.AddRange(new object[] {
-            "Ngày",
-            "Tháng",
-            "Năm"});
-            this.Loc.Location = new System.Drawing.Point(1097, 32);
-            this.Loc.Name = "Loc";
-            this.Loc.Size = new System.Drawing.Size(121, 23);
-            this.Loc.TabIndex = 10;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-
-            this.ClientSize = new System.Drawing.Size(1280, 1000);
-
-            this.ClientSize = new System.Drawing.Size(1344, 1100);
-
+            this.ClientSize = new System.Drawing.Size(1360, 960);
             this.Controls.Add(this.materialTabControl);
             this.DrawerShowIconsWhenHidden = true;
             this.DrawerTabControl = this.materialTabControl;
@@ -557,7 +502,6 @@
             this.VisibleChanged += new System.EventHandler(this.frmMain_VisibleChanged);
             this.materialTabControl.ResumeLayout(false);
             this.tabPageHome.ResumeLayout(false);
-            this.tabPageHome.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bangdonthue)).EndInit();
             this.materialCard3.ResumeLayout(false);
             this.materialCard3.PerformLayout();
@@ -601,8 +545,8 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart bangdonthue;
         private System.Windows.Forms.DateTimePicker end;
         private System.Windows.Forms.DateTimePicker start;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox Loc;
+        private System.Windows.Forms.TabPage tabPageBC;
     }
 }
 

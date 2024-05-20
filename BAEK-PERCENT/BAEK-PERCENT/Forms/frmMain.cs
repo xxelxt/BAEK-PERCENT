@@ -19,6 +19,7 @@ namespace BAEK_PERCENT
         private frmSach childFormSach;
         private frmThue childFormThue;
         private frmTra childFormTra;
+        private frmBaoCao childFormBaoCao;
         private frmKhach childFormKhach;
 
         private frmNhanVien childFormNhanVien;
@@ -68,11 +69,6 @@ namespace BAEK_PERCENT
 
         private MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
 
-        private void frmMain_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void initForm(MaterialForm form)
         {
             form.TopLevel = false;
@@ -86,6 +82,7 @@ namespace BAEK_PERCENT
             initFormSach();
             initFormThue();
             initFormTra();
+            initFormBaoCao();
 
             initFormKhach();
             initFormLoaiSach();
@@ -135,6 +132,14 @@ namespace BAEK_PERCENT
             initForm(childFormTra);
             tabPageTra.Controls.Add(childFormTra);
             childFormTra.Show();
+        }
+
+        private void initFormBaoCao()
+        {
+            childFormBaoCao = new frmBaoCao();
+            initForm(childFormBaoCao);
+            tabPageBC.Controls.Add(childFormBaoCao);
+            childFormBaoCao.Show();
         }
 
         private void initFormKhach()
@@ -243,6 +248,7 @@ namespace BAEK_PERCENT
         {
             if (Drawer != null && Drawer.BaseTabControl != null)
             {
+                this.Drawer.HideTabPage(tabPageBC); 
                 this.Drawer.HideTabPage(tabPageNV);
                 this.Drawer.HideTabPage(tabPageVP);
                 this.Drawer.HideTabPage(tabPageSach);
@@ -255,6 +261,7 @@ namespace BAEK_PERCENT
         {
             if (Drawer != null && Drawer.BaseTabControl != null)
             {
+                this.Drawer.ShowTabPage(tabPageBC);
                 this.Drawer.ShowTabPage(tabPageNV);
                 this.Drawer.ShowTabPage(tabPageVP);
                 this.Drawer.ShowTabPage(tabPageSach);
@@ -307,7 +314,6 @@ namespace BAEK_PERCENT
                     x_axit = "Năm";
                 }
             }
-            textBox1.Text = sql_donthue;
             DataTable dt = DatabaseLayer.GetDataToTable(sql_donthue);
             Console.WriteLine(sql_donthue);
             // Ensure the series "doanhthu" exists and is added to the chart
@@ -347,7 +353,7 @@ namespace BAEK_PERCENT
 
         }
 
-        private void tabPageHome_Click(object sender, EventArgs e)
+        private void frmMain_Load(object sender, EventArgs e)
         {
 
         }
