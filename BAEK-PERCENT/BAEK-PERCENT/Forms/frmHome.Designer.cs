@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHome));
             this.Loc = new System.Windows.Forms.ComboBox();
             this.end = new System.Windows.Forms.DateTimePicker();
@@ -48,6 +48,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.donthue = new MaterialSkin.Controls.MaterialFloatingActionButton();
+            this.swtDarkMode = new MaterialSkin.Controls.MaterialSwitch();
             ((System.ComponentModel.ISupportInitialize)(this.bangdonthue)).BeginInit();
             this.materialCard3.SuspendLayout();
             this.materialCard2.SuspendLayout();
@@ -61,38 +62,38 @@
             "Ngày",
             "Tháng",
             "Năm"});
-            this.Loc.Location = new System.Drawing.Point(839, 68);
+            this.Loc.Location = new System.Drawing.Point(839, 93);
             this.Loc.Name = "Loc";
             this.Loc.Size = new System.Drawing.Size(121, 21);
             this.Loc.TabIndex = 17;
             // 
             // end
             // 
-            this.end.Location = new System.Drawing.Point(612, 68);
+            this.end.Location = new System.Drawing.Point(583, 93);
             this.end.Name = "end";
             this.end.Size = new System.Drawing.Size(200, 20);
             this.end.TabIndex = 16;
             // 
             // start
             // 
-            this.start.Location = new System.Drawing.Point(370, 68);
+            this.start.Location = new System.Drawing.Point(370, 93);
             this.start.Name = "start";
             this.start.Size = new System.Drawing.Size(200, 20);
             this.start.TabIndex = 15;
             // 
             // bangdonthue
             // 
-            chartArea1.Name = "ChartArea1";
-            this.bangdonthue.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.bangdonthue.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.bangdonthue.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.bangdonthue.Legends.Add(legend3);
             this.bangdonthue.Location = new System.Drawing.Point(370, 126);
             this.bangdonthue.Name = "bangdonthue";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.bangdonthue.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.bangdonthue.Series.Add(series3);
             this.bangdonthue.Size = new System.Drawing.Size(590, 450);
             this.bangdonthue.TabIndex = 14;
             this.bangdonthue.Text = "chart1";
@@ -200,7 +201,6 @@
             this.materialCard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.materialCard1.Controls.Add(this.label2);
             this.materialCard1.Controls.Add(this.label1);
-            this.materialCard1.Controls.Add(this.donthue);
             this.materialCard1.Depth = 0;
             this.materialCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialCard1.Location = new System.Drawing.Point(49, 71);
@@ -236,13 +236,31 @@
             this.donthue.Depth = 0;
             this.donthue.Icon = null;
             this.donthue.ImageIndex = 12;
-            this.donthue.Location = new System.Drawing.Point(187, 98);
+            this.donthue.Location = new System.Drawing.Point(904, 582);
             this.donthue.MouseState = MaterialSkin.MouseState.HOVER;
             this.donthue.Name = "donthue";
             this.donthue.Size = new System.Drawing.Size(56, 56);
             this.donthue.TabIndex = 1;
             this.donthue.Text = "materialFloatingActionButton1";
             this.donthue.UseVisualStyleBackColor = true;
+            this.donthue.Click += new System.EventHandler(this.donthue_Click);
+            // 
+            // swtDarkMode
+            // 
+            this.swtDarkMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.swtDarkMode.AutoSize = true;
+            this.swtDarkMode.Depth = 0;
+            this.swtDarkMode.Location = new System.Drawing.Point(867, 20);
+            this.swtDarkMode.Margin = new System.Windows.Forms.Padding(0);
+            this.swtDarkMode.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.swtDarkMode.MouseState = MaterialSkin.MouseState.HOVER;
+            this.swtDarkMode.Name = "swtDarkMode";
+            this.swtDarkMode.Ripple = true;
+            this.swtDarkMode.Size = new System.Drawing.Size(135, 37);
+            this.swtDarkMode.TabIndex = 18;
+            this.swtDarkMode.Text = "Dark mode";
+            this.swtDarkMode.UseVisualStyleBackColor = true;
+            this.swtDarkMode.CheckedChanged += new System.EventHandler(this.swtDarkMode_CheckedChanged);
             // 
             // frmHome
             // 
@@ -250,7 +268,9 @@
             this.AutoScroll = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1024, 819);
+            this.Controls.Add(this.swtDarkMode);
             this.Controls.Add(this.Loc);
+            this.Controls.Add(this.donthue);
             this.Controls.Add(this.end);
             this.Controls.Add(this.start);
             this.Controls.Add(this.bangdonthue);
@@ -269,6 +289,7 @@
             this.materialCard1.ResumeLayout(false);
             this.materialCard1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -290,5 +311,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private MaterialSkin.Controls.MaterialFloatingActionButton donthue;
+        private MaterialSkin.Controls.MaterialSwitch swtDarkMode;
     }
 }
