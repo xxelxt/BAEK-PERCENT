@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using BAEK_PERCENT.Class;
 using BAEK_PERCENT.DAL;
 using BAEK_PERCENT.Database;
-using MaterialSkin;
 using MaterialSkin.Controls;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace BAEK_PERCENT.Forms
 {
@@ -595,7 +587,7 @@ namespace BAEK_PERCENT.Forms
 
             if (!string.IsNullOrEmpty(maTra))
             {
-                ThueDAL.DeleteEmptyThue(maTra);
+                TraDAL.DeleteEmptyTra(maTra);
             }
 
             LoadDataCTThue("");

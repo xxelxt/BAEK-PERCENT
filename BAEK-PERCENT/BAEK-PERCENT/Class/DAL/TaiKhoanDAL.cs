@@ -1,7 +1,8 @@
-﻿using BAEK_PERCENT.Database;
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+
+using BAEK_PERCENT.Database;
 
 namespace BAEK_PERCENT.DAL
 {

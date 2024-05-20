@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Drawing;
-using System.Security.Cryptography;
 using System.Windows.Forms;
+
 using BAEK_PERCENT.Class.Types;
-using BAEK_PERCENT.Database;
 using BAEK_PERCENT.Forms;
+
 using MaterialSkin;
 using MaterialSkin.Controls;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using BAEK_PERCENT.Class;
-using System.Data;
-using System.Windows.Forms.DataVisualization.Charting;
 
 namespace BAEK_PERCENT
 {
@@ -44,27 +40,21 @@ namespace BAEK_PERCENT
             Color lightPrimaryColor = Color.FromArgb(255, 255, 255);  // White
             Color accentColor = Color.FromArgb(255, 150, 79);         // Orange
 
-            // Set the theme to light
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
 
-            // Create a custom color scheme
             var colorScheme = new ColorScheme(
                 primaryColor,
                 darkPrimaryColor,
                 lightPrimaryColor,
                 accentColor,
-                TextShade.BLACK // Use BLACK text shade to contrast with light backgrounds
+                TextShade.BLACK
             );
 
-            // Apply the custom color scheme
             materialSkinManager.ColorScheme = colorScheme;
-
             materialSkinManager.AddFormToManage(this);
 
-            // Initialize all form controls
             initAllForm();
 
-            // Update the form title based on the selected tab (assuming materialTabControl is correctly initialized)
             UpdateFormTitle(materialTabControl.SelectedTab);
 
         }

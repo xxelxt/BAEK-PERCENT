@@ -1,10 +1,9 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using BAEK_PERCENT.Class;
-using System.Configuration;
-using MaterialSkin;
+
 using MaterialSkin.Controls;
 
 namespace BAEK_PERCENT.Database

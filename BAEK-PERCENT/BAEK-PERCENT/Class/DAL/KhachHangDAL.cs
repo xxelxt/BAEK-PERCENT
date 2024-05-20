@@ -1,7 +1,8 @@
-﻿using BAEK_PERCENT.Database;
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+
+using BAEK_PERCENT.Database;
 
 namespace BAEK_PERCENT.DAL
 {
@@ -67,31 +68,6 @@ namespace BAEK_PERCENT.DAL
 
             DatabaseLayer.RunSqlDel(sqlDelete, deleteParams);
         }
-
-        /*
-        public static void InsertKhachHang(string maKH, string tenKH, DateTime ngaySinh, bool gioiTinh, string diaChi, string SDT)
-        {
-            string sqlCheckKey = "SELECT MaKH FROM " + TableName + " WHERE MaKH = @MaKH";
-            SqlParameter[] checkKeyParams = { new SqlParameter("@MaKH", maKH) };
-
-            if (DatabaseLayer.CheckKey(sqlCheckKey, checkKeyParams))
-            {
-                throw new Exception("Mã khách hàng đã tồn tại");
-            }
-
-            string sqlInsert = "INSERT INTO " + TableName + " (MaKH, TenKH, NgaySinh, GioiTinh, DiaChi, SDT) VALUES (@MaKH, @TenKH, @NgaySinh, @GioiTinh, @DiaChi, @SDT)";
-            SqlParameter[] insertParams = {
-                new SqlParameter("@MaKH", maKH),
-                new SqlParameter("@TenKH", tenKH),
-                new SqlParameter("@NgaySinh", ngaySinh),
-                new SqlParameter("@GioiTinh", gioiTinh),
-                new SqlParameter("@DiaChi", diaChi),
-                new SqlParameter("@SDT", SDT)
-            };
-
-            DatabaseLayer.RunSql(sqlInsert, insertParams);
-        }
-        */
 
         public static void UpdateKhachHang(string maKH, string tenKH, DateTime ngaySinh, bool gioiTinh, string diaChi, string SDT)
         {

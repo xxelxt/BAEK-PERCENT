@@ -28,37 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.logOutBtn = new MaterialSkin.Controls.MaterialButton();
+            this.btnLogOut = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
             // 
-            // logOutBtn
+            // btnLogOut
             // 
-            this.logOutBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.logOutBtn.BackColor = System.Drawing.Color.Coral;
-            this.logOutBtn.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.logOutBtn.Depth = 0;
-            this.logOutBtn.ForeColor = System.Drawing.Color.IndianRed;
-            this.logOutBtn.HighEmphasis = true;
-            this.logOutBtn.Icon = null;
-            this.logOutBtn.Location = new System.Drawing.Point(90, 154);
-            this.logOutBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.logOutBtn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.logOutBtn.Name = "logOutBtn";
-            this.logOutBtn.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.logOutBtn.Size = new System.Drawing.Size(82, 36);
-            this.logOutBtn.TabIndex = 1;
-            this.logOutBtn.Text = "Log out";
-            this.logOutBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.logOutBtn.UseAccentColor = false;
-            this.logOutBtn.UseVisualStyleBackColor = false;
-            this.logOutBtn.Click += new System.EventHandler(this.logOutBtn_Click);
+            this.btnLogOut.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnLogOut.BackColor = System.Drawing.Color.Coral;
+            this.btnLogOut.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnLogOut.Depth = 0;
+            this.btnLogOut.ForeColor = System.Drawing.Color.IndianRed;
+            this.btnLogOut.HighEmphasis = true;
+            this.btnLogOut.Icon = null;
+            this.btnLogOut.Location = new System.Drawing.Point(46, 39);
+            this.btnLogOut.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnLogOut.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnLogOut.Size = new System.Drawing.Size(103, 36);
+            this.btnLogOut.TabIndex = 1;
+            this.btnLogOut.Text = "Đăng xuất";
+            this.btnLogOut.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnLogOut.UseAccentColor = false;
+            this.btnLogOut.UseVisualStyleBackColor = false;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // frmThongTin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.logOutBtn);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoScroll = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(1024, 819);
+            this.Controls.Add(this.btnLogOut);
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.StatusAndActionBar_None;
             this.Name = "frmThongTin";
             this.Padding = new System.Windows.Forms.Padding(6);
@@ -71,6 +72,6 @@
 
         #endregion
 
-        private MaterialSkin.Controls.MaterialButton logOutBtn;
+        private MaterialSkin.Controls.MaterialButton btnLogOut;
     }
 }

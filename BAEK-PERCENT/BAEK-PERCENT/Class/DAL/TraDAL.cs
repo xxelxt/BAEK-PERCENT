@@ -1,11 +1,8 @@
-﻿using BAEK_PERCENT.Database;
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
-using System.Reflection;
-using System.IO;
-using BAEK_PERCENT.Class;
+
+using BAEK_PERCENT.Database;
 
 namespace BAEK_PERCENT.DAL
 {
@@ -194,23 +191,6 @@ namespace BAEK_PERCENT.DAL
             return DatabaseLayer.CheckKey(sql, sqlParams);
         }
 
-        /*
-        public static void InsertTra(string maTra, string maThue, string maNV, DateTime ngayTra, int tongTien)
-        {
-            string sql = "INSERT INTO TraSach (MaTra, MaThue, MaNV, NgayTra, TongTien) VALUES (@MaTra, @MaThue, @MaNV, @NgayTra, @TongTien)";
-
-            SqlParameter[] sqlParams = {
-                new SqlParameter("@MaTra", maTra),
-                new SqlParameter("@MaThue", maThue),
-                new SqlParameter("@MaNV", maNV),
-                new SqlParameter("@NgayTra", ngayTra),
-                new SqlParameter("@TongTien", tongTien)
-            };
-
-            DatabaseLayer.RunSql(sql, sqlParams);
-        }
-        */
-
         public static string InsertEmptyTra(string maTra)
         {
             string sqlInsert = "INSERT INTO " + TableName + " (MaTra, NgayTra, TongTien) VALUES (@MaTra, '01/01/2000', -1)";
@@ -333,29 +313,6 @@ namespace BAEK_PERCENT.DAL
             DatabaseLayer.RunSqlDel(sql, sqlParams);
         }
 
-        public static bool ExistsSachCTTra(string maTra, string maSach)
-        {
-            string sql = "SELECT COUNT(*) FROM " + TableCTName + " WHERE MaTra = @MaTra AND MaSach = @MaSach";
-            SqlParameter[] sqlParams =
-            {
-                new SqlParameter("@MaTra", maTra),
-                new SqlParameter("@MaSach", maSach)
-            };
-
-            return DatabaseLayer.CheckKey(sql, sqlParams);
-        }
-
-        private static bool CheckIfReturnExists(string maThue)
-        {
-            string sql = "SELECT COUNT(*) FROM TraSach WHERE MaThue = @MaThue";
-            
-            SqlParameter[] sqlParameter = { new SqlParameter("@MaThue", maThue) };
-
-            DataTable dt = DatabaseLayer.GetDataToTable(sql, sqlParameter);
-
-            return Convert.ToInt32(dt.Rows[0][0].ToString()) > 0;
-        }
-
         private static bool CheckIfReturnFineExists(string maTra)
         {
             string sql = "SELECT COUNT(*) FROM CTTraSach WHERE MaTra = @MaTra";
@@ -436,19 +393,6 @@ namespace BAEK_PERCENT.DAL
             {
                 return 0;
             }
-        }
-
-        public static bool CheckMaThueInsertedInMaTra(string maTra, string maThue)
-        {
-            string sql = "SELECT MaThue FROM " + TableName + " WHERE MaTra = @MaTra AND MaThue = @MaThue";
-
-            SqlParameter[] sqlParams =
-            {
-                new SqlParameter("@MaTra", maTra),
-                new SqlParameter("@MaThue", maThue)
-            };
-
-            return DatabaseLayer.CheckKey(sql, sqlParams);
         }
     }
 }

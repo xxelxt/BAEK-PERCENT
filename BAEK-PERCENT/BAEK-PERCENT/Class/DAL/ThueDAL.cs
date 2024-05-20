@@ -1,10 +1,8 @@
-﻿using BAEK_PERCENT.Database;
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
-using System.Reflection;
-using System.Text.RegularExpressions;
+
+using BAEK_PERCENT.Database;
 
 namespace BAEK_PERCENT.DAL
 {
@@ -136,24 +134,6 @@ namespace BAEK_PERCENT.DAL
             return DatabaseLayer.CheckKey(sql, sqlParams);
         }
 
-        /*
-        public static void InsertThue(string maThue, string maKH, string maNV, DateTime ngayThue, DateTime ngayTra, int tienDatCoc)
-        {
-            string sql = "INSERT INTO ThueSach (MaThue, MaKH, MaNV, NgayThue, NgayTra, TienDatCoc) VALUES (@MaThue, @MaKH, @MaNV, @NgayThue, @NgayTra, @TienDatCoc)";
-
-            SqlParameter[] sqlParams = {
-                new SqlParameter("@MaThue", maThue),
-                new SqlParameter("@MaKH", maKH),
-                new SqlParameter("@MaNV", maNV),
-                new SqlParameter("@NgayThue", ngayThue),
-                new SqlParameter("@NgayTra", ngayTra),
-                new SqlParameter("@TienDatCoc", tienDatCoc)
-            };
-
-            DatabaseLayer.RunSql(sql, sqlParams);
-        }
-        */
-
         public static string InsertEmptyThue(string maThue)
         {
             string sqlInsert = "INSERT INTO " + TableName + " (MaThue, NgayThue, NgayTra, TienDatCoc) VALUES (@MaThue, '01/01/2000', '01/02/2000', -1)";
@@ -275,25 +255,6 @@ namespace BAEK_PERCENT.DAL
             };
 
             DatabaseLayer.RunSqlDel(sql, sqlParams);
-        }
-
-        public static int GetTongTienByMa(string maThue)
-        {
-            string sql = "SELECT SUM(GiaThue) as TongTien FROM " + TableCTName + " WHERE MaThue = @MaThue";
-
-            SqlParameter[] sqlParams =
-            {
-                new SqlParameter("@MaThue", maThue)
-            };
-
-            DataTable dt = DatabaseLayer.GetDataToTable(sql, sqlParams);
-
-            if (dt.Rows.Count > 0)
-            {
-                return Convert.ToInt32(dt.Rows[0]["TongTien"].ToString());
-            }
-
-            return 0;
         }
     }
 }

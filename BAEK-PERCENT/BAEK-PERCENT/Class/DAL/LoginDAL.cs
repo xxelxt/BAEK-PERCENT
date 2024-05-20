@@ -1,12 +1,8 @@
-﻿using BAEK_PERCENT.Database;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
+
 using BAEK_PERCENT.Class.Types;
+using BAEK_PERCENT.Database;
 
 namespace BAEK_PERCENT.DAL
 {

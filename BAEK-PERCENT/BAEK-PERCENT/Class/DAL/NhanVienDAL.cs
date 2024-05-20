@@ -1,7 +1,8 @@
-﻿using BAEK_PERCENT.Database;
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+
+using BAEK_PERCENT.Database;
 
 namespace BAEK_PERCENT.DAL
 {
@@ -67,33 +68,6 @@ namespace BAEK_PERCENT.DAL
 
             DatabaseLayer.RunSqlDel(sqlDelete, deleteParams);
         }
-
-        /*
-        public static void InsertNhanVien(string maNV, string tenNV, string tenDangNhap, DateTime ngaySinh, bool gioiTinh, string diaChi, string SDT, int luong)
-        {
-            string sqlCheckKey = "SELECT MaNV FROM " + TableName + " WHERE MaNV = @MaNV";
-            SqlParameter[] checkKeyParams = { new SqlParameter("@MaNV", maNV) };
-
-            if (DatabaseLayer.CheckKey(sqlCheckKey, checkKeyParams))
-            {
-                throw new Exception("Mã nhân viên đã tồn tại");
-            }
-
-            string sqlInsert = "INSERT INTO " + TableName + " (MaNV, TenNV, TenDangNhap, NgaySinh, GioiTinh, DiaChi, SDT) VALUES (@MaNV, @TenNV, @TenDangNhap, @NgaySinh, @GioiTinh, @DiaChi, @SDT, @Luong)";
-            SqlParameter[] insertParams = {
-                new SqlParameter("@MaNV", maNV),
-                new SqlParameter("@TenNV", tenNV),
-                new SqlParameter("@TenDangNhap", tenDangNhap),
-                new SqlParameter("@NgaySinh", ngaySinh),
-                new SqlParameter("@GioiTinh", gioiTinh),
-                new SqlParameter("@DiaChi", diaChi),
-                new SqlParameter("@SDT", SDT),
-                new SqlParameter("@Luong", luong)
-            };
-
-            DatabaseLayer.RunSql(sqlInsert, insertParams);
-        }
-        */
 
         public static void UpdateNhanVien(string maNV, string tenNV, string tenDangNhap, DateTime ngaySinh, bool gioiTinh, string diaChi, string SDT, int luong)
         {

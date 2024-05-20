@@ -1,6 +1,7 @@
-﻿using BAEK_PERCENT.Database;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
+
+using BAEK_PERCENT.Database;
 
 namespace BAEK_PERCENT.DAL
 {
@@ -66,27 +67,6 @@ namespace BAEK_PERCENT.DAL
 
             DatabaseLayer.RunSqlDel(sqlDelete, deleteParams);
         }
-
-        /*
-        public static void InsertLoaiSach(string maLoai, string tenLoai)
-        {
-            string sqlCheckKey = "SELECT MaLoai FROM " + TableName + " WHERE MaLoai = @MaLoai";
-            SqlParameter[] checkKeyParams = { new SqlParameter("@MaLoai", maLoai) };
-
-            if (DatabaseLayer.CheckKey(sqlCheckKey, checkKeyParams))
-            {
-                throw new Exception("Mã loại sách đã tồn tại");
-            }
-
-            string sqlInsert = "INSERT INTO " + TableName + " (MaLoai, TenLoai) VALUES (@MaLoai, @TenLoai)";
-            SqlParameter[] insertParams = {
-                new SqlParameter("@MaLoai", maLoai),
-                new SqlParameter("@TenLoai", tenLoai)
-            };
-
-            DatabaseLayer.RunSql(sqlInsert, insertParams);
-        }
-        */
 
         public static void UpdateLoaiSach(string maLoai, string tenLoai)
         {

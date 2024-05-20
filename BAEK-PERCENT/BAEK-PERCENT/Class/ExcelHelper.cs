@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Data;
-using System.Data.Common;
-using Microsoft.Office.Interop.Excel;
 using System.IO;
-using System.Runtime.InteropServices;
+
+using Microsoft.Office.Interop.Excel;
 
 namespace BAEK_PERCENT.Class
 {

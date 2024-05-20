@@ -1,6 +1,7 @@
-﻿using BAEK_PERCENT.Database;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
+
+using BAEK_PERCENT.Database;
 
 namespace BAEK_PERCENT.DAL
 {
@@ -66,27 +67,6 @@ namespace BAEK_PERCENT.DAL
 
             DatabaseLayer.RunSqlDel(sqlDelete, deleteParams);
         }
-
-        /*
-        public static void InsertLinhVuc(string maLV, string tenLV)
-        {
-            string sqlCheckKey = "SELECT MaLV FROM " + TableName + " WHERE MaLV = @MaLV";
-            SqlParameter[] checkKeyParams = { new SqlParameter("@MaLV", maLV) };
-
-            if (DatabaseLayer.CheckKey(sqlCheckKey, checkKeyParams))
-            {
-                throw new Exception("Mã lĩnh vực đã tồn tại");
-            }
-
-            string sqlInsert = "INSERT INTO " + TableName + " (MaLV, TenLV) VALUES (@MaLV, @TenLV)";
-            SqlParameter[] insertParams = {
-                new SqlParameter("@MaLV", maLV),
-                new SqlParameter("@TenLV", tenLV)
-            };
-
-            DatabaseLayer.RunSql(sqlInsert, insertParams);
-        }
-        */
 
         public static void UpdateLinhVuc(string maLV, string tenLV)
         {

@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MaterialSkin;
+
 using MaterialSkin.Controls;
 
 namespace BAEK_PERCENT.Forms
@@ -24,7 +16,7 @@ namespace BAEK_PERCENT.Forms
             InitializeComponent();
         }
 
-        private void logOutBtn_Click(object sender, EventArgs e)
+        private void btnLogOut_Click(object sender, EventArgs e)
         {
             Program.FormControl.CurrentForm
                 = Program.FormControl.loginForm;

@@ -37,15 +37,6 @@ namespace BAEK_PERCENT.Class
 
         public static bool IsDate(string d)
         {
-            //string[] parts = d.Split('/');
-
-            //if ((Convert.ToInt32(parts[0]) >= 1) && (Convert.ToInt32(parts[0]) <= 31) &&
-            //    (Convert.ToInt32(parts[1]) >= 1) && (Convert.ToInt32(parts[1]) <= 12) && 
-            //    (Convert.ToInt32(parts[2]) >= 1900))
-            //    return true;
-            //else
-            //    return false;
-
             string[] parts = d.Split('/');
 
             if (parts.Length != 3)
@@ -70,7 +61,6 @@ namespace BAEK_PERCENT.Class
 
             return true;
         }
-
 
         public static string ConvertDateTime(string d)
         {
@@ -182,6 +172,5 @@ namespace BAEK_PERCENT.Class
                 throw new ArgumentException("Invalid hour format");
             }
         }
-
     }
 }

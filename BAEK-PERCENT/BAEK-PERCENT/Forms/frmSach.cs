@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
-using System.Web;
 using System.Windows.Forms;
+
 using BAEK_PERCENT.Class;
 using BAEK_PERCENT.DAL;
 using BAEK_PERCENT.Database;
-using MaterialSkin;
 using MaterialSkin.Controls;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace BAEK_PERCENT.Forms
 {
