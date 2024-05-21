@@ -166,6 +166,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\DAL\BaoCaoDAL.cs" />
     <Compile Include="Class\Types\UserRole.cs" />
     <Compile Include="Forms\frmBaoCao.cs">
       <SubType>Form</SubType>
