@@ -12,7 +12,7 @@ namespace BAEK_PERCENT.Forms
 {
     public partial class frmSach : MaterialForm
     {
-        private DataTable tblSach;
+        private System.Data.DataTable tblSach;
 
         private bool isSearching = false;
         private string currentSearchOption = "";
@@ -46,6 +46,25 @@ namespace BAEK_PERCENT.Forms
             cboTimKiem.Items.Add("Lĩnh vực");
             cboTimKiem.Items.Add("Tác giả");
             cboTimKiem.Items.Add("Ngôn ngữ");
+
+            cboSoLuong.Items.Add("Mặc định"); 
+            cboSoLuong.Items.Add("Tăng dần");
+            cboSoLuong.Items.Add("Giảm dần");
+
+            cboSoLuong.SelectedItem = "Mặc định";
+
+            cboGiaThue.Items.Add("Mặc định");
+            cboGiaThue.Items.Add("Tăng dần");
+            cboGiaThue.Items.Add("Giảm dần");
+
+            cboGiaThue.SelectedItem = "Mặc định";
+
+            chkSoLuong.Checked = false;
+            chkGiaThue.Checked = false;
+
+            cboSoLuong.Enabled = false;
+            cboGiaThue.Enabled = false;
+
         }
 
         private void InitializeListView()
@@ -75,6 +94,9 @@ namespace BAEK_PERCENT.Forms
             txtAnh.Enabled = false;
 
             btnAnh.Enabled = false;
+
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
 
             btnLuu.Enabled = false;
             btnHuy.Enabled = false;
@@ -130,6 +152,30 @@ namespace BAEK_PERCENT.Forms
                 else
                     tblSach = SachDAL.GetAllSach();
 
+                // Sort the data based on checkboxes
+                DataView dv = tblSach.DefaultView;
+
+                string sortExpression = "";
+                if (chkSoLuong.Checked && cboSoLuong.SelectedItem.ToString() != "Mặc định")
+                {
+                    sortExpression += "SoLuong " + (cboSoLuong.Text == "Tăng dần" ? "ASC" : "DESC");
+                }
+
+                if (chkGiaThue.Checked && cboGiaThue.SelectedItem.ToString() != "Mặc định")
+                {
+                    if (!string.IsNullOrEmpty(sortExpression))
+                    {
+                        sortExpression += ", ";
+                    }
+                    sortExpression += "DonGiaThue " + (cboGiaThue.Text == "Tăng dần" ? "ASC" : "DESC");
+                }
+
+                if (!string.IsNullOrEmpty(sortExpression))
+                {
+                    dv.Sort = sortExpression;
+                }
+
+                tblSach = dv.ToTable();
                 LoadListView();
             }
             catch (Exception ex)
@@ -461,8 +507,8 @@ namespace BAEK_PERCENT.Forms
             ResetValues();
 
             btnThem.Enabled = true;
-            btnSua.Enabled = true;
-            btnXoa.Enabled = true;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
             btnHuy.Enabled = false;
             btnLuu.Enabled = false;
 
@@ -549,6 +595,50 @@ namespace BAEK_PERCENT.Forms
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void chkSoLuong_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkSoLuong.Checked)
+            {
+                cboSoLuong.Enabled = true;
+            }
+            else
+            {
+                cboSoLuong.Enabled = false;
+            }
+
+            LoadData();
+        }
+
+        private void chkGiaThue_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkGiaThue.Checked)
+            {
+                cboGiaThue.Enabled = true;
+            }
+            else
+            {
+                cboGiaThue.Enabled = false;
+            }
+
+            LoadData();
+        }
+            
+        private void cboSoLuong_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (chkSoLuong.Checked)
+            {
+                LoadData();
+            }
+        }
+
+        private void cboGiaThue_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (chkGiaThue.Checked)
+            {
+                LoadData();
             }
         }
     }

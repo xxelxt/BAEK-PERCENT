@@ -85,8 +85,10 @@ namespace BAEK_PERCENT.Forms
         private void frmTra_Load(object sender, EventArgs e)
         {
             txtMaTra.Enabled = false;
+
             btnXoa.Enabled = false;
             btnLuu.Enabled = false;
+
             btnHuy.Enabled = false;
             btnIn.Enabled = false;
 

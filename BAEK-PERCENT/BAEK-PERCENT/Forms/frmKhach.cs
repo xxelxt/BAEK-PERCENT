@@ -40,6 +40,10 @@ namespace BAEK_PERCENT.Forms
         private void frmKhach_Load(object sender, EventArgs e)
         {
             txtMaKH.Enabled = false;
+
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
+
             btnLuu.Enabled = false;
             btnHuy.Enabled = false;
         }
@@ -382,8 +386,8 @@ namespace BAEK_PERCENT.Forms
             ResetValues();
 
             btnThem.Enabled = true;
-            btnSua.Enabled = true;
-            btnXoa.Enabled = true;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
             btnHuy.Enabled = false;
             btnLuu.Enabled = false;
             txtMaKH.Enabled = false;

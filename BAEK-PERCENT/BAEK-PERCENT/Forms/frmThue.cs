@@ -63,8 +63,10 @@ namespace BAEK_PERCENT.Forms
         private void frmThue_Load(object sender, EventArgs e)
         {
             txtMaThue.Enabled = false;
+
             btnXoa.Enabled = false;
             btnLuu.Enabled = false;
+
             btnHuy.Enabled = false;
             btnIn.Enabled = false;
 

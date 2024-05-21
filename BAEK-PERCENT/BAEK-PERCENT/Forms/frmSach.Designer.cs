@@ -42,7 +42,6 @@
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.txtMaSach = new MaterialSkin.Controls.MaterialTextBox2();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
-            this.listViewSach = new MaterialSkin.Controls.MaterialListView();
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             this.cboMaNN = new MaterialSkin.Controls.MaterialComboBox();
             this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
@@ -64,6 +63,11 @@
             this.materialLabel12 = new MaterialSkin.Controls.MaterialLabel();
             this.cboTimKiem = new MaterialSkin.Controls.MaterialComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboSoLuong = new MaterialSkin.Controls.MaterialComboBox();
+            this.cboGiaThue = new MaterialSkin.Controls.MaterialComboBox();
+            this.listViewSach = new MaterialSkin.Controls.MaterialListView();
+            this.chkSoLuong = new MaterialSkin.Controls.MaterialCheckbox();
+            this.chkGiaThue = new MaterialSkin.Controls.MaterialCheckbox();
             ((System.ComponentModel.ISupportInitialize)(this.picAnh)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -408,31 +412,6 @@
             this.materialLabel1.Size = new System.Drawing.Size(66, 19);
             this.materialLabel1.TabIndex = 83;
             this.materialLabel1.Text = "Mã sách:";
-            // 
-            // listViewSach
-            // 
-            this.listViewSach.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listViewSach.AutoSizeTable = false;
-            this.listViewSach.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.listViewSach.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listViewSach.CheckBoxes = true;
-            this.listViewSach.Depth = 0;
-            this.listViewSach.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listViewSach.FullRowSelect = true;
-            this.listViewSach.HideSelection = false;
-            this.listViewSach.Location = new System.Drawing.Point(27, 470);
-            this.listViewSach.MinimumSize = new System.Drawing.Size(820, 250);
-            this.listViewSach.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.listViewSach.MouseState = MaterialSkin.MouseState.OUT;
-            this.listViewSach.Name = "listViewSach";
-            this.listViewSach.OwnerDraw = true;
-            this.listViewSach.Size = new System.Drawing.Size(973, 262);
-            this.listViewSach.TabIndex = 82;
-            this.listViewSach.UseCompatibleStateImageBehavior = false;
-            this.listViewSach.View = System.Windows.Forms.View.Details;
-            this.listViewSach.SelectedIndexChanged += new System.EventHandler(this.listViewSach_SelectedIndexChanged);
             // 
             // materialLabel4
             // 
@@ -916,12 +895,125 @@
             this.groupBox1.TabIndex = 131;
             this.groupBox1.TabStop = false;
             // 
+            // cboSoLuong
+            // 
+            this.cboSoLuong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboSoLuong.AutoResize = false;
+            this.cboSoLuong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cboSoLuong.Depth = 0;
+            this.cboSoLuong.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cboSoLuong.DropDownHeight = 174;
+            this.cboSoLuong.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSoLuong.DropDownWidth = 121;
+            this.cboSoLuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cboSoLuong.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cboSoLuong.FormattingEnabled = true;
+            this.cboSoLuong.IntegralHeight = false;
+            this.cboSoLuong.ItemHeight = 43;
+            this.cboSoLuong.Location = new System.Drawing.Point(562, 466);
+            this.cboSoLuong.MaxDropDownItems = 4;
+            this.cboSoLuong.MouseState = MaterialSkin.MouseState.OUT;
+            this.cboSoLuong.Name = "cboSoLuong";
+            this.cboSoLuong.Size = new System.Drawing.Size(155, 49);
+            this.cboSoLuong.StartIndex = 0;
+            this.cboSoLuong.TabIndex = 133;
+            this.cboSoLuong.SelectedIndexChanged += new System.EventHandler(this.cboSoLuong_SelectedIndexChanged);
+            // 
+            // cboGiaThue
+            // 
+            this.cboGiaThue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboGiaThue.AutoResize = false;
+            this.cboGiaThue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cboGiaThue.Depth = 0;
+            this.cboGiaThue.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cboGiaThue.DropDownHeight = 174;
+            this.cboGiaThue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboGiaThue.DropDownWidth = 121;
+            this.cboGiaThue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cboGiaThue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cboGiaThue.FormattingEnabled = true;
+            this.cboGiaThue.IntegralHeight = false;
+            this.cboGiaThue.ItemHeight = 43;
+            this.cboGiaThue.Location = new System.Drawing.Point(845, 466);
+            this.cboGiaThue.MaxDropDownItems = 4;
+            this.cboGiaThue.MouseState = MaterialSkin.MouseState.OUT;
+            this.cboGiaThue.Name = "cboGiaThue";
+            this.cboGiaThue.Size = new System.Drawing.Size(155, 49);
+            this.cboGiaThue.StartIndex = 0;
+            this.cboGiaThue.TabIndex = 135;
+            this.cboGiaThue.SelectedIndexChanged += new System.EventHandler(this.cboGiaThue_SelectedIndexChanged);
+            // 
+            // listViewSach
+            // 
+            this.listViewSach.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewSach.AutoSizeTable = false;
+            this.listViewSach.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.listViewSach.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listViewSach.CheckBoxes = true;
+            this.listViewSach.Depth = 0;
+            this.listViewSach.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewSach.FullRowSelect = true;
+            this.listViewSach.HideSelection = false;
+            this.listViewSach.Location = new System.Drawing.Point(27, 532);
+            this.listViewSach.MinimumSize = new System.Drawing.Size(820, 200);
+            this.listViewSach.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.listViewSach.MouseState = MaterialSkin.MouseState.OUT;
+            this.listViewSach.Name = "listViewSach";
+            this.listViewSach.OwnerDraw = true;
+            this.listViewSach.Size = new System.Drawing.Size(973, 200);
+            this.listViewSach.TabIndex = 82;
+            this.listViewSach.UseCompatibleStateImageBehavior = false;
+            this.listViewSach.View = System.Windows.Forms.View.Details;
+            this.listViewSach.SelectedIndexChanged += new System.EventHandler(this.listViewSach_SelectedIndexChanged);
+            // 
+            // chkSoLuong
+            // 
+            this.chkSoLuong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkSoLuong.AutoSize = true;
+            this.chkSoLuong.Depth = 0;
+            this.chkSoLuong.Location = new System.Drawing.Point(449, 472);
+            this.chkSoLuong.Margin = new System.Windows.Forms.Padding(0);
+            this.chkSoLuong.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.chkSoLuong.MouseState = MaterialSkin.MouseState.HOVER;
+            this.chkSoLuong.Name = "chkSoLuong";
+            this.chkSoLuong.ReadOnly = false;
+            this.chkSoLuong.Ripple = true;
+            this.chkSoLuong.Size = new System.Drawing.Size(99, 37);
+            this.chkSoLuong.TabIndex = 136;
+            this.chkSoLuong.Text = "Số lượng";
+            this.chkSoLuong.UseVisualStyleBackColor = true;
+            this.chkSoLuong.CheckedChanged += new System.EventHandler(this.chkSoLuong_CheckedChanged);
+            // 
+            // chkGiaThue
+            // 
+            this.chkGiaThue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkGiaThue.AutoSize = true;
+            this.chkGiaThue.Depth = 0;
+            this.chkGiaThue.Location = new System.Drawing.Point(737, 472);
+            this.chkGiaThue.Margin = new System.Windows.Forms.Padding(0);
+            this.chkGiaThue.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.chkGiaThue.MouseState = MaterialSkin.MouseState.HOVER;
+            this.chkGiaThue.Name = "chkGiaThue";
+            this.chkGiaThue.ReadOnly = false;
+            this.chkGiaThue.Ripple = true;
+            this.chkGiaThue.Size = new System.Drawing.Size(94, 37);
+            this.chkGiaThue.TabIndex = 137;
+            this.chkGiaThue.Text = "Giá thuê";
+            this.chkGiaThue.UseVisualStyleBackColor = true;
+            this.chkGiaThue.CheckedChanged += new System.EventHandler(this.chkGiaThue_CheckedChanged);
+            // 
             // frmSach
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoScroll = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1024, 819);
+            this.Controls.Add(this.chkGiaThue);
+            this.Controls.Add(this.chkSoLuong);
+            this.Controls.Add(this.cboGiaThue);
+            this.Controls.Add(this.cboSoLuong);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cboTimKiem);
             this.Controls.Add(this.btnTimKiem);
@@ -941,6 +1033,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -959,7 +1052,6 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialTextBox2 txtMaSach;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private MaterialSkin.Controls.MaterialListView listViewSach;
         private MaterialSkin.Controls.MaterialLabel materialLabel4;
         private MaterialSkin.Controls.MaterialComboBox cboMaNN;
         private MaterialSkin.Controls.MaterialLabel materialLabel5;
@@ -981,5 +1073,10 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel12;
         private MaterialSkin.Controls.MaterialComboBox cboTimKiem;
         private System.Windows.Forms.GroupBox groupBox1;
+        private MaterialSkin.Controls.MaterialComboBox cboSoLuong;
+        private MaterialSkin.Controls.MaterialComboBox cboGiaThue;
+        private MaterialSkin.Controls.MaterialListView listViewSach;
+        private MaterialSkin.Controls.MaterialCheckbox chkSoLuong;
+        private MaterialSkin.Controls.MaterialCheckbox chkGiaThue;
     }
 }

@@ -36,6 +36,10 @@ namespace BAEK_PERCENT.Forms
         private void frmTaiKhoan_Load(object sender, EventArgs e)
         {
             txtUsername.Enabled = false;
+
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
+
             btnLuu.Enabled = false;
             btnHuy.Enabled = false;
 
@@ -303,8 +307,8 @@ namespace BAEK_PERCENT.Forms
             ResetValues();
 
             btnThem.Enabled = true;
-            btnSua.Enabled = true;
-            btnXoa.Enabled = true;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
             btnHuy.Enabled = false;
             btnLuu.Enabled = false;
             txtUsername.Enabled = false;
