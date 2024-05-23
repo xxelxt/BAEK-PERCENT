@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.IO;
-
+using BAEK_PERCENT.Database;
 using Microsoft.Office.Interop.Excel;
 
 namespace BAEK_PERCENT.Class
@@ -379,6 +379,690 @@ namespace BAEK_PERCENT.Class
                 File.Delete(filePath);
             }
             
+            exBook.SaveAs(filePath); // Lưu file Excel
+            exApp.Visible = true; // Hiển thị file Excel
+
+            // Giải phóng tài nguyên COM
+            ReleaseObject(exSheet);
+            ReleaseObject(exBook);
+            ReleaseObject(exApp);
+        }
+
+        public static void CreateBCDoanhThuThang(System.Data.DataTable tblDoanhThu, DateTime startDate, DateTime endDate)
+        {
+            Application exApp = new Application();
+            Workbook exBook;
+            Worksheet exSheet;
+            Range exRange;
+
+            exBook = exApp.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
+            exSheet = (Worksheet)exBook.Worksheets[1];
+
+            exSheet.Columns["A:B"].ColumnWidth = 12;
+            exSheet.Columns["C"].ColumnWidth = 18;
+
+            exRange = exSheet.Range["A2:C2"];
+            exRange.Merge();
+            exRange.Font.Size = 12;
+            exRange.Font.Bold = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "BAEK PERCENT";
+
+            exRange = exSheet.Range["A3:C3"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "Số 12 Chùa Bộc, Đống Đa, Hà Nội";
+
+            exRange = exSheet.Range["A4:C4"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "Điện thoại: 024 3852 1305";
+
+            exRange = exSheet.Range["A6:C7"];
+            exRange.Merge();
+            exRange.Font.Size = 16;
+            exRange.Font.Bold = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "BÁO CÁO DOANH THU THÁNG";
+
+            exRange = exSheet.Range["A8:C8"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = $"Thời gian: {startDate.ToString("dd/MM/yyyy")} - {endDate.ToString("dd/MM/yyyy")}";
+
+            exSheet.Cells[10, 1] = "Năm";
+            exSheet.Cells[10, 1].Font.Bold = true;
+            exSheet.Cells[10, 1].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+            exSheet.Cells[10, 2] = "Tháng";
+            exSheet.Cells[10, 2].Font.Bold = true;
+            exSheet.Cells[10, 2].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+            exSheet.Cells[10, 3] = "Doanh thu";
+            exSheet.Cells[10, 3].Font.Bold = true;
+            exSheet.Cells[10, 3].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+            decimal totalRevenue = 0;
+            int rowIndex = 11;
+            foreach (DataRow row in tblDoanhThu.Rows)
+            {
+                exSheet.Cells[rowIndex, 1] = row["Year"];
+                exSheet.Cells[rowIndex, 1].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+                exSheet.Cells[rowIndex, 2] = row["Month"];
+                exSheet.Cells[rowIndex, 2].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+                exSheet.Cells[rowIndex, 3] = string.Format("{0:#,##0}đ", row["MonthlyRevenue"]);
+                exSheet.Cells[rowIndex, 3].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+                totalRevenue += Convert.ToDecimal(row["MonthlyRevenue"]);
+                rowIndex++;
+            }
+
+            exRange = exSheet.Range[$"A{rowIndex + 1}:C{rowIndex + 1}"];
+            exRange.Merge();
+            exRange.Font.Size = 12;
+            exRange.Font.Bold = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignRight;
+            exRange.Value = "Tổng doanh thu: " + string.Format("{0:#,##0}đ", totalRevenue);
+
+            exRange = exSheet.Range[$"A{rowIndex + 3}:C{rowIndex + 3}"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = $"Ngày xuất: {DateTime.Now.ToString()}";
+
+            exSheet.Rows[$"1:{rowIndex + 4}"].RowHeight = 16.5;
+
+            exApp.Visible = true;
+
+            string startDateStr = startDate.ToString("yyMMdd");
+            string endDateStr = endDate.ToString("yyMMdd");
+
+            // Lưu file Excel
+            string filePath = $"E:\\rkive\\6\\.NET\\BAEK\\Excel\\BaoCao\\DoanhThuThang\\BCDoanhThuThang_{startDateStr}_{endDateStr}.xlsx"; // Đường dẫn lưu file
+
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+
+            exBook.SaveAs(filePath); // Lưu file Excel
+            exApp.Visible = true; // Hiển thị file Excel
+
+            // Giải phóng tài nguyên COM
+            ReleaseObject(exSheet);
+            ReleaseObject(exBook);
+            ReleaseObject(exApp);
+        }
+
+        public static void CreateBCDoanhThuTuan(System.Data.DataTable tblDoanhThu, DateTime startDate, DateTime endDate)
+        {
+            Application exApp = new Application();
+            Workbook exBook;
+            Worksheet exSheet;
+            Range exRange;
+
+            exBook = exApp.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
+            exSheet = (Worksheet)exBook.Worksheets[1];
+
+            exSheet.Columns["A:B"].ColumnWidth = 12;
+            exSheet.Columns["C:D"].ColumnWidth = 18;
+
+            exRange = exSheet.Range["A2:D2"];
+            exRange.Merge();
+            exRange.Font.Size = 12;
+            exRange.Font.Bold = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "BAEK PERCENT";
+
+            exRange = exSheet.Range["A3:D3"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "Số 12 Chùa Bộc, Đống Đa, Hà Nội";
+
+            exRange = exSheet.Range["A4:D4"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "Điện thoại: 024 3852 1305";
+
+            exRange = exSheet.Range["A6:D7"];
+            exRange.Merge();
+            exRange.Font.Size = 16;
+            exRange.Font.Bold = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "BÁO CÁO DOANH THU TUẦN";
+
+            exRange = exSheet.Range["A8:D8"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = $"Thời gian: {startDate.ToString("dd/MM/yyyy")} - {endDate.ToString("dd/MM/yyyy")}";
+
+            exSheet.Cells[10, 1] = "Năm";
+            exSheet.Cells[10, 1].Font.Bold = true;
+            exSheet.Cells[10, 1].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+            exSheet.Cells[10, 2] = "Tuần thứ";
+            exSheet.Cells[10, 2].Font.Bold = true;
+            exSheet.Cells[10, 2].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+            exSheet.Cells[10, 3] = "Tuần";
+            exSheet.Cells[10, 3].Font.Bold = true;
+            exSheet.Cells[10, 3].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+            exSheet.Cells[10, 4] = "Doanh thu";
+            exSheet.Cells[10, 4].Font.Bold = true;
+            exSheet.Cells[10, 4].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+            decimal totalRevenue = 0;
+            int rowIndex = 11;
+            foreach (DataRow row in tblDoanhThu.Rows)
+            {
+                exSheet.Cells[rowIndex, 1] = row["Year"];
+                exSheet.Cells[rowIndex, 1].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+                exSheet.Cells[rowIndex, 2] = row["WeekNumber"];
+                exSheet.Cells[rowIndex, 2].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+                exSheet.Cells[rowIndex, 3] = row["Week"];
+                exSheet.Cells[rowIndex, 3].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+                exSheet.Cells[rowIndex, 4] = string.Format("{0:#,##0}đ", row["WeeklyRevenue"]);
+                exSheet.Cells[rowIndex, 4].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+                totalRevenue += Convert.ToDecimal(row["WeeklyRevenue"]);
+                rowIndex++;
+            }
+
+            exRange = exSheet.Range[$"A{rowIndex + 1}:D{rowIndex + 1}"];
+            exRange.Merge();
+            exRange.Font.Size = 12;
+            exRange.Font.Bold = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignRight;
+            exRange.Value = "Tổng doanh thu: " + string.Format("{0:#,##0}đ", totalRevenue);
+
+            exRange = exSheet.Range[$"A{rowIndex + 3}:D{rowIndex + 3}"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = $"Ngày xuất: {DateTime.Now.ToString()}";
+
+            exSheet.Rows[$"1:{rowIndex + 4}"].RowHeight = 16.5;
+
+            exApp.Visible = true;
+
+            string startDateStr = startDate.ToString("yyMMdd");
+            string endDateStr = endDate.ToString("yyMMdd");
+
+            // Lưu file Excel
+            string filePath = $"E:\\rkive\\6\\.NET\\BAEK\\Excel\\BaoCao\\DoanhThuTuan\\BCDoanhThuTuan_{startDateStr}_{endDateStr}.xlsx"; // Đường dẫn lưu file
+
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+
+            exBook.SaveAs(filePath); // Lưu file Excel
+            exApp.Visible = true; // Hiển thị file Excel
+
+            // Giải phóng tài nguyên COM
+            ReleaseObject(exSheet);
+            ReleaseObject(exBook);
+            ReleaseObject(exApp);
+        }
+
+        public static void CreateBCDoanhThuNgay(System.Data.DataTable tblDoanhThu, DateTime startDate, DateTime endDate)
+        {
+            Application exApp = new Application();
+            Workbook exBook;
+            Worksheet exSheet;
+            Range exRange;
+
+            exBook = exApp.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
+            exSheet = (Worksheet)exBook.Worksheets[1];
+
+            exSheet.Columns["A:B"].ColumnWidth = 24;
+
+            exRange = exSheet.Range["A2:B2"];
+            exRange.Merge();
+            exRange.Font.Size = 12;
+            exRange.Font.Bold = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "BAEK PERCENT";
+
+            exRange = exSheet.Range["A3:B3"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "Số 12 Chùa Bộc, Đống Đa, Hà Nội";
+
+            exRange = exSheet.Range["A4:B4"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "Điện thoại: 024 3852 1305";
+
+            exRange = exSheet.Range["A6:B7"];
+            exRange.Merge();
+            exRange.Font.Size = 16;
+            exRange.Font.Bold = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "BÁO CÁO DOANH THU NGÀY";
+
+            exRange = exSheet.Range["A8:B8"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = $"Thời gian: {startDate.ToString("dd/MM/yyyy")} - {endDate.ToString("dd/MM/yyyy")}";
+
+            exSheet.Cells[10, 1] = "Ngày";
+            exSheet.Cells[10, 1].Font.Bold = true;
+            exSheet.Cells[10, 1].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+            exSheet.Cells[10, 2] = "Doanh thu";
+            exSheet.Cells[10, 2].Font.Bold = true;
+            exSheet.Cells[10, 2].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+            decimal totalRevenue = 0;
+            int rowIndex = 11;
+            foreach (DataRow row in tblDoanhThu.Rows)
+            {
+                exSheet.Cells[rowIndex, 1] = row["Date"];
+                exSheet.Cells[rowIndex, 1].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+                exSheet.Cells[rowIndex, 2] = string.Format("{0:#,##0}đ", row["DailyRevenue"]);
+                exSheet.Cells[rowIndex, 2].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+                totalRevenue += Convert.ToDecimal(row["DailyRevenue"]);
+                rowIndex++;
+            }
+
+            exRange = exSheet.Range[$"A{rowIndex + 1}:B{rowIndex + 1}"];
+            exRange.Merge();
+            exRange.Font.Size = 12;
+            exRange.Font.Bold = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignRight;
+            exRange.Value = "Tổng doanh thu: " + string.Format("{0:#,##0}đ", totalRevenue);
+
+            exRange = exSheet.Range[$"A{rowIndex + 3}:B{rowIndex + 3}"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = $"Ngày xuất: {DateTime.Now.ToString()}";
+
+            exSheet.Rows[$"1:{rowIndex + 4}"].RowHeight = 16.5;
+
+            exApp.Visible = true;
+
+            string startDateStr = startDate.ToString("yyMMdd");
+            string endDateStr = endDate.ToString("yyMMdd");
+
+            // Lưu file Excel
+            string filePath = $"E:\\rkive\\6\\.NET\\BAEK\\Excel\\BaoCao\\DoanhThuNgay\\BCDoanhThuNgay_{startDateStr}_{endDateStr}.xlsx"; // Đường dẫn lưu file
+
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+
+            exBook.SaveAs(filePath); // Lưu file Excel
+            exApp.Visible = true; // Hiển thị file Excel
+
+            // Giải phóng tài nguyên COM
+            ReleaseObject(exSheet);
+            ReleaseObject(exBook);
+            ReleaseObject(exApp);
+        }
+
+        public static void CreateBCLoaiSachYeuThich(System.Data.DataTable tblLoaiSach, DateTime startDate, DateTime endDate)
+        {
+            Application exApp = new Application();
+            Workbook exBook;
+            Worksheet exSheet;
+            Range exRange;
+
+            exBook = exApp.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
+            exSheet = (Worksheet)exBook.Worksheets[1];
+
+            exSheet.Columns["A"].ColumnWidth = 28;
+            exSheet.Columns["B"].ColumnWidth = 18;
+
+            exRange = exSheet.Range["A2:B2"];
+            exRange.Merge();
+            exRange.Font.Size = 12;
+            exRange.Font.Bold = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "BAEK PERCENT";
+
+            exRange = exSheet.Range["A3:B3"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "Số 12 Chùa Bộc, Đống Đa, Hà Nội";
+
+            exRange = exSheet.Range["A4:B4"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "Điện thoại: 024 3852 1305";
+
+            exRange = exSheet.Range["A6:B7"];
+            exRange.Merge();
+            exRange.Font.Size = 16;
+            exRange.Font.Bold = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "BÁO CÁO LOẠI SÁCH YÊU THÍCH";
+
+            exRange = exSheet.Range["A8:B8"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = $"Thời gian: {startDate.ToString("dd/MM/yyyy")} - {endDate.ToString("dd/MM/yyyy")}";
+
+            exSheet.Cells[10, 1] = "Lĩnh vực";
+            exSheet.Cells[10, 1].Font.Bold = true;
+            exSheet.Cells[10, 1].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+            exSheet.Cells[10, 2] = "Số lượng mượn";
+            exSheet.Cells[10, 2].Font.Bold = true;
+            exSheet.Cells[10, 2].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+            int rowIndex = 11;
+            foreach (DataRow row in tblLoaiSach.Rows)
+            {
+                exSheet.Cells[rowIndex, 1] = row["TenLV"];
+                exSheet.Cells[rowIndex, 1].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+                exSheet.Cells[rowIndex, 2] = row["SoLuongMuon"];
+                exSheet.Cells[rowIndex, 2].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+                rowIndex++;
+            }
+
+            exRange = exSheet.Range[$"A{rowIndex + 1}:B{rowIndex + 1}"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = $"Ngày xuất: {DateTime.Now.ToString()}";
+
+            exSheet.Rows[$"1:{rowIndex + 2}"].RowHeight = 16.5;
+
+            exApp.Visible = true;
+
+            string startDateStr = startDate.ToString("yyMMdd");
+            string endDateStr = endDate.ToString("yyMMdd");
+
+            // Lưu file Excel
+            string filePath = $"E:\\rkive\\6\\.NET\\BAEK\\Excel\\BaoCao\\LoaiSachYeuThich\\BCLoaiSachYeuThich_{startDateStr}_{endDateStr}.xlsx"; // Đường dẫn lưu file
+
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+
+            exBook.SaveAs(filePath); // Lưu file Excel
+            exApp.Visible = true; // Hiển thị file Excel
+
+            // Giải phóng tài nguyên COM
+            ReleaseObject(exSheet);
+            ReleaseObject(exBook);
+            ReleaseObject(exApp);
+        }
+
+        public static void CreateBCSachYeuThich(System.Data.DataTable tblSach, DateTime startDate, DateTime endDate)
+        {
+            Application exApp = new Application();
+            Workbook exBook;
+            Worksheet exSheet;
+            Range exRange;
+
+            exBook = exApp.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
+            exSheet = (Worksheet)exBook.Worksheets[1];
+
+            exSheet.Columns["A"].ColumnWidth = 48;
+            exSheet.Columns["B"].ColumnWidth = 18;
+
+            exRange = exSheet.Range["A2:B2"];
+            exRange.Merge();
+            exRange.Font.Size = 12;
+            exRange.Font.Bold = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "BAEK PERCENT";
+
+            exRange = exSheet.Range["A3:B3"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "Số 12 Chùa Bộc, Đống Đa, Hà Nội";
+
+            exRange = exSheet.Range["A4:B4"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "Điện thoại: 024 3852 1305";
+
+            exRange = exSheet.Range["A6:B7"];
+            exRange.Merge();
+            exRange.Font.Size = 16;
+            exRange.Font.Bold = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "BÁO CÁO SÁCH YÊU THÍCH";
+
+            exRange = exSheet.Range["A8:B8"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = $"Thời gian: {startDate.ToString("dd/MM/yyyy")} - {endDate.ToString("dd/MM/yyyy")}";
+
+            exSheet.Cells[10, 1] = "Sách";
+            exSheet.Cells[10, 1].Font.Bold = true;
+            exSheet.Cells[10, 1].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+            exSheet.Cells[10, 2] = "Số lượng mượn";
+            exSheet.Cells[10, 2].Font.Bold = true;
+            exSheet.Cells[10, 2].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+            int rowIndex = 11;
+            foreach (DataRow row in tblSach.Rows)
+            {
+                exSheet.Cells[rowIndex, 1] = row["TenSach"];
+                exSheet.Cells[rowIndex, 1].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+                exSheet.Cells[rowIndex, 2] = row["SoLuongMuon"];
+                exSheet.Cells[rowIndex, 2].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+                rowIndex++;
+            }
+
+            exRange = exSheet.Range[$"A{rowIndex + 1}:B{rowIndex + 1}"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = $"Ngày xuất: {DateTime.Now.ToString()}";
+
+            exSheet.Rows[$"1:{rowIndex + 2}"].RowHeight = 16.5;
+
+            exApp.Visible = true;
+
+            string startDateStr = startDate.ToString("yyMMdd");
+            string endDateStr = endDate.ToString("yyMMdd");
+
+            // Lưu file Excel
+            string filePath = $"E:\\rkive\\6\\.NET\\BAEK\\Excel\\BaoCao\\SachYeuThich\\BCSachYeuThich_{startDateStr}_{endDateStr}.xlsx"; // Đường dẫn lưu file
+
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+
+            exBook.SaveAs(filePath); // Lưu file Excel
+            exApp.Visible = true; // Hiển thị file Excel
+
+            // Giải phóng tài nguyên COM
+            ReleaseObject(exSheet);
+            ReleaseObject(exBook);
+            ReleaseObject(exApp);
+        }
+
+        public static void CreateBCSachMatHong(System.Data.DataTable tblSachMatHong, DateTime startDate, DateTime endDate)
+        {
+            Application exApp = new Application();
+            Workbook exBook;
+            Worksheet exSheet;
+            Range exRange;
+
+            exBook = exApp.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
+            exSheet = (Worksheet)exBook.Worksheets[1];
+
+            exSheet.Columns["A"].ColumnWidth = 48;
+            exSheet.Columns["B:C"].ColumnWidth = 18;
+
+            exRange = exSheet.Range["A2:C2"];
+            exRange.Merge();
+            exRange.Font.Size = 12;
+            exRange.Font.Bold = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "BAEK PERCENT";
+
+            exRange = exSheet.Range["A3:C3"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "Số 12 Chùa Bộc, Đống Đa, Hà Nội";
+
+            exRange = exSheet.Range["A4:C4"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "Điện thoại: 024 3852 1305";
+
+            exRange = exSheet.Range["A6:C7"];
+            exRange.Merge();
+            exRange.Font.Size = 16;
+            exRange.Font.Bold = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = "BÁO CÁO SÁCH BỊ MẤT/HỎNG";
+
+            exRange = exSheet.Range["A8:C8"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = $"Thời gian: {startDate.ToString("dd/MM/yyyy")} - {endDate.ToString("dd/MM/yyyy")}";
+
+            exSheet.Cells[10, 1] = "Sách";
+            exSheet.Cells[10, 1].Font.Bold = true;
+            exSheet.Cells[10, 1].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+            exSheet.Cells[10, 2] = "Trạng thái";
+            exSheet.Cells[10, 2].Font.Bold = true;
+            exSheet.Cells[10, 2].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+            exSheet.Cells[10, 3] = "Số lượng";
+            exSheet.Cells[10, 3].Font.Bold = true;
+            exSheet.Cells[10, 3].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+            int rowIndex = 11;
+            foreach (DataRow row in tblSachMatHong.Rows)
+            {
+                exSheet.Cells[rowIndex, 1] = row["TenSach"];
+                exSheet.Cells[rowIndex, 1].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+                exSheet.Cells[rowIndex, 2] = row["TenVP"];
+                exSheet.Cells[rowIndex, 2].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+                exSheet.Cells[rowIndex, 3] = row["SoLuongSach"];
+                exSheet.Cells[rowIndex, 3].HorizontalAlignment = XlHAlign.xlHAlignRight;
+
+                rowIndex++;
+            }
+
+            exRange = exSheet.Range[$"A{rowIndex + 1}:C{rowIndex + 1}"];
+            exRange.Merge();
+            exRange.Font.Size = 11;
+            exRange.Font.Italic = true;
+            exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            exRange.Value = $"Ngày xuất: {DateTime.Now.ToString()}";
+
+            exSheet.Rows[$"1:{rowIndex + 2}"].RowHeight = 16.5;
+
+            exApp.Visible = true;
+
+            string startDateStr = startDate.ToString("yyMMdd");
+            string endDateStr = endDate.ToString("yyMMdd");
+
+            // Lưu file Excel
+            string filePath = $"E:\\rkive\\6\\.NET\\BAEK\\Excel\\BaoCao\\SachYeuThich\\BCSachYeuThich_{startDateStr}_{endDateStr}.xlsx"; // Đường dẫn lưu file
+
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+
             exBook.SaveAs(filePath); // Lưu file Excel
             exApp.Visible = true; // Hiển thị file Excel
 

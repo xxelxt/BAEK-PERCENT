@@ -8,7 +8,7 @@ namespace BAEK_PERCENT.DAL
 {
     internal class BaoCaoDAL
     {
-        public static DataTable GetBaoCaoLoaiSachYeuThich(DateTime ngayBD, DateTime ngayKT)
+        public static DataTable GetBCLoaiSachYeuThich(DateTime ngayBD, DateTime ngayKT)
         {
             string sql = @"SELECT DISTINCT L.TenLV, COUNT(*) AS SoLuongMuon 
                     FROM CTThueSach CT 
@@ -28,7 +28,7 @@ namespace BAEK_PERCENT.DAL
             return DatabaseLayer.GetDataToTable(sql, sqlParameters);
         }
 
-        public static DataTable GetBaoCaoSachYeuThich(DateTime ngayBD, DateTime ngayKT)
+        public static DataTable GetBCSachYeuThich(DateTime ngayBD, DateTime ngayKT)
         {
             string sql = @"SELECT DISTINCT S.TenSach, COUNT(*) AS SoLuongMuon 
                     FROM CTThueSach CT 
@@ -47,7 +47,7 @@ namespace BAEK_PERCENT.DAL
             return DatabaseLayer.GetDataToTable(sql, sqlParameters);
         }
 
-        public static DataTable GetBaoCaoSachMatHong(DateTime ngayBD, DateTime ngayKT)
+        public static DataTable GetBCSachMatHong(DateTime ngayBD, DateTime ngayKT)
         {
             string sql = @"SELECT DISTINCT S.TenSach, VP.TenVP, COUNT(*) AS SoLuongSach
                     FROM CTTraSach CT
@@ -67,7 +67,7 @@ namespace BAEK_PERCENT.DAL
             return DatabaseLayer.GetDataToTable(sql, sqlParameters);
         }
 
-        public static DataTable GetDoanhThuTheoThang(DateTime ngayBD, DateTime ngayKT)
+        public static DataTable GetBCDoanhThuThang(DateTime ngayBD, DateTime ngayKT)
         {
             string sql = @"WITH AllMonths AS (
                     SELECT
@@ -120,54 +120,118 @@ namespace BAEK_PERCENT.DAL
             return DatabaseLayer.GetDataToTable(sql, sqlParameters);
         }
 
-        public static DataTable GetDoanhThuTheoTuan(DateTime ngayBD, DateTime ngayKT)
+        public static DataTable GetBCDoanhThuTuan(DateTime ngayBD, DateTime ngayKT)
         {
-            string sql = @"WITH WeeklyRevenue AS ( 
+            string sql = @"WITH WeeklyRevenue AS (
+                    SELECT 
+                        YEAR(DateTable.WeekStart) AS Year, 
+                        DATEPART(WEEK, DateTable.WeekStart) AS WeekNumber, 
+                        CONCAT(
+                            LEFT(CONVERT(VARCHAR(10), DateTable.WeekStart, 103), 6), 
+                            RIGHT(CONVERT(VARCHAR(10), DateTable.WeekStart, 103), 2),
+                            ' - ', 
+                            LEFT(CONVERT(VARCHAR(10), DateTable.WeekEnd, 103), 6), 
+                            RIGHT(CONVERT(VARCHAR(10), DateTable.WeekEnd, 103), 2)
+                        ) AS Week, 
+                        COALESCE(SUM(MR.Revenue), 0) AS Revenue 
+                    FROM (
+                        SELECT 
+                            DATEADD(WEEK, DATEDIFF(WEEK, 0, @NgayBD) + number, 0) AS WeekStart, 
+                            DATEADD(DAY, 6, DATEADD(WEEK, DATEDIFF(WEEK, 0, @NgayBD) + number, 0)) AS WeekEnd 
+                        FROM master..spt_values 
+                        WHERE type = 'P' AND number BETWEEN 0 AND DATEDIFF(WEEK, @NgayBD, @NgayKT)
+                    ) AS DateTable 
+                    LEFT JOIN (
+                        SELECT 
+                            YEAR(T.NgayThue) AS Year, 
+                            DATEPART(WEEK, T.NgayThue) AS Week, 
+                            COALESCE(SUM(T.TienDatCoc), 0) AS Revenue 
+                        FROM ThueSach T 
+                        LEFT JOIN TraSach R ON T.MaThue = R.MaThue 
+                        WHERE R.MaThue IS NULL 
+                        AND T.NgayThue BETWEEN @NgayBD AND @NgayKT 
+                        GROUP BY YEAR(T.NgayThue), DATEPART(WEEK, T.NgayThue) 
+                        UNION ALL 
+                        SELECT 
+                            YEAR(R.NgayTra) AS Year, 
+                            DATEPART(WEEK, R.NgayTra) AS Week, 
+                            COALESCE(SUM(R.TongTien), 0) AS Revenue 
+                        FROM TraSach R 
+                        INNER JOIN ThueSach T ON R.MaThue = T.MaThue 
+                        WHERE T.NgayThue BETWEEN @NgayBD AND @NgayKT 
+                        AND R.NgayTra BETWEEN @NgayBD AND @NgayKT 
+                        GROUP BY YEAR(R.NgayTra), DATEPART(WEEK, R.NgayTra)
+                    ) AS MR ON YEAR(DateTable.WeekStart) = MR.Year 
+                    AND DateTable.WeekStart <= @NgayKT 
+                    AND DateTable.WeekEnd >= @NgayBD 
+                    AND MR.Week = DATEPART(WEEK, DateTable.WeekStart) 
+                    GROUP BY YEAR(DateTable.WeekStart), DATEPART(WEEK, DateTable.WeekStart), 
+                    CONCAT(
+                        LEFT(CONVERT(VARCHAR(10), DateTable.WeekStart, 103), 6), 
+                        RIGHT(CONVERT(VARCHAR(10), DateTable.WeekStart, 103), 2),
+                        ' - ', 
+                        LEFT(CONVERT(VARCHAR(10), DateTable.WeekEnd, 103), 6), 
+                        RIGHT(CONVERT(VARCHAR(10), DateTable.WeekEnd, 103), 2)
+                    )
+                ) 
                 SELECT 
-                    YEAR(DateTable.WeekStart) AS Year, 
-                    DATEPART(WEEK, DateTable.WeekStart) AS WeekNumber, 
-                    CONCAT(CONVERT(VARCHAR(10), DateTable.WeekStart, 23), ' - ', CONVERT(VARCHAR(10), DateTable.WeekEnd, 23)) AS Week, 
-                    COALESCE(SUM(MR.Revenue), 0) AS Revenue 
-                FROM ( 
-                    SELECT 
-                        DATEADD(WEEK, DATEDIFF(WEEK, 0, @NgayBD) + number, 0) AS WeekStart, 
-                        DATEADD(DAY, 6, DATEADD(WEEK, DATEDIFF(WEEK, 0, @NgayBD) + number, 0)) AS WeekEnd 
-                    FROM master..spt_values 
-                    WHERE type = 'P' AND number BETWEEN 0 AND DATEDIFF(WEEK, @NgayBD, @NgayKT) 
-                ) AS DateTable 
-                LEFT JOIN ( 
-                    SELECT 
-                        YEAR(T.NgayThue) AS Year, 
-                        DATEPART(WEEK, T.NgayThue) AS Week, 
-                        COALESCE(SUM(T.TienDatCoc), 0) AS Revenue 
-                    FROM ThueSach T 
-                    LEFT JOIN TraSach R ON T.MaThue = R.MaThue 
-                    WHERE R.MaThue IS NULL 
-                    AND T.NgayThue BETWEEN @NgayBD AND @NgayKT 
-                    GROUP BY YEAR(T.NgayThue), DATEPART(WEEK, T.NgayThue) 
-                    UNION ALL 
-                    SELECT 
-                        YEAR(R.NgayTra) AS Year, 
-                        DATEPART(WEEK, R.NgayTra) AS Week, 
-                        COALESCE(SUM(R.TongTien), 0) AS Revenue 
-                    FROM TraSach R 
-                    INNER JOIN ThueSach T ON R.MaThue = T.MaThue 
-                    WHERE T.NgayThue BETWEEN @NgayBD AND @NgayKT 
-                    AND R.NgayTra BETWEEN @NgayBD AND @NgayKT 
-                    GROUP BY YEAR(R.NgayTra), DATEPART(WEEK, R.NgayTra) 
-                ) AS MR ON YEAR(DateTable.WeekStart) = MR.Year AND DateTable.WeekStart <= @NgayKT AND DateTable.WeekEnd >= @NgayBD AND MR.Week = DATEPART(WEEK, DateTable.WeekStart) 
-                GROUP BY YEAR(DateTable.WeekStart), DATEPART(WEEK, DateTable.WeekStart), CONCAT(CONVERT(VARCHAR(10), DateTable.WeekStart, 23), ' - ', CONVERT(VARCHAR(10), DateTable.WeekEnd, 23)) 
-            ) 
-            SELECT 
-                Year, 
-                WeekNumber, 
-                Week, 
-                SUM(Revenue) AS WeeklyRevenue 
-            FROM WeeklyRevenue 
-            WHERE WeekNumber BETWEEN DATEPART(WEEK, @NgayBD) AND DATEPART(WEEK, @NgayKT) 
+                    Year, 
+                    WeekNumber, 
+                    Week, 
+                    SUM(Revenue) AS WeeklyRevenue 
+                FROM WeeklyRevenue 
+                WHERE WeekNumber BETWEEN DATEPART(WEEK, @NgayBD) AND DATEPART(WEEK, @NgayKT) 
+                GROUP BY Year, WeekNumber, Week 
+                ORDER BY Year, WeekNumber;";
 
-            GROUP BY Year, WeekNumber, Week 
-            ORDER BY Year, WeekNumber;";
+            SqlParameter[] sqlParameters =
+            {
+                new SqlParameter("@NgayBD", ngayBD),
+                new SqlParameter("@NgayKT", ngayKT)
+            };
+
+            return DatabaseLayer.GetDataToTable(sql, sqlParameters);
+        }
+
+        public static DataTable GetBCDoanhThuNgay(DateTime ngayBD, DateTime ngayKT)
+        {
+            string sql = @"WITH DailyRevenue AS (
+                    SELECT 
+                        DateTable.Date AS Date,
+                        COALESCE(SUM(MR.Revenue), 0) AS Revenue 
+                    FROM (
+                        SELECT 
+                            DATEADD(DAY, number, @NgayBD) AS Date
+                        FROM master..spt_values 
+                        WHERE type = 'P' AND number BETWEEN 0 AND DATEDIFF(DAY, @NgayBD, @NgayKT)
+                    ) AS DateTable 
+                    LEFT JOIN (
+                        SELECT 
+                            T.NgayThue AS Date,
+                            COALESCE(SUM(T.TienDatCoc), 0) AS Revenue 
+                        FROM ThueSach T 
+                        LEFT JOIN TraSach R ON T.MaThue = R.MaThue 
+                        WHERE R.MaThue IS NULL 
+                        AND T.NgayThue BETWEEN @NgayBD AND @NgayKT 
+                        GROUP BY T.NgayThue
+                        UNION ALL 
+                        SELECT 
+                            R.NgayTra AS Date,
+                            COALESCE(SUM(R.TongTien), 0) AS Revenue 
+                        FROM TraSach R 
+                        INNER JOIN ThueSach T ON R.MaThue = T.MaThue 
+                        WHERE T.NgayThue BETWEEN @NgayBD AND @NgayKT 
+                        AND R.NgayTra BETWEEN @NgayBD AND @NgayKT 
+                        GROUP BY R.NgayTra
+                    ) AS MR ON DateTable.Date = MR.Date 
+                    GROUP BY DateTable.Date
+                ) 
+                SELECT 
+                    Date,
+                    SUM(Revenue) AS DailyRevenue 
+                FROM DailyRevenue 
+                GROUP BY Date 
+                ORDER BY Date;";
 
             SqlParameter[] sqlParameters =
             {
