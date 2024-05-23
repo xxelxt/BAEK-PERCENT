@@ -3,6 +3,8 @@ using System.Data;
 using System.Data.SqlClient;
 
 using BAEK_PERCENT.Database;
+using BAEK_PERCENT.Forms;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace BAEK_PERCENT.DAL
 {
@@ -240,6 +242,103 @@ namespace BAEK_PERCENT.DAL
             };
 
             return DatabaseLayer.GetDataToTable(sql, sqlParameters);
+        }
+
+        public static int GetSoDonThueThangNay()
+        {
+            string sql = "SELECT COUNT(*) AS SoDonThue FROM ThueSach WHERE MONTH(NgayThue) = MONTH(GETDATE())";
+
+            DataTable dt = DatabaseLayer.GetDataToTable(sql);
+
+            if (dt.Rows.Count == 0)
+            {
+                return 0;
+            }
+            else return Convert.ToInt32(dt.Rows[0]["SoDonThue"]);
+        }
+
+        public static int GetDoanhThuThangNay()
+        {
+            string sql = @"DECLARE @CurrentYear INT = YEAR(GETDATE());
+                    DECLARE @CurrentMonth INT = MONTH(GETDATE());
+
+                    WITH MonthlyRevenue AS (
+                        SELECT
+                            YEAR(T.NgayThue) AS Year,
+                            MONTH(T.NgayThue) AS Month,
+                            COALESCE(SUM(T.TienDatCoc), 0) AS Revenue
+                        FROM ThueSach T
+                        LEFT JOIN TraSach R ON T.MaThue = R.MaThue
+                        WHERE R.MaThue IS NULL
+                        AND YEAR(T.NgayThue) = @CurrentYear
+                        AND MONTH(T.NgayThue) = @CurrentMonth
+                        GROUP BY YEAR(T.NgayThue), MONTH(T.NgayThue)
+                        UNION ALL
+                        SELECT
+                            YEAR(R.NgayTra) AS Year,
+                            MONTH(R.NgayTra) AS Month,
+                            COALESCE(SUM(R.TongTien), 0) AS Revenue
+                        FROM TraSach R
+                        INNER JOIN ThueSach T ON R.MaThue = T.MaThue
+                        WHERE YEAR(R.NgayTra) = @CurrentYear
+                        AND MONTH(R.NgayTra) = @CurrentMonth
+                        GROUP BY YEAR(R.NgayTra), MONTH(R.NgayTra)
+                    )
+
+                    SELECT
+                        @CurrentYear AS Year,
+                        @CurrentMonth AS Month,
+                        COALESCE(SUM(MR.Revenue), 0) AS MonthlyRevenue
+                    FROM MonthlyRevenue MR;";
+
+            DataTable dt = DatabaseLayer.GetDataToTable(sql);
+
+            if (dt.Rows.Count == 0)
+            {
+                return 0;
+            }
+            else return Convert.ToInt32(dt.Rows[0]["MonthlyRevenue"]);
+        }
+
+        public static int GetSoDonThueChuaTraThangNay()
+        {
+            string sql = "SELECT COUNT(*) AS SoDonThue FROM ThueSach WHERE MONTH(NgayThue) = MONTH(GETDATE()) AND YEAR(NgayThue) = YEAR(GETDATE()) AND MaThue NOT IN (SELECT DISTINCT MaThue FROM TraSach WHERE MONTH(NgayTra) = MONTH(GETDATE()) AND YEAR(NgayTra) = YEAR(GETDATE()));";
+
+            DataTable dt = DatabaseLayer.GetDataToTable(sql);
+
+            if (dt.Rows.Count == 0)
+            {
+                return 0;
+            }
+            else return Convert.ToInt32(dt.Rows[0]["SoDonThue"]);
+        }
+
+        public static DataTable GetSoSachThue10Ngay()
+        {
+            string sql = @"WITH DateTable AS (
+                    SELECT 
+                        DATEADD(DAY, -number, CAST(GETDATE() AS DATE)) AS Date
+                    FROM master..spt_values 
+                    WHERE type = 'P' AND number BETWEEN 0 AND 9
+                ),
+                DailyBookRentals AS (
+                    SELECT 
+                        DT.Date AS Date,
+                        COUNT(CT.MaSach) AS BooksRented
+                    FROM DateTable DT
+                    LEFT JOIN ThueSach T ON CAST(T.NgayThue AS DATE) = DT.Date
+                    LEFT JOIN CTThueSach CT ON T.MaThue = CT.MaThue
+                    GROUP BY DT.Date
+                )
+                SELECT 
+                    Date,
+                    BooksRented
+                FROM DailyBookRentals
+                ORDER BY Date;";
+
+            DataTable dt = DatabaseLayer.GetDataToTable(sql);
+
+            return dt;
         }
     }
 }

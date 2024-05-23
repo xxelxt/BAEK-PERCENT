@@ -110,6 +110,10 @@ namespace BAEK_PERCENT
             initForm(childFormHome);
             tabPageHome.Controls.Add(childFormHome);
             childFormHome.Show();
+
+            childFormHome.DirectToThueClicked += FrmHome_DirectToThueClicked;
+            childFormHome.DirectToTraClicked += FrmHome_DirectToTraClicked;
+            childFormHome.DirectToBaoCaoClicked += FrmHome_DirectToBaoCaoClicked;
         }
 
         private void initFormSach()
@@ -270,6 +274,21 @@ namespace BAEK_PERCENT
                 this.Drawer.ShowTabPage(tabPageNN);
                 this.Drawer.ShowTabPage(tabPageTK);
             }
+        }
+
+        private void FrmHome_DirectToThueClicked(object sender, EventArgs e)
+        {
+            materialTabControl.SelectedTab = tabPageThue;
+        }
+
+        private void FrmHome_DirectToTraClicked(object sender, EventArgs e)
+        {
+            materialTabControl.SelectedTab = tabPageThue;
+        }
+
+        private void FrmHome_DirectToBaoCaoClicked(object sender, EventArgs e)
+        {
+            materialTabControl.SelectedTab = tabPageBC;
         }
     }
 }

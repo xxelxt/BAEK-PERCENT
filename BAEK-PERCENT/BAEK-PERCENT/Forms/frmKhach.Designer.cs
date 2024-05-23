@@ -111,7 +111,9 @@
             this.txtTimKiem.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtTimKiem.TrailingIcon = null;
             this.txtTimKiem.UseSystemPasswordChar = false;
+            this.txtTimKiem.Enter += new System.EventHandler(this.txtTimKiem_Enter);
             this.txtTimKiem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTimKiem_KeyDown);
+            this.txtTimKiem.Leave += new System.EventHandler(this.txtTimKiem_Leave);
             // 
             // btnHuy
             // 

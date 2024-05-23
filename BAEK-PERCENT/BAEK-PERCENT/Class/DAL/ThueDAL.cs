@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-
+using System.Security.Cryptography;
 using BAEK_PERCENT.Database;
 
 namespace BAEK_PERCENT.DAL

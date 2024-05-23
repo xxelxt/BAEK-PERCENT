@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 
 using BAEK_PERCENT.Class;
@@ -53,6 +54,9 @@ namespace BAEK_PERCENT.Forms
 
             btnLuu.Enabled = false;
             btnHuy.Enabled = false;
+
+            txtTimKiem.Text = "Nhập từ khóa tìm kiếm";
+            txtTimKiem.ForeColor = Color.Gray;
         }
 
         private void AdjustColumnWidth()
@@ -490,6 +494,24 @@ namespace BAEK_PERCENT.Forms
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void txtTimKiem_Enter(object sender, EventArgs e)
+        {
+            if (txtTimKiem.Text == "Nhập từ khóa tìm kiếm")
+            {
+                txtTimKiem.Text = "";
+                txtTimKiem.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtTimKiem_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtTimKiem.Text))
+            {
+                txtTimKiem.Text = "Nhập từ khóa tìm kiếm";
+                txtTimKiem.ForeColor = Color.Gray;
             }
         }
     }
