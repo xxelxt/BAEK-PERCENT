@@ -116,7 +116,7 @@
             this.swtDarkMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.swtDarkMode.AutoSize = true;
             this.swtDarkMode.Depth = 0;
-            this.swtDarkMode.Location = new System.Drawing.Point(850, 25);
+            this.swtDarkMode.Location = new System.Drawing.Point(850, 18);
             this.swtDarkMode.Margin = new System.Windows.Forms.Padding(0);
             this.swtDarkMode.MouseLocation = new System.Drawing.Point(-1, -1);
             this.swtDarkMode.MouseState = MaterialSkin.MouseState.HOVER;
@@ -137,7 +137,7 @@
             this.materialCard1.Depth = 0;
             this.materialCard1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.materialCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard1.Location = new System.Drawing.Point(689, 78);
+            this.materialCard1.Location = new System.Drawing.Point(41, 476);
             this.materialCard1.Margin = new System.Windows.Forms.Padding(14);
             this.materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialCard1.Name = "materialCard1";
@@ -194,7 +194,7 @@
             this.materialCard2.Depth = 0;
             this.materialCard2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.materialCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard2.Location = new System.Drawing.Point(365, 78);
+            this.materialCard2.Location = new System.Drawing.Point(41, 277);
             this.materialCard2.Margin = new System.Windows.Forms.Padding(14);
             this.materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialCard2.Name = "materialCard2";
@@ -243,8 +243,8 @@
             // 
             // chrHome
             // 
-            this.chrHome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.chrHome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             chartArea2.Name = "ChartArea1";
             this.chrHome.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
@@ -255,24 +255,24 @@
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.chrHome.Series.Add(series2);
-            this.chrHome.Size = new System.Drawing.Size(589, 534);
+            this.chrHome.Size = new System.Drawing.Size(589, 589);
             this.chrHome.TabIndex = 23;
             this.chrHome.Text = "chrHome";
             // 
             // materialCard4
             // 
-            this.materialCard4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.materialCard4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.materialCard4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.materialCard4.Controls.Add(this.chrHome);
             this.materialCard4.Depth = 0;
             this.materialCard4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard4.Location = new System.Drawing.Point(41, 273);
+            this.materialCard4.Location = new System.Drawing.Point(365, 78);
             this.materialCard4.Margin = new System.Windows.Forms.Padding(14);
             this.materialCard4.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialCard4.Name = "materialCard4";
             this.materialCard4.Padding = new System.Windows.Forms.Padding(14);
-            this.materialCard4.Size = new System.Drawing.Size(620, 514);
+            this.materialCard4.Size = new System.Drawing.Size(620, 569);
             this.materialCard4.TabIndex = 24;
             // 
             // frmHome
