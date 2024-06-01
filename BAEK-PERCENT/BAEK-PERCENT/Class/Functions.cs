@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
+
 
 namespace BAEK_PERCENT.Class
 {
@@ -170,6 +173,24 @@ namespace BAEK_PERCENT.Class
             else
             {
                 throw new ArgumentException("Invalid hour format");
+            }
+        }
+        public static string ComputeSha256Hash(string rawData)
+        {
+            // Tạo instance của SHA-256
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                // Chuyển đổi chuỗi đầu vào thành mảng byte
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+
+                // Chuyển đổi mảng byte thành chuỗi hex
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+
+                return builder.ToString();
             }
         }
     }
