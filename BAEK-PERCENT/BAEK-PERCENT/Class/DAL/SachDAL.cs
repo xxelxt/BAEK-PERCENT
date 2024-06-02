@@ -45,6 +45,8 @@ namespace BAEK_PERCENT.DAL
                     throw new ArgumentException("Không có tuỳ chọn tìm kiếm");
             }
 
+            sql += " AND Sach.SoLuong > 0";
+
             return DatabaseLayer.GetDataToTable(sql);
         }
 

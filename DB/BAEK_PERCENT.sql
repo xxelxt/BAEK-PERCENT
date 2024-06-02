@@ -162,7 +162,7 @@ CREATE TABLE KhachHang (
     NgaySinh date NOT NULL,
     GioiTinh bit NOT NULL,
     DiaChi nvarchar(100) NOT NULL,
-	SDT varchar(11) NOT NULL
+    SDT varchar(11) NOT NULL
 );
 
 CREATE TRIGGER trg_KhachHang_Insert
@@ -194,13 +194,7 @@ CREATE TABLE TaiKhoan (
 	TenDangNhap varchar(30) PRIMARY KEY NOT NULL,
 	MatKhau varchar(30) NOT NULL,
 	Quyen int NOT NULL
-)
-
-INSERT INTO TaiKhoan (TenDangNhap, MatKhau, Quyen)
-VALUES ('admin', 'admin', 1),
-       ('user', 'user', 0);
-
-SELECT * FROM TaiKhoan;
+);
 
 -------------------
 -- Bảng NhanVien --

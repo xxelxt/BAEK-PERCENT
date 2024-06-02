@@ -13,6 +13,8 @@ namespace BAEK_PERCENT.Forms
 {
     public partial class frmTra : MaterialForm
     {
+        public string Username { get; set; }
+        
         private DataTable tblCTThueSach;
         private DataTable tblTraSach;
         private DataTable tblCTTraSach;
@@ -109,6 +111,9 @@ namespace BAEK_PERCENT.Forms
 
             txtTimKiem.Text = "Nhập từ khóa tìm kiếm";
             txtTimKiem.ForeColor = Color.Gray;
+
+            txtMaNV.Text = NhanVienDAL.GetMaNVByUsername(Username);
+            txtMaNV.Enabled = false;
         }
 
         private void AdjustColumnWidth()
@@ -145,7 +150,7 @@ namespace BAEK_PERCENT.Forms
             listView.Columns[3].Width = col4Width;
         }
 
-        private void LoadData()
+        public void LoadData()
         {
             try
             {
@@ -415,8 +420,7 @@ namespace BAEK_PERCENT.Forms
             txtMaTra.Text = "";
             txtMaThue.Text = "";
             txtTenKH.Text = "";
-            txtMaNV.Text = "";
-            txtTenNV.Text = "";
+            txtMaNV.Text = txtMaNV.Text = NhanVienDAL.GetMaNVByUsername(Username);
             txtNgayThue.Text = "";
             txtNgayTra.Text = "";
             txtNgayThucTe.Text = "";

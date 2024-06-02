@@ -179,16 +179,7 @@ namespace BAEK_PERCENT.Forms
                 txtTenNV.Text = selectedItem.SubItems[1].Text;
 
                 string taiKhoanText = selectedItem.SubItems[2].Text;
-
-                if (taiKhoanText == "admin")
-                {
-                    cboTaiKhoan.SelectedIndex = 0;
-                        
-                }
-                else
-                {
-                    cboTaiKhoan.SelectedIndex = 1;
-                }
+                cboTaiKhoan.SelectedValue = taiKhoanText;
 
                 string ngaySinhStr = selectedItem.SubItems[3].Text;
                 DateTime ngaySinh;

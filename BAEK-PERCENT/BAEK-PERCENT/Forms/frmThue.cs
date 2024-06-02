@@ -2,7 +2,7 @@
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-
+using Azure.Identity;
 using BAEK_PERCENT.Class;
 using BAEK_PERCENT.DAL;
 using BAEK_PERCENT.Database;
@@ -12,6 +12,8 @@ namespace BAEK_PERCENT.Forms
 {
     public partial class frmThue : MaterialForm
     {
+        public string Username { get; set; }
+
         private DataTable tblThueSach;
         private DataTable tblCTThueSach;
 
@@ -86,6 +88,9 @@ namespace BAEK_PERCENT.Forms
 
             txtTimKiem.Text = "Nhập từ khóa tìm kiếm";
             txtTimKiem.ForeColor = Color.Gray;
+
+            txtMaNV.Text = NhanVienDAL.GetMaNVByUsername(Username);
+            txtMaNV.Enabled = false;
         }
 
         private void AdjustColumnWidth()
@@ -122,7 +127,7 @@ namespace BAEK_PERCENT.Forms
             listViewCTThue.Columns[3].Width = col4Width;
         }
 
-        private void LoadData()
+        public void LoadData()
         {
             try
             {
@@ -369,8 +374,7 @@ namespace BAEK_PERCENT.Forms
             txtMaThue.Text = "";
             txtMaKH.Text = "";
             txtTenKH.Text = "";
-            txtMaNV.Text = "";
-            txtTenNV.Text = "";
+            txtMaNV.Text = NhanVienDAL.GetMaNVByUsername(Username);
             txtNgayThue.Text = "";
             txtNgayTra.Text = "";
             txtTienDatCoc.Text = "";

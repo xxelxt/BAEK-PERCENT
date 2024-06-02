@@ -240,8 +240,11 @@ namespace BAEK_PERCENT.DAL
             string sqlDelete = "DELETE FROM " + TableName + " WHERE MaTra = @MaTra";
             string sqlDeleteCT = "DELETE FROM " + TableCTName + " WHERE MaTra = @MaTra";
 
-            DatabaseLayer.RunSqlDel(sqlDeleteCT, sqlParams);
-            DatabaseLayer.RunSqlDel(sqlDelete, sqlParams);
+            SqlParameter[] parameters = { new SqlParameter("@MaTra", maTra) };
+            SqlParameter[] parametersCT = { new SqlParameter("@MaTra", maTra) };
+
+            DatabaseLayer.RunSqlDel(sqlDeleteCT, parametersCT);
+            DatabaseLayer.RunSqlDel(sqlDelete, parameters);
         }
 
         public static void UpdateTra(string maTra, string maThue, string maNV, DateTime ngayTra, int tongTien)

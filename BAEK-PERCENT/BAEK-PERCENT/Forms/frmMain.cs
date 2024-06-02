@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-
+using System.Windows.Media.Animation;
+using BAEK_PERCENT.Class;
 using BAEK_PERCENT.Class.Types;
 using BAEK_PERCENT.Forms;
 
@@ -53,11 +54,12 @@ namespace BAEK_PERCENT
             materialSkinManager.ColorScheme = colorScheme;
             materialSkinManager.AddFormToManage(this);
 
-            initAllForm();
-
             UpdateFormTitle(materialTabControl.SelectedTab);
-
         }
+
+        public UserRole currentRole;
+
+        public string Username { get; set; }
 
         private MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
 
@@ -127,6 +129,7 @@ namespace BAEK_PERCENT
         private void initFormThue()
         {
             childFormThue = new frmThue();
+            childFormThue.Username = this.Username;
             initForm(childFormThue);
             tabPageThue.Controls.Add(childFormThue);
             childFormThue.Show();
@@ -135,6 +138,7 @@ namespace BAEK_PERCENT
         private void initFormTra()
         {
             childFormTra = new frmTra();
+            childFormTra.Username = this.Username;
             initForm(childFormTra);
             tabPageTra.Controls.Add(childFormTra);
             childFormTra.Show();
@@ -215,31 +219,47 @@ namespace BAEK_PERCENT
         private void initFormThongTin()
         {
             childFormThongTin = new frmThongTin();
+            childFormThongTin.Username = this.Username;
+            childFormThongTin.currentRole = this.currentRole;
             initForm(childFormThongTin);
             tabPageTT.Controls.Add(childFormThongTin);
             childFormThongTin.Show();
         }
 
-        public UserRole currentRole;
-
         private void atEnd_frmMain_Shown(object sender, EventArgs e)
         {
+            initAllForm();
+            UpdateChildForms();
             UpdateTabVisibility(); // Update tab visibility when the form is shown
         }
 
-        private void SetUserRole(UserRole role)
+        private void UpdateChildForms()
         {
-            this.currentRole = role;
-            UpdateTabVisibility(); // Update tab visibility when role changes
+            childFormThue.Username = this.Username;
+            childFormTra.Username = this.Username;
+            childFormThongTin.Username = this.Username;
+            childFormThongTin.currentRole = this.currentRole;
+
+            // Reload data for child forms that depend on Username
+            childFormThue.LoadData();
+            childFormTra.LoadData();
+            childFormThongTin.LoadData();
         }
 
         private void frmMain_VisibleChanged(object sender, EventArgs e)
         {
-            UpdateTabVisibility();
+            if (this.Visible)
+            {
+                initAllForm();
+                UpdateChildForms();
+                UpdateTabVisibility();
+            }
         }
 
         private void UpdateTabVisibility()
         {
+            childFormHome.SetDoanhThuCardVisible(this.currentRole == UserRole.Admin);
+
             if (this.currentRole == UserRole.User)
             {
                 HideUserTabs();
@@ -257,8 +277,6 @@ namespace BAEK_PERCENT
                 this.Drawer.HideTabPage(tabPageBC); 
                 this.Drawer.HideTabPage(tabPageNV);
                 this.Drawer.HideTabPage(tabPageVP);
-                this.Drawer.HideTabPage(tabPageSach);
-                this.Drawer.HideTabPage(tabPageNN);
                 this.Drawer.HideTabPage(tabPageTK);
             }
         }
@@ -270,8 +288,6 @@ namespace BAEK_PERCENT
                 this.Drawer.ShowTabPage(tabPageBC);
                 this.Drawer.ShowTabPage(tabPageNV);
                 this.Drawer.ShowTabPage(tabPageVP);
-                this.Drawer.ShowTabPage(tabPageSach);
-                this.Drawer.ShowTabPage(tabPageNN);
                 this.Drawer.ShowTabPage(tabPageTK);
             }
         }
@@ -283,7 +299,7 @@ namespace BAEK_PERCENT
 
         private void FrmHome_DirectToTraClicked(object sender, EventArgs e)
         {
-            materialTabControl.SelectedTab = tabPageThue;
+            materialTabControl.SelectedTab = tabPageTra;
         }
 
         private void FrmHome_DirectToBaoCaoClicked(object sender, EventArgs e)
@@ -291,4 +307,4 @@ namespace BAEK_PERCENT
             materialTabControl.SelectedTab = tabPageBC;
         }
     }
-}
+};

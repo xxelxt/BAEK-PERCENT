@@ -67,6 +67,14 @@ namespace BAEK_PERCENT.Forms
             BCSach10Ngay();
         }
 
+        public void SetDoanhThuCardVisible(bool isVisible)
+        {
+            lblDoanhThu.Visible = isVisible;
+            lblDoanhThuThang.Visible = isVisible;
+            materialCardDT.Visible = isVisible;
+            btnDirectToBaoCao.Visible = isVisible;
+        }
+
         private void BCSach10Ngay()
         {
             DataTable dt = BaoCaoDAL.GetSoSachThue10Ngay();

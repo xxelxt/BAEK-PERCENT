@@ -211,7 +211,7 @@ namespace BAEK_PERCENT.Forms
             if (ValidateInput())
             {
                 string username = txtUsername.Text.Trim();
-                string password = txtPassword.Text.Trim();
+                string password = Functions.ComputeSha256Hash(txtPassword.Text.Trim());
                 string privStr = cboPriv.SelectedItem.ToString();
 
                 int priv = -1;
@@ -271,7 +271,7 @@ namespace BAEK_PERCENT.Forms
             if (ValidateInput())
             {
                 string username = txtUsername.Text.Trim();
-                string password = txtPassword.Text.Trim();
+                string password = Functions.ComputeSha256Hash(txtPassword.Text.Trim());
                 string privStr = cboPriv.SelectedItem.ToString();
 
                 int priv = -1;

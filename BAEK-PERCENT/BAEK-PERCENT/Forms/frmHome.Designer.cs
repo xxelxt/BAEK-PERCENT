@@ -37,8 +37,8 @@
             this.lblSoDonThueThang = new MaterialSkin.Controls.MaterialLabel();
             this.btnDirectToThue = new MaterialSkin.Controls.MaterialFloatingActionButton();
             this.swtDarkMode = new MaterialSkin.Controls.MaterialSwitch();
-            this.materialCard1 = new MaterialSkin.Controls.MaterialCard();
-            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialCardDT = new MaterialSkin.Controls.MaterialCard();
+            this.lblDoanhThu = new MaterialSkin.Controls.MaterialLabel();
             this.lblDoanhThuThang = new MaterialSkin.Controls.MaterialLabel();
             this.btnDirectToBaoCao = new MaterialSkin.Controls.MaterialFloatingActionButton();
             this.materialCard2 = new MaterialSkin.Controls.MaterialCard();
@@ -48,7 +48,7 @@
             this.chrHome = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.materialCard4 = new MaterialSkin.Controls.MaterialCard();
             this.materialCard3.SuspendLayout();
-            this.materialCard1.SuspendLayout();
+            this.materialCardDT.SuspendLayout();
             this.materialCard2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chrHome)).BeginInit();
             this.materialCard4.SuspendLayout();
@@ -128,34 +128,34 @@
             this.swtDarkMode.UseVisualStyleBackColor = true;
             this.swtDarkMode.CheckedChanged += new System.EventHandler(this.swtDarkMode_CheckedChanged);
             // 
-            // materialCard1
+            // materialCardDT
             // 
-            this.materialCard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialCard1.Controls.Add(this.materialLabel2);
-            this.materialCard1.Controls.Add(this.lblDoanhThuThang);
-            this.materialCard1.Controls.Add(this.btnDirectToBaoCao);
-            this.materialCard1.Depth = 0;
-            this.materialCard1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.materialCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard1.Location = new System.Drawing.Point(41, 476);
-            this.materialCard1.Margin = new System.Windows.Forms.Padding(14);
-            this.materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialCard1.Name = "materialCard1";
-            this.materialCard1.Padding = new System.Windows.Forms.Padding(14);
-            this.materialCard1.Size = new System.Drawing.Size(296, 171);
-            this.materialCard1.TabIndex = 21;
+            this.materialCardDT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialCardDT.Controls.Add(this.lblDoanhThu);
+            this.materialCardDT.Controls.Add(this.lblDoanhThuThang);
+            this.materialCardDT.Controls.Add(this.btnDirectToBaoCao);
+            this.materialCardDT.Depth = 0;
+            this.materialCardDT.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.materialCardDT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialCardDT.Location = new System.Drawing.Point(41, 476);
+            this.materialCardDT.Margin = new System.Windows.Forms.Padding(14);
+            this.materialCardDT.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCardDT.Name = "materialCardDT";
+            this.materialCardDT.Padding = new System.Windows.Forms.Padding(14);
+            this.materialCardDT.Size = new System.Drawing.Size(296, 171);
+            this.materialCardDT.TabIndex = 21;
             // 
-            // materialLabel2
+            // lblDoanhThu
             // 
-            this.materialLabel2.AutoSize = true;
-            this.materialLabel2.Depth = 0;
-            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel2.Location = new System.Drawing.Point(25, 25);
-            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(150, 19);
-            this.materialLabel2.TabIndex = 20;
-            this.materialLabel2.Text = "Doanh thu tháng này";
+            this.lblDoanhThu.AutoSize = true;
+            this.lblDoanhThu.Depth = 0;
+            this.lblDoanhThu.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblDoanhThu.Location = new System.Drawing.Point(25, 25);
+            this.lblDoanhThu.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblDoanhThu.Name = "lblDoanhThu";
+            this.lblDoanhThu.Size = new System.Drawing.Size(150, 19);
+            this.lblDoanhThu.TabIndex = 20;
+            this.lblDoanhThu.Text = "Doanh thu tháng này";
             // 
             // lblDoanhThuThang
             // 
@@ -240,6 +240,7 @@
             this.btnDirectToTra.TabIndex = 1;
             this.btnDirectToTra.Text = "materialFloatingActionButton3";
             this.btnDirectToTra.UseVisualStyleBackColor = true;
+            this.btnDirectToTra.Click += new System.EventHandler(this.btnDirectToTra_Click);
             // 
             // chrHome
             // 
@@ -283,7 +284,7 @@
             this.ClientSize = new System.Drawing.Size(1024, 819);
             this.Controls.Add(this.materialCard4);
             this.Controls.Add(this.materialCard2);
-            this.Controls.Add(this.materialCard1);
+            this.Controls.Add(this.materialCardDT);
             this.Controls.Add(this.swtDarkMode);
             this.Controls.Add(this.materialCard3);
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.StatusAndActionBar_None;
@@ -293,8 +294,8 @@
             this.Load += new System.EventHandler(this.frmHome_Load);
             this.materialCard3.ResumeLayout(false);
             this.materialCard3.PerformLayout();
-            this.materialCard1.ResumeLayout(false);
-            this.materialCard1.PerformLayout();
+            this.materialCardDT.ResumeLayout(false);
+            this.materialCardDT.PerformLayout();
             this.materialCard2.ResumeLayout(false);
             this.materialCard2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chrHome)).EndInit();
@@ -310,8 +311,8 @@
         private MaterialSkin.Controls.MaterialSwitch swtDarkMode;
         private MaterialSkin.Controls.MaterialLabel lblSoDonThueThang;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private MaterialSkin.Controls.MaterialCard materialCard1;
-        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialCard materialCardDT;
+        private MaterialSkin.Controls.MaterialLabel lblDoanhThu;
         private MaterialSkin.Controls.MaterialLabel lblDoanhThuThang;
         private MaterialSkin.Controls.MaterialFloatingActionButton btnDirectToBaoCao;
         private MaterialSkin.Controls.MaterialCard materialCard2;

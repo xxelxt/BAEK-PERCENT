@@ -4,7 +4,6 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 
-
 namespace BAEK_PERCENT.Class
 {
     internal static class Functions
@@ -175,6 +174,7 @@ namespace BAEK_PERCENT.Class
                 throw new ArgumentException("Invalid hour format");
             }
         }
+
         public static string ComputeSha256Hash(string rawData)
         {
             // Tạo instance của SHA-256

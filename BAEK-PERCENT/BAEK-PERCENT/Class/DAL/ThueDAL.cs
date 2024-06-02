@@ -183,8 +183,11 @@ namespace BAEK_PERCENT.DAL
             string sqlDelete = "DELETE FROM " + TableName + " WHERE MaThue = @MaThue";
             string sqlDeleteCT = "DELETE FROM " + TableCTName + " WHERE MaThue = @MaThue";
 
-            DatabaseLayer.RunSqlDel(sqlDelete, sqlParams);
-            DatabaseLayer.RunSqlDel(sqlDeleteCT, sqlParams);
+            SqlParameter[] parameters = { new SqlParameter("@MaThue", maThue) };
+            SqlParameter[] parametersCT = { new SqlParameter("@MaThue", maThue) };
+
+            DatabaseLayer.RunSqlDel(sqlDeleteCT, parametersCT);
+            DatabaseLayer.RunSqlDel(sqlDelete, parameters);
         }
 
         public static void UpdateThue(string maThue, string maKH, string maNV, DateTime ngayThue, DateTime ngayTra, int tienDatCoc)
