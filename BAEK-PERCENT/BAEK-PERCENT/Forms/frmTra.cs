@@ -1,20 +1,19 @@
-﻿using System;
+﻿using BAEK_PERCENT.Class;
+using BAEK_PERCENT.DAL;
+using BAEK_PERCENT.Database;
+using MaterialSkin.Controls;
+using System;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-
-using BAEK_PERCENT.Class;
-using BAEK_PERCENT.DAL;
-using BAEK_PERCENT.Database;
-using MaterialSkin.Controls;
 
 namespace BAEK_PERCENT.Forms
 {
     public partial class frmTra : MaterialForm
     {
         public string Username { get; set; }
-        
+
         private DataTable tblCTThueSach;
         private DataTable tblTraSach;
         private DataTable tblCTTraSach;
@@ -895,15 +894,15 @@ namespace BAEK_PERCENT.Forms
                     try
                     {
                         TraDAL.DeleteSachCTTra(maTra, maSach);
-                        Functions.HandleInfo("Xóa sách thành công"); 
-                        
+                        Functions.HandleInfo("Xóa sách thành công");
+
                         DataTable tblTra = ThueDAL.GetCTThue(maThue);
                         DataTable tblCTTra = TraDAL.GetThongTinCTTra(maTra);
 
                         // Sum up the rental price and individual book prices
                         int totalGiaThue = tblTra.AsEnumerable().Sum(row => row.Field<int>("GiaThue"));
                         int totalThanhTien = tblCTTra.AsEnumerable().Sum(row => row.Field<int>("ThanhTien"));
-                        
+
                         tongTien = totalGiaThue + totalThanhTien;
                         txtTongTien.Text = tongTien.ToString();
 

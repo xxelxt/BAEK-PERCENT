@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Data;
 using System.IO;
-using BAEK_PERCENT.Database;
-using Microsoft.Office.Interop.Excel;
 
 namespace BAEK_PERCENT.Class
 {
@@ -175,7 +174,7 @@ namespace BAEK_PERCENT.Class
             {
                 File.Delete(filePath);
             }
-            
+
             exBook.SaveAs(filePath); // Lưu file Excel
             exApp.Visible = true; // Hiển thị file Excel
 
@@ -373,12 +372,12 @@ namespace BAEK_PERCENT.Class
 
             // Lưu file Excel
             string filePath = $"E:\\rkive\\6\\.NET\\BAEK\\Excel\\BillTra\\{tblThongTinTra.Rows[0]["MaTra"]}.xlsx"; // Đường dẫn lưu file
-            
+
             if (File.Exists(filePath))
             {
                 File.Delete(filePath);
             }
-            
+
             exBook.SaveAs(filePath); // Lưu file Excel
             exApp.Visible = true; // Hiển thị file Excel
 

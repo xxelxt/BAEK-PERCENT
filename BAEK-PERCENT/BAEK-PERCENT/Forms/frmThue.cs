@@ -1,12 +1,11 @@
-﻿using System;
-using System.Data;
-using System.Drawing;
-using System.Windows.Forms;
-using Azure.Identity;
-using BAEK_PERCENT.Class;
+﻿using BAEK_PERCENT.Class;
 using BAEK_PERCENT.DAL;
 using BAEK_PERCENT.Database;
 using MaterialSkin.Controls;
+using System;
+using System.Data;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace BAEK_PERCENT.Forms
 {
@@ -543,7 +542,7 @@ namespace BAEK_PERCENT.Forms
                 ThueDAL.DeleteEmptyThue(maThue);
             }
 
-            LoadDataCT(""); 
+            LoadDataCT("");
             LoadData();
         }
 
@@ -699,7 +698,7 @@ namespace BAEK_PERCENT.Forms
                         return;
                     }
 
-                    int tienDatCoc =  Convert.ToInt32(txtTienDatCoc.Text.Trim());
+                    int tienDatCoc = Convert.ToInt32(txtTienDatCoc.Text.Trim());
 
                     try
                     {
@@ -728,7 +727,7 @@ namespace BAEK_PERCENT.Forms
                     catch (Exception ex)
                     {
                         Functions.HandleError("Lỗi khi thêm thuê sách: " + ex.Message);
-                    }   
+                    }
                 }
             }
         }
@@ -841,7 +840,8 @@ namespace BAEK_PERCENT.Forms
                     ThueDAL.UpdateSachCTThue(maThue, maSach, giaThue, tinhTrang);
                     Functions.HandleInfo("Sửa chi tiết thuê sách thành công");
 
-                    if (tinhTrang == true && tinhTrangCu == false) {
+                    if (tinhTrang == true && tinhTrangCu == false)
+                    {
                         SachDAL.TangSoLuong(maSach);
                     }
                     else if (tinhTrang == false && tinhTrangCu == true)

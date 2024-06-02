@@ -1,12 +1,11 @@
-﻿using System;
+﻿using BAEK_PERCENT.DAL;
+using MaterialSkin;
+using MaterialSkin.Controls;
+using System;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms.DataVisualization.Charting;
-
-using BAEK_PERCENT.DAL;
-using MaterialSkin;
-using MaterialSkin.Controls;
 
 namespace BAEK_PERCENT.Forms
 {
@@ -110,7 +109,7 @@ namespace BAEK_PERCENT.Forms
                 int booksRented = Convert.ToInt32(row["BooksRented"]);
 
                 series.Points.AddXY(date, booksRented);
-                series.Points[series.Points.Count - 1].Label = booksRented.ToString(); 
+                series.Points[series.Points.Count - 1].Label = booksRented.ToString();
 
                 if (booksRented > maxBooksRented)
                 {

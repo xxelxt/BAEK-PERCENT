@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using BAEK_PERCENT.Class.Types;
 
 namespace BAEK_PERCENT
 {

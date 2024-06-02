@@ -1,11 +1,10 @@
-﻿using System;
+﻿using BAEK_PERCENT.Class;
+using BAEK_PERCENT.DAL;
+using MaterialSkin.Controls;
+using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-
-using BAEK_PERCENT.Class;
-using BAEK_PERCENT.DAL;
-using MaterialSkin.Controls;
 
 namespace BAEK_PERCENT.Forms
 {
@@ -281,7 +280,7 @@ namespace BAEK_PERCENT.Forms
             {
                 Functions.HandleInfo("Bạn chưa chọn bản ghi nào để sửa");
                 return;
-            }    
+            }
 
             if (ValidateInput())
             {

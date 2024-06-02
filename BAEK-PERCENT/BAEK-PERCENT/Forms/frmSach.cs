@@ -1,12 +1,11 @@
-﻿using System;
-using System.Data;
-using System.Drawing;
-using System.Windows.Forms;
-
-using BAEK_PERCENT.Class;
+﻿using BAEK_PERCENT.Class;
 using BAEK_PERCENT.DAL;
 using BAEK_PERCENT.Database;
 using MaterialSkin.Controls;
+using System;
+using System.Data;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace BAEK_PERCENT.Forms
 {
@@ -47,7 +46,7 @@ namespace BAEK_PERCENT.Forms
             cboTimKiem.Items.Add("Tác giả");
             cboTimKiem.Items.Add("Ngôn ngữ");
 
-            cboSoLuong.Items.Add("Mặc định"); 
+            cboSoLuong.Items.Add("Mặc định");
             cboSoLuong.Items.Add("Tăng dần");
             cboSoLuong.Items.Add("Giảm dần");
 
@@ -272,9 +271,9 @@ namespace BAEK_PERCENT.Forms
             else
             {
                 ResetValues();
-                
-                btnAnh.Enabled = false; 
-                
+
+                btnAnh.Enabled = false;
+
                 btnSua.Enabled = false;
                 btnXoa.Enabled = false;
                 btnHuy.Enabled = false;
@@ -628,7 +627,7 @@ namespace BAEK_PERCENT.Forms
 
             LoadData();
         }
-            
+
         private void cboSoLuong_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (chkSoLuong.Checked)

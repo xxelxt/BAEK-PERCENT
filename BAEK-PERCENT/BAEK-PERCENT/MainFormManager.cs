@@ -1,7 +1,6 @@
-﻿using System;
+﻿using BAEK_PERCENT.Forms;
+using System;
 using System.Windows.Forms;
-
-using BAEK_PERCENT.Forms;
 
 namespace BAEK_PERCENT
 {

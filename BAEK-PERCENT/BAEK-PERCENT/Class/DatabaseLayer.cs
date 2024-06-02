@@ -1,16 +1,15 @@
-﻿using System;
+﻿using MaterialSkin.Controls;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
-using MaterialSkin.Controls;
-
 namespace BAEK_PERCENT.Database
 {
     internal static class DatabaseLayer
     {
-        private static readonly string connectionString = 
+        private static readonly string connectionString =
             ConfigurationManager.ConnectionStrings["BAEKconnection"].ConnectionString;
 
         public static SqlConnection conn { get; private set; }

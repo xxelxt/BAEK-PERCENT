@@ -1,12 +1,11 @@
-﻿using System;
-using System.Data;
-using System.Drawing;
-using System.Windows.Forms;
-
-using BAEK_PERCENT.Class;
+﻿using BAEK_PERCENT.Class;
 using BAEK_PERCENT.DAL;
 using BAEK_PERCENT.Database;
 using MaterialSkin.Controls;
+using System;
+using System.Data;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace BAEK_PERCENT.Forms
 {

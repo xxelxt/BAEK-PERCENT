@@ -1,8 +1,7 @@
-﻿using System;
+﻿using BAEK_PERCENT.Database;
+using System;
 using System.Data;
 using System.Data.SqlClient;
-
-using BAEK_PERCENT.Database;
 
 namespace BAEK_PERCENT.DAL
 {
@@ -103,7 +102,7 @@ namespace BAEK_PERCENT.DAL
             };
 
             DataTable dt = DatabaseLayer.GetDataToTable(query, parameters);
-            
+
             if (dt.Rows.Count > 0)
             {
                 return dt.Rows[0]["TenNV"].ToString();

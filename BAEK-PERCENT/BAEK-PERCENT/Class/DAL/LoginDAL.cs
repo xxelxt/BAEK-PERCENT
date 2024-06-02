@@ -1,8 +1,7 @@
-﻿using System.Data;
-using System.Data.SqlClient;
-
-using BAEK_PERCENT.Class.Types;
+﻿using BAEK_PERCENT.Class.Types;
 using BAEK_PERCENT.Database;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace BAEK_PERCENT.DAL
 {
@@ -12,7 +11,7 @@ namespace BAEK_PERCENT.DAL
         public static UserRole? TryLogin(string username, string password)
         {
             string sqlCheckKey = "SELECT * FROM TaiKhoan WHERE TenDangNhap = @username AND MatKhau = @password";
-            SqlParameter[] checkKeyParams = { 
+            SqlParameter[] checkKeyParams = {
                 new SqlParameter("@username", username),
                 new SqlParameter("@password", password)
             };

@@ -1,8 +1,7 @@
-﻿using System;
+﻿using BAEK_PERCENT.Database;
+using System;
 using System.Data;
 using System.Data.SqlClient;
-
-using BAEK_PERCENT.Database;
 
 namespace BAEK_PERCENT.DAL
 {
@@ -14,8 +13,8 @@ namespace BAEK_PERCENT.DAL
 
         public static DataTable GetAllTra()
         {
-            string sql = "SELECT Tr.MaTra, Tr.MaThue, T.MaKH, KH.TenKH, Tr.MaNV, NV.TenNV, T.NgayThue, T.NgayTra, Tr.NgayTra AS NgayThucTe, T.TienDatCoc, Tr.TongTien " + 
-                $"FROM {TableName} Tr " + 
+            string sql = "SELECT Tr.MaTra, Tr.MaThue, T.MaKH, KH.TenKH, Tr.MaNV, NV.TenNV, T.NgayThue, T.NgayTra, Tr.NgayTra AS NgayThucTe, T.TienDatCoc, Tr.TongTien " +
+                $"FROM {TableName} Tr " +
                 $"INNER JOIN {TableThueName} T ON Tr.MaThue = T.MaThue " +
                 "INNER JOIN KhachHang KH ON T.MaKH = KH.MaKH " +
                 "INNER JOIN NhanVien NV ON T.MaNV = NV.MaNV";
@@ -251,7 +250,7 @@ namespace BAEK_PERCENT.DAL
         {
             string sqlUpdate = "UPDATE " + TableName + " SET MaThue = @MaThue, MaNV = @MaNV, NgayTra = @NgayTra, TongTien = @TongTien WHERE MaTra = @MaTra";
             SqlParameter[] updateParams =
-            { 
+            {
                 new SqlParameter("@MaThue", maThue),
                 new SqlParameter("@MaNV", maNV),
                 new SqlParameter("@NgayTra", ngayTra),
@@ -359,7 +358,7 @@ namespace BAEK_PERCENT.DAL
                 INNER JOIN " + TableName + @" Tr ON Tr.MaThue = CTT.MaThue 
                 INNER JOIN " + TableCTName + @" CTTr ON Tr.MaTra = CTTr.MaTra 
                 WHERE CTT.MaThue = @MaThue;";
-    
+
             // Trường hợp mã thuê chưa tồn tại mã trả
             string sqlWithoutReturn = "SELECT SUM(GiaThue) AS TongTien FROM CTThueSach WHERE MaThue = @MaThue";
 

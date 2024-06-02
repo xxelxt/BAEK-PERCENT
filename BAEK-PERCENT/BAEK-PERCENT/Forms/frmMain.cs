@@ -1,20 +1,17 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Windows.Media.Animation;
-using BAEK_PERCENT.Class;
-using BAEK_PERCENT.Class.Types;
+﻿using BAEK_PERCENT.Class.Types;
 using BAEK_PERCENT.Forms;
-
 using MaterialSkin;
 using MaterialSkin.Controls;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace BAEK_PERCENT
 {
     public partial class frmMain : MaterialForm
     {
         private frmHome childFormHome;
-        
+
         private frmSach childFormSach;
         private frmThue childFormThue;
         private frmTra childFormTra;
@@ -74,7 +71,7 @@ namespace BAEK_PERCENT
         private void initAllForm()
         {
             initFormHome();
-            
+
             initFormSach();
             initFormThue();
             initFormTra();
@@ -274,7 +271,7 @@ namespace BAEK_PERCENT
         {
             if (Drawer != null && Drawer.BaseTabControl != null)
             {
-                this.Drawer.HideTabPage(tabPageBC); 
+                this.Drawer.HideTabPage(tabPageBC);
                 this.Drawer.HideTabPage(tabPageNV);
                 this.Drawer.HideTabPage(tabPageVP);
                 this.Drawer.HideTabPage(tabPageTK);
