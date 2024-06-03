@@ -112,8 +112,8 @@ namespace BAEK_PERCENT.Forms
             int totalWidth = listViewCTThue.ClientSize.Width;
             double col1Percentage = 0.2;
             double col2Percentage = 0.3;
-            double col3Percentage = 0.25;
-            double col4Percentage = 0.25;
+            double col3Percentage = 0.2;
+            double col4Percentage = 0.3;
 
             int col1Width = (int)(totalWidth * col1Percentage);
             int col2Width = (int)(totalWidth * col2Percentage);

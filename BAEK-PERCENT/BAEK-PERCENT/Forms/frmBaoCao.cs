@@ -2,6 +2,7 @@
 using BAEK_PERCENT.DAL;
 using MaterialSkin.Controls;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -460,7 +461,9 @@ namespace BAEK_PERCENT.Forms
                 Font = new Font("Microsoft Sans Serif", 14)
             };
 
-            int maxBookCount = 0;
+            Dictionary<string, int> lostBooks = new Dictionary<string, int>();
+            Dictionary<string, int> damagedBooks = new Dictionary<string, int>();
+            HashSet<string> allBooks = new HashSet<string>();
 
             foreach (DataRow row in dt.Rows)
             {
@@ -468,22 +471,49 @@ namespace BAEK_PERCENT.Forms
                 string violationType = row["TenVP"].ToString();
                 int quantity = Convert.ToInt32(row["SoLuongSach"]);
 
+                allBooks.Add(bookName);
+
                 if (violationType == "Mất sách")
                 {
-                    lostBooksSeries.Points.AddXY(bookName, quantity);
-                    lostBooksSeries.Points[lostBooksSeries.Points.Count - 1].Label = quantity.ToString();
-                    lostBooksSeries.Points[lostBooksSeries.Points.Count - 1].Font = new Font("Microsoft Sans Serif", 12);
+                    if (!lostBooks.ContainsKey(bookName))
+                    {
+                        lostBooks[bookName] = 0;
+                    }
+                    lostBooks[bookName] += quantity;
                 }
                 else if (violationType == "Hỏng sách")
                 {
-                    damagedBooksSeries.Points.AddXY(bookName, quantity);
-                    damagedBooksSeries.Points[damagedBooksSeries.Points.Count - 1].Label = quantity.ToString();
-                    damagedBooksSeries.Points[damagedBooksSeries.Points.Count - 1].Font = new Font("Microsoft Sans Serif", 12);
+                    if (!damagedBooks.ContainsKey(bookName))
+                    {
+                        damagedBooks[bookName] = 0;
+                    }
+                    damagedBooks[bookName] += quantity;
+                }
+            }
+
+            int maxBookCount = 0;
+
+            foreach (string bookName in allBooks)
+            {
+                int lostQuantity = lostBooks.ContainsKey(bookName) ? lostBooks[bookName] : 0;
+                int damagedQuantity = damagedBooks.ContainsKey(bookName) ? damagedBooks[bookName] : 0;
+
+                lostBooksSeries.Points.AddXY(bookName, lostQuantity);
+                lostBooksSeries.Points[lostBooksSeries.Points.Count - 1].Label = lostQuantity.ToString();
+                lostBooksSeries.Points[lostBooksSeries.Points.Count - 1].Font = new Font("Microsoft Sans Serif", 12);
+
+                damagedBooksSeries.Points.AddXY(bookName, damagedQuantity);
+                damagedBooksSeries.Points[damagedBooksSeries.Points.Count - 1].Label = damagedQuantity.ToString();
+                damagedBooksSeries.Points[damagedBooksSeries.Points.Count - 1].Font = new Font("Microsoft Sans Serif", 12);
+
+                if (lostQuantity > maxBookCount)
+                {
+                    maxBookCount = lostQuantity;
                 }
 
-                if (quantity > maxBookCount)
+                if (damagedQuantity > maxBookCount)
                 {
-                    maxBookCount = quantity;
+                    maxBookCount = damagedQuantity;
                 }
             }
 

@@ -161,11 +161,17 @@ namespace BAEK_PERCENT.Class
                 exRange.Font.Italic = true;
                 exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
                 exRange.Value = $"Bằng chữ: {Functions.ChuyenSoSangChu(tblThongTinThue.Rows[0]["TongTien"].ToString())}";
+
+                exRange = exSheet.Range[$"A{rowIndex + 6}:F{rowIndex + 6}"];
+                exRange.Merge();
+                exRange.Font.Size = 11;
+                exRange.Font.Italic = true;
+                exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+                exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+                exRange.Value = $"Ngày xuất: {DateTime.Now.ToString()}";
             }
 
-            exSheet.Rows[$"1:{rowIndex + 4}"].RowHeight = 16.5;
-
-            exApp.Visible = true;
+            exSheet.Rows[$"1:{rowIndex + 6}"].RowHeight = 16.5;
 
             // Lưu file Excel
             string filePath = $"E:\\rkive\\6\\.NET\\BAEK\\Excel\\BillThue\\{tblThongTinThue.Rows[0]["MaThue"]}.xlsx"; // Đường dẫn lưu file
@@ -363,12 +369,18 @@ namespace BAEK_PERCENT.Class
                 exRange.Font.Italic = true;
                 exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
                 exRange.Value = $"Bằng chữ: {Functions.ChuyenSoSangChu(tblThongTinTra.Rows[0]["TongTien"].ToString())}";
+
+                exRange = exSheet.Range[$"A{rowIndex + 7}:C{rowIndex + 7}"];
+                exRange.Merge();
+                exRange.Font.Size = 11;
+                exRange.Font.Italic = true;
+                exRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+                exRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+                exRange.Value = $"Ngày xuất: {DateTime.Now.ToString()}";
             }
 
             exSheet.Columns["E:F"].ColumnWidth = 10;
-            exSheet.Rows[$"1:{rowIndex + 5}"].RowHeight = 16.5;
-
-            exApp.Visible = true;
+            exSheet.Rows[$"1:{rowIndex + 7}"].RowHeight = 16.5;
 
             // Lưu file Excel
             string filePath = $"E:\\rkive\\6\\.NET\\BAEK\\Excel\\BillTra\\{tblThongTinTra.Rows[0]["MaTra"]}.xlsx"; // Đường dẫn lưu file
@@ -485,8 +497,6 @@ namespace BAEK_PERCENT.Class
             exRange.Value = $"Ngày xuất: {DateTime.Now.ToString()}";
 
             exSheet.Rows[$"1:{rowIndex + 4}"].RowHeight = 16.5;
-
-            exApp.Visible = true;
 
             string startDateStr = startDate.ToString("yyMMdd");
             string endDateStr = endDate.ToString("yyMMdd");
@@ -614,8 +624,6 @@ namespace BAEK_PERCENT.Class
 
             exSheet.Rows[$"1:{rowIndex + 4}"].RowHeight = 16.5;
 
-            exApp.Visible = true;
-
             string startDateStr = startDate.ToString("yyMMdd");
             string endDateStr = endDate.ToString("yyMMdd");
 
@@ -727,8 +735,6 @@ namespace BAEK_PERCENT.Class
 
             exSheet.Rows[$"1:{rowIndex + 4}"].RowHeight = 16.5;
 
-            exApp.Visible = true;
-
             string startDateStr = startDate.ToString("yyMMdd");
             string endDateStr = endDate.ToString("yyMMdd");
 
@@ -832,8 +838,6 @@ namespace BAEK_PERCENT.Class
 
             exSheet.Rows[$"1:{rowIndex + 2}"].RowHeight = 16.5;
 
-            exApp.Visible = true;
-
             string startDateStr = startDate.ToString("yyMMdd");
             string endDateStr = endDate.ToString("yyMMdd");
 
@@ -936,8 +940,6 @@ namespace BAEK_PERCENT.Class
             exRange.Value = $"Ngày xuất: {DateTime.Now.ToString()}";
 
             exSheet.Rows[$"1:{rowIndex + 2}"].RowHeight = 16.5;
-
-            exApp.Visible = true;
 
             string startDateStr = startDate.ToString("yyMMdd");
             string endDateStr = endDate.ToString("yyMMdd");
@@ -1049,13 +1051,11 @@ namespace BAEK_PERCENT.Class
 
             exSheet.Rows[$"1:{rowIndex + 2}"].RowHeight = 16.5;
 
-            exApp.Visible = true;
-
             string startDateStr = startDate.ToString("yyMMdd");
             string endDateStr = endDate.ToString("yyMMdd");
 
             // Lưu file Excel
-            string filePath = $"E:\\rkive\\6\\.NET\\BAEK\\Excel\\BaoCao\\SachYeuThich\\BCSachYeuThich_{startDateStr}_{endDateStr}.xlsx"; // Đường dẫn lưu file
+            string filePath = $"E:\\rkive\\6\\.NET\\BAEK\\Excel\\BaoCao\\SachYeuThich\\BCSachMatHong_{startDateStr}_{endDateStr}.xlsx"; // Đường dẫn lưu file
 
             if (File.Exists(filePath))
             {

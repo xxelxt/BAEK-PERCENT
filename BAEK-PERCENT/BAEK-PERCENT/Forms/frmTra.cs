@@ -113,6 +113,8 @@ namespace BAEK_PERCENT.Forms
 
             txtMaNV.Text = NhanVienDAL.GetMaNVByUsername(Username);
             txtMaNV.Enabled = false;
+
+            txtTongTien.Enabled = false;
         }
 
         private void AdjustColumnWidth()
