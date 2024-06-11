@@ -390,31 +390,37 @@ namespace BAEK_PERCENT.Forms
 
             Series series = new Series("Tên sách")
             {
-                XValueType = ChartValueType.String,
-                ChartType = SeriesChartType.Column,
+                //XValueType = ChartValueType.String,
+                //ChartType = SeriesChartType.Column,
+                ChartType = SeriesChartType.Pie,
                 Font = new Font("Microsoft Sans Serif", 14)
             };
 
-            decimal maxBorrowCount = 0;
+            //decimal maxBorrowCount = 0;
 
             foreach (DataRow row in dt.Rows)
             {
                 string bookTitle = row["TenSach"].ToString();
                 int borrowCount = Convert.ToInt32(row["SoLuongMuon"]);
 
+                DataPoint dataPoint = new DataPoint
+                {
+                    AxisLabel = bookTitle,
+                    YValues = new double[] { borrowCount }
+                };
+
                 series.Points.AddXY(bookTitle, borrowCount);
-                series.Points[series.Points.Count - 1].Label = borrowCount.ToString();
+                series.Points[series.Points.Count - 1].Label = $"{bookTitle} ({borrowCount})";
+                //series.Points[series.Points.Count - 1].Label = borrowCount.ToString();
                 series.Points[series.Points.Count - 1].Font = new Font("Microsoft Sans Serif", 12);
 
-                if (borrowCount > maxBorrowCount)
-                {
-                    maxBorrowCount = borrowCount;
-                }
+                //if (borrowCount > maxBorrowCount)
+                //{
+                //    maxBorrowCount = borrowCount;
+                //}
             }
 
             chrBaoCao.Series.Add(series);
-
-            chrBaoCao.ChartAreas[0].AxisY.Maximum = (double)(maxBorrowCount * 1.2m);
 
             Title title = new Title("Báo cáo sách được yêu thích", Docking.Top, new Font("Arial", 18, FontStyle.Bold), Color.Black);
             chrBaoCao.Titles.Add(title);
@@ -426,6 +432,12 @@ namespace BAEK_PERCENT.Forms
                 Font = new Font("Microsoft Sans Serif", 12, FontStyle.Regular)
             };
             chrBaoCao.Legends.Add(legend);
+
+            series["PieLabelStyle"] = "Outside";
+            //series["PieDrawingStyle"] = "SoftEdge";
+            series["PieStartAngle"] = "270";
+            series["DoughnutRadius"] = "30";
+            chrBaoCao.ChartAreas[0].Area3DStyle.Enable3D = true;
         }
 
         private void BCSachMatHong(DateTime startDate, DateTime endDate)
